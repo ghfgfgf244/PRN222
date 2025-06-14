@@ -1,0 +1,15 @@
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\bin\Debug\net8.0\DataAccessObjects.deps.json
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\bin\Debug\net8.0\DataAccessObjects.dll
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\bin\Debug\net8.0\DataAccessObjects.pdb
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\bin\Debug\net8.0\BusinessObjects.dll
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\bin\Debug\net8.0\BusinessObjects.pdb
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.csproj.AssemblyReference.cache
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.GeneratedMSBuildEditorConfig.editorconfig
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.AssemblyInfoInputs.cache
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.AssemblyInfo.cs
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.csproj.CoreCompileInputs.cache
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\obj\Debug\net8.0\DataAcce.79975846.Up2Date
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.dll
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\obj\Debug\net8.0\refint\DataAccessObjects.dll
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.pdb
+D:\docNet - Csharp\Prn222-Website\DataAccessObjects\obj\Debug\net8.0\ref\DataAccessObjects.dll

@@ -1,0 +1,404 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\docNet - Csharp\\Prn222-Website\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|d:\\docnet - csharp\\prn222-website\\web\\areas\\patient\\controllers\\appointmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|solutionrelative:web\\areas\\patient\\controllers\\appointmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|d:\\docnet - csharp\\prn222-website\\web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|solutionrelative:web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|d:\\docnet - csharp\\prn222-website\\web\\web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|solutionrelative:web\\web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|d:\\docnet - csharp\\prn222-website\\web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|solutionrelative:web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|d:\\docnet - csharp\\prn222-website\\web\\areas\\patient\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|solutionrelative:web\\areas\\patient\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|d:\\docnet - csharp\\prn222-website\\web\\areas\\doctor\\controllers\\timeslotcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|solutionrelative:web\\areas\\doctor\\controllers\\timeslotcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|d:\\docnet - csharp\\prn222-website\\web\\areas\\doctor\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|solutionrelative:web\\areas\\doctor\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|d:\\docnet - csharp\\prn222-website\\web\\areas\\admin\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|solutionrelative:web\\areas\\admin\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|d:\\docnet - csharp\\prn222-website\\dataaccessobjects\\doctordetaildao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\doctordetaildao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|d:\\docnet - csharp\\prn222-website\\dataaccessobjects\\appointmentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\appointmentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|d:\\docnet - csharp\\prn222-website\\web\\controllers\\specialtycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|solutionrelative:web\\controllers\\specialtycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|d:\\docnet - csharp\\prn222-website\\web\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|solutionrelative:web\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|d:\\docnet - csharp\\prn222-website\\dataaccessobjects\\appointmentsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\appointmentsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|d:\\docnet - csharp\\prn222-website\\dataaccessobjects\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|d:\\docnet - csharp\\prn222-website\\dataaccessobjects\\patientdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\patientdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|d:\\docnet - csharp\\prn222-website\\dataaccessobjects\\doctorspecialtydao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\doctorspecialtydao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|d:\\docnet - csharp\\prn222-website\\dataaccessobjects\\doctorleafdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA8592CE-2F48-4666-B2BC-507710C4A2E2}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\doctorleafdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|d:\\docnet - csharp\\prn222-website\\web\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{AAA0C26E-AAD1-49E9-95C4-7BC9975EB1BF}|Web\\Web.csproj|solutionrelative:web\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 40,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppointmentsController.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Areas\\Patient\\Controllers\\AppointmentsController.cs",
+              "RelativeDocumentMoniker": "Web\\Areas\\Patient\\Controllers\\AppointmentsController.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Areas\\Patient\\Controllers\\AppointmentsController.cs",
+              "RelativeToolTip": "Web\\Areas\\Patient\\Controllers\\AppointmentsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:28:37.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Program.cs",
+              "RelativeDocumentMoniker": "Web\\Program.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Program.cs",
+              "RelativeToolTip": "Web\\Program.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:25:40.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\Web\\appsettings.json",
+              "RelativeDocumentMoniker": "Web\\appsettings.json",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\Web\\appsettings.json",
+              "RelativeToolTip": "Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-14T03:25:18.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Web",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Web.csproj",
+              "RelativeDocumentMoniker": "Web\\Web.csproj",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Web.csproj",
+              "RelativeToolTip": "Web\\Web.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-14T03:24:04.88Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PatientController.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Areas\\Patient\\Controllers\\PatientController.cs",
+              "RelativeDocumentMoniker": "Web\\Areas\\Patient\\Controllers\\PatientController.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Areas\\Patient\\Controllers\\PatientController.cs",
+              "RelativeToolTip": "Web\\Areas\\Patient\\Controllers\\PatientController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:22:52.915Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TimeSlotController.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Areas\\Doctor\\Controllers\\TimeSlotController.cs",
+              "RelativeDocumentMoniker": "Web\\Areas\\Doctor\\Controllers\\TimeSlotController.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Areas\\Doctor\\Controllers\\TimeSlotController.cs",
+              "RelativeToolTip": "Web\\Areas\\Doctor\\Controllers\\TimeSlotController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:22:28.501Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DoctorController.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Areas\\Doctor\\Controllers\\DoctorController.cs",
+              "RelativeDocumentMoniker": "Web\\Areas\\Doctor\\Controllers\\DoctorController.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Areas\\Doctor\\Controllers\\DoctorController.cs",
+              "RelativeToolTip": "Web\\Areas\\Doctor\\Controllers\\DoctorController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:22:22.457Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Areas\\Admin\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Web\\Areas\\Admin\\Controllers\\AdminController.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Areas\\Admin\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Web\\Areas\\Admin\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:21:54.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AppointmentDAO.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\AppointmentDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\AppointmentDAO.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\AppointmentDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\AppointmentDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:14:05.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DoctorDetailDAO.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\DoctorDetailDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\DoctorDetailDAO.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\DoctorDetailDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\DoctorDetailDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:14:09.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SpecialtyController.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Controllers\\SpecialtyController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\SpecialtyController.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Controllers\\SpecialtyController.cs",
+              "RelativeToolTip": "Web\\Controllers\\SpecialtyController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:19:57.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\Web\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Web\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:19:50.867Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AppointmentsDbContext.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\AppointmentsDbContext.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\AppointmentsDbContext.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\AppointmentsDbContext.cs",
+              "RelativeToolTip": "DataAccessObjects\\AppointmentsDbContext.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAA2wCMAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:17:41.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UserDAO.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\UserDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\UserDAO.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\UserDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\UserDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:15:33.312Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PatientDAO.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\PatientDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\PatientDAO.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\PatientDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\PatientDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:15:28.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DoctorSpecialtyDAO.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\DoctorSpecialtyDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\DoctorSpecialtyDAO.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\DoctorSpecialtyDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\DoctorSpecialtyDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:14:18.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DoctorLeafDAO.cs",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\DoctorLeafDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\DoctorLeafDAO.cs",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\DataAccessObjects\\DoctorLeafDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\DoctorLeafDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T03:14:14.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ScaffoldingReadMe.txt",
+              "DocumentMoniker": "D:\\docNet - Csharp\\Prn222-Website\\Web\\ScaffoldingReadMe.txt",
+              "RelativeDocumentMoniker": "Web\\ScaffoldingReadMe.txt",
+              "ToolTip": "D:\\docNet - Csharp\\Prn222-Website\\Web\\ScaffoldingReadMe.txt",
+              "RelativeToolTip": "Web\\ScaffoldingReadMe.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-06-14T03:12:20.923Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 360,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
