@@ -13,7 +13,7 @@ public partial class Patient
 
     public int Age { get; set; }
 
-    public string? Gender { get; set; }
+    public bool Gender { get; set; }
 
     public string? Note { get; set; }
 

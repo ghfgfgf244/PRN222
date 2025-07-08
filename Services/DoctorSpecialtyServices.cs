@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class DoctorSpecialtyRepositories : IDoctorSpecialtyServices
+    public class DoctorSpecialtyServices : IDoctorSpecialtyServices
     {
     }
 }

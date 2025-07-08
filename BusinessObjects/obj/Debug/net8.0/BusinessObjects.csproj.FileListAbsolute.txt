@@ -12,3 +12,4 @@ D:\docNet - Csharp\Prn222-Website\BusinessObjects\obj\Debug\net8.0\refint\Busine
 D:\docNet - Csharp\Prn222-Website\BusinessObjects\obj\Debug\net8.0\BusinessObjects.pdb
 D:\docNet - Csharp\Prn222-Website\BusinessObjects\obj\Debug\net8.0\BusinessObjects.genruntimeconfig.cache
 D:\docNet - Csharp\Prn222-Website\BusinessObjects\obj\Debug\net8.0\ref\BusinessObjects.dll
+D:\docNet - Csharp\Prn222-Website\BusinessObjects\obj\Debug\net8.0\BusinessObjects.sourcelink.json

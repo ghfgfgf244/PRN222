@@ -21,9 +21,11 @@ public partial class User
 
     public string Role { get; set; } = null!;
 
-    public string Avatar { get; set; } = null!;
+    public string? Avatar { get; set; }
 
     public DateTime? CreatedAt { get; set; }
+
+    public bool IsActive { get; set; }
 
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 

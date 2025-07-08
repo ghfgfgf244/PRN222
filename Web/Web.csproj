@@ -14,15 +14,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Doctor\Data\" />
-    <Folder Include="Areas\Doctor\Models\" />
-    <Folder Include="Areas\Patient\Data\" />
-    <Folder Include="Areas\Patient\Models\" />
-  </ItemGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj" />
 		<ProjectReference Include="..\DataAccessObjects\DataAccessObjects.csproj" />
