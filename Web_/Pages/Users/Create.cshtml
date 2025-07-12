@@ -1,0 +1,88 @@
+﻿@page
+@model Web_.Pages.Users.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_LayoutMain";
+}
+
+<h1>Create</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" class="form-horizontal" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="User.Avatar" class="control-label"></label>
+                <div class="col-lg-6">
+                    <input id="ImageFile" type="file" accept="image/*" />
+
+                    <!-- Hiển thị ảnh xem trước -->
+                    <img id="preview"
+                         src="@Url.Content(ViewBag.Anh == null ? "~/images/avatar1.jpg" : ViewBag.Anh)"
+                         class="rounded-circle" height="40" />
+
+                    <!-- Input ẩn để lưu đường dẫn ảnh sau khi upload -->
+                    <input type="hidden" id="AvatarPath" asp-for="User.Avatar" />
+
+                    <span asp-validation-for="User.Avatar" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.FullName" class="control-label"></label>
+                <input asp-for="User.FullName" class="form-control" />
+                <span asp-validation-for="User.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.PhoneNumber" class="control-label"></label>
+                <input asp-for="User.PhoneNumber" class="form-control" />
+                <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Email" class="control-label"></label>
+                <input asp-for="User.Email" class="form-control" />
+                <span asp-validation-for="User.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Password" class="control-label"></label>
+                <input asp-for="User.Password" class="form-control" />
+                <span asp-validation-for="User.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="User.Gender" /> @Html.DisplayNameFor(model => model)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Birthday" class="control-label"></label>
+                <input asp-for="User.Birthday" class="form-control" />
+                <span asp-validation-for="User.Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Role" class="control-label"></label>
+                <input asp-for="User.Role" class="form-control" />
+                <span asp-validation-for="User.Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/js/crud.js" asp-append-version="true"></script>
+    <script src="~/js/loading.js" asp-append-version="true"></script>
+    <script src="~/js/ckeditorBlog.js" asp-append-version="true"></script>
+
+}

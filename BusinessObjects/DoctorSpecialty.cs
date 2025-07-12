@@ -11,5 +11,7 @@ public partial class DoctorSpecialty
 
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
-    public virtual ICollection<DoctorDetail> DoctorDetails { get; set; } = new List<DoctorDetail>();
+    public virtual ICollection<ExamMethod> ExamMethods { get; set; } = new List<ExamMethod>();
+
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

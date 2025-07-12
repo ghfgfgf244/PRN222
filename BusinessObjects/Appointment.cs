@@ -13,23 +13,23 @@ public partial class Appointment
 
     public int SpecialtyId { get; set; }
 
-    public string? ExamMethod { get; set; }
+    public int MethodId { get; set; }
 
     public DateOnly AppointmentDate { get; set; }
 
-    public string TimeSlot { get; set; } = null!;
+    public int SlotId { get; set; }
 
     public string? Status { get; set; }
-
-    public string? PaymentStatus { get; set; }
 
     public DateTime? CreatedAt { get; set; }
 
     public virtual User Doctor { get; set; } = null!;
 
+    public virtual ExamMethod Method { get; set; } = null!;
+
     public virtual Patient Patient { get; set; } = null!;
 
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+    public virtual TimeSlot Slot { get; set; } = null!;
 
     public virtual DoctorSpecialty Specialty { get; set; } = null!;
 }

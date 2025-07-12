@@ -1,0 +1,113 @@
+﻿@using System.Security.Claims
+@inject IConfiguration Configuration
+
+@{
+    var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+    var userName = User.Identity?.Name;
+    var userRole = User.FindFirst("Role")?.Value; // Custom claim
+    var adminEmail = Configuration["DefaultAdmin:Username"];
+
+    bool isAdmin = !string.IsNullOrEmpty(userEmail) && userEmail.Equals(adminEmail, StringComparison.OrdinalIgnoreCase);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - ClinicSystem</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            border-right: 1px solid #dee2e6;
+            padding: 1rem;
+        }
+
+            .sidebar .nav-link {
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+                .sidebar .nav-link.active {
+                    font-weight: bold;
+                    color: #0d6efd;
+                }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 2rem;
+        }
+
+        .user-info {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h5 class="fw-bold">Clinic System</h5>
+
+        <nav class="nav flex-column">
+            @if (isAdmin)
+            {
+                <a class="nav-link" asp-page="/Admin/Dashboard">Dashboard</a>
+                <a class="nav-link" asp-page="/Users/Index">Manage Users</a>
+            }
+            else if (userRole == "Doctor")
+            {
+                <a class="nav-link" asp-page="/Doctor/Dashboard">Dashboard</a>
+                <a class="nav-link" asp-page="/Doctor/Leaves">Register Leave</a>
+                <a class="nav-link" asp-page="/Users/Edit">My Profile</a>
+            }
+            else if (userRole == "Patient")
+            {
+                <a class="nav-link" asp-page="/Appointments/Index">My Appointments</a>
+                <a class="nav-link" asp-page="/Patient/Index">List Patients</a>
+                <a class="nav-link" asp-page="/Users/Edit">My Profile</a>
+            }
+
+        </nav>
+
+
+        @if (!string.IsNullOrEmpty(userEmail))
+        {
+            <div class="user-info">
+                Hello, <strong>@userName</strong><br />
+                <a class="text-danger" asp-page="/Account/Logout">Logout</a>
+            </div>
+        }
+        else
+        {
+            <a class="nav-link text-primary" asp-page="/Account/Login">Login</a>
+        }
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

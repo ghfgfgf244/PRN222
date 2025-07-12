@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BusinessObjects;
+using DataAccessObjects;
+using Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +11,45 @@ namespace Services
 {
     public class UserServices : IUserServices
     {
+        private readonly IUserRepositories iUserRepositories;
+
+        public UserServices(AppointmentsDbContext context)
+        {
+            iUserRepositories = new UserRepositories(context);
+        }
+        public async Task CreateUserAsync(User user)
+        {
+            await iUserRepositories.CreateUserAsync(user);
+        }
+
+        public async Task<bool> DeleteUserAsync(int id)
+        {
+            return await iUserRepositories.DeleteUserAsync(id);
+        }
+
+        public async Task<(List<User> Users, int TotalPages)> GetPagedUsersAsync(string? searchTerm, int pageNumber, int pageSize)
+        {
+            return await iUserRepositories.GetPagedUsersAsync(searchTerm, pageNumber, pageSize);
+        }
+
+        public async Task<User?> GetUserByIdAsync(int id)
+        {
+            return await iUserRepositories.GetUserByIdAsync(id);
+        }
+
+        public async Task<bool?> ToggleUserStatusAsync(int id)
+        {
+            return await iUserRepositories.ToggleUserStatusAsync(id);
+        }
+
+        public async Task<bool> UpdateUserAsync(User user)
+        {
+            return await iUserRepositories.UpdateUserAsync(user);
+        }
+
+        public async Task<bool> UserExistsAsync(int id)
+        {
+            return await iUserRepositories.UserExistsAsync(id);
+        }
     }
 }

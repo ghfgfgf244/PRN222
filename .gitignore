@@ -1,5 +1,5 @@
-/bin/
-/obj/
-/.vs/
-/appsettings.json
-
+**/bin/
+**/obj/
+**/.vs/
+**/wwwroot/lib/
+**/appsettings*.json
