@@ -1,0 +1,445 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Web_.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Web_.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\404.png",
+      "PackagePath": "staticwebassets\\images\\404.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\500.png",
+      "PackagePath": "staticwebassets\\images\\500.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\acc-expand.png",
+      "PackagePath": "staticwebassets\\images\\acc-expand.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\avatar-mini-2.jpg",
+      "PackagePath": "staticwebassets\\images\\avatar-mini-2.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\avatar-mini-3.jpg",
+      "PackagePath": "staticwebassets\\images\\avatar-mini-3.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\avatar-mini-4.jpg",
+      "PackagePath": "staticwebassets\\images\\avatar-mini-4.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\avatar-mini.jpg",
+      "PackagePath": "staticwebassets\\images\\avatar-mini.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\avatar1.jpg",
+      "PackagePath": "staticwebassets\\images\\avatar1.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\avatar1_small.jpg",
+      "PackagePath": "staticwebassets\\images\\avatar1_small.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\bucket-logo.png",
+      "PackagePath": "staticwebassets\\images\\bucket-logo.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\chat-avatar2.jpg",
+      "PackagePath": "staticwebassets\\images\\chat-avatar2.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\chat-user-thumb-f.png",
+      "PackagePath": "staticwebassets\\images\\chat-user-thumb-f.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\chat-user-thumb.png",
+      "PackagePath": "staticwebassets\\images\\chat-user-thumb.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\crazy-price.jpg",
+      "PackagePath": "staticwebassets\\images\\crazy-price.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\customSelect-arrow.gif",
+      "PackagePath": "staticwebassets\\images\\customSelect-arrow.gif"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\details_close.png",
+      "PackagePath": "staticwebassets\\images\\details_close.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\details_open.png",
+      "PackagePath": "staticwebassets\\images\\details_open.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\flags\\de.png",
+      "PackagePath": "staticwebassets\\images\\flags\\de.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\flags\\es.png",
+      "PackagePath": "staticwebassets\\images\\flags\\es.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\flags\\fr.png",
+      "PackagePath": "staticwebassets\\images\\flags\\fr.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\flags\\ru.png",
+      "PackagePath": "staticwebassets\\images\\flags\\ru.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\flags\\us.png",
+      "PackagePath": "staticwebassets\\images\\flags\\us.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\gallery\\image1.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery\\image1.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\gallery\\image2.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery\\image2.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\gallery\\image3.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery\\image3.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\gallery\\image4.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery\\image4.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\gallery\\image5.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery\\image5.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\input-spinner.gif",
+      "PackagePath": "staticwebassets\\images\\input-spinner.gif"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\loading.gif",
+      "PackagePath": "staticwebassets\\images\\loading.gif"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\lock-screen.jpg",
+      "PackagePath": "staticwebassets\\images\\lock-screen.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\lock_thumb.jpg",
+      "PackagePath": "staticwebassets\\images\\lock_thumb.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\nav-expand.png",
+      "PackagePath": "staticwebassets\\images\\nav-expand.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\product_img.png",
+      "PackagePath": "staticwebassets\\images\\product_img.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\search-icon.png",
+      "PackagePath": "staticwebassets\\images\\search-icon.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\sm-img-1.jpg",
+      "PackagePath": "staticwebassets\\images\\sm-img-1.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\sm-img-2.jpg",
+      "PackagePath": "staticwebassets\\images\\sm-img-2.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\sm-img-3.jpg",
+      "PackagePath": "staticwebassets\\images\\sm-img-3.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\top-arrow.png",
+      "PackagePath": "staticwebassets\\images\\top-arrow.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\twitter_corner_black.png",
+      "PackagePath": "staticwebassets\\images\\twitter_corner_black.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\twitter_corner_blue.png",
+      "PackagePath": "staticwebassets\\images\\twitter_corner_blue.png"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\images\\weather_image.jpg",
+      "PackagePath": "staticwebassets\\images\\weather_image.jpg"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\js\\ckeditorBlog.js",
+      "PackagePath": "staticwebassets\\js\\ckeditorBlog.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\js\\crud.js",
+      "PackagePath": "staticwebassets\\js\\crud.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\js\\loading.js",
+      "PackagePath": "staticwebassets\\js\\loading.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\docNet - Csharp\\Prn222-Website\\Web_\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Web_.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Web_.props",
+      "PackagePath": "build\\Web_.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Web_.props",
+      "PackagePath": "buildMultiTargeting\\Web_.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Web_.props",
+      "PackagePath": "buildTransitive\\Web_.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
