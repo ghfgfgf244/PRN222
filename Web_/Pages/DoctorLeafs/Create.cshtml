@@ -2,42 +2,43 @@
 @model Web_.Pages.DoctorLeafs.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Tạo đơn nghỉ phép";
+    Layout = "_LayoutMain";
+
 }
 
-<h1>Create</h1>
+<h1>Tạo đơn nghỉ phép</h1>
 
-<h4>DoctorLeaf</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="DoctorLeaf.DoctorId" class="control-label"></label>
-                <select asp-for="DoctorLeaf.DoctorId" class ="form-control" asp-items="ViewBag.DoctorId"></select>
-            </div>
+
             <div class="form-group">
                 <label asp-for="DoctorLeaf.LeaveDate" class="control-label"></label>
-                <input asp-for="DoctorLeaf.LeaveDate" class="form-control" />
+                <input asp-for="DoctorLeaf.LeaveDate" type="date" class="form-control" />
                 <span asp-validation-for="DoctorLeaf.LeaveDate" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="DoctorLeaf.Reason" class="control-label"></label>
-                <input asp-for="DoctorLeaf.Reason" class="form-control" />
+                <textarea asp-for="DoctorLeaf.Reason" class="form-control" rows="4"></textarea>
                 <span asp-validation-for="DoctorLeaf.Reason" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+
+            <button type="submit" class="btn btn-primary">Gửi đơn</button>
         </form>
     </div>
 </div>
 
+
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">← Quay lại danh sách</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

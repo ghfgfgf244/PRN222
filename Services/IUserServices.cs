@@ -12,7 +12,7 @@ namespace Services
         Task<User?> GetUserByIdAsync(int id);
         Task<bool> UpdateUserAsync(User user);
         Task CreateUserAsync(User user);
-        Task<(List<User> Users, int TotalPages)> GetPagedUsersAsync(string? searchTerm, int pageNumber, int pageSize);
+        Task<(List<User> Users, int TotalPages)> GetPagedUsersAsync(string? role, string? searchTerm, int pageNumber, int pageSize);
         Task<bool> DeleteUserAsync(int id);
         Task<bool?> ToggleUserStatusAsync(int id);
         Task<bool> UserExistsAsync(int id);

@@ -5,9 +5,12 @@
     var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
     var userName = User.Identity?.Name;
     var userRole = User.FindFirst("Role")?.Value; // Custom claim
+    var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
     var adminEmail = Configuration["DefaultAdmin:Username"];
 
     bool isAdmin = !string.IsNullOrEmpty(userEmail) && userEmail.Equals(adminEmail, StringComparison.OrdinalIgnoreCase);
+    int userId = 0;
+    int.TryParse(userIdClaim, out userId);
 }
 
 <!DOCTYPE html>
@@ -19,6 +22,15 @@
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/bs3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">
+    <link href="~/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="~/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/js/jvector-map/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+    <link href="~/css/clndr.css" rel="stylesheet">
+    <link href="~/js/css3clock/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
 
     <style>
         body {
@@ -66,18 +78,19 @@
             {
                 <a class="nav-link" asp-page="/Admin/Dashboard">Dashboard</a>
                 <a class="nav-link" asp-page="/Users/Index">Manage Users</a>
+                <a class="nav-link" asp-page="/DoctorLeafs/Index">Manage Doctor Leaf</a>
             }
             else if (userRole == "Doctor")
             {
-                <a class="nav-link" asp-page="/Doctor/Dashboard">Dashboard</a>
-                <a class="nav-link" asp-page="/Doctor/Leaves">Register Leave</a>
-                <a class="nav-link" asp-page="/Users/Edit">My Profile</a>
+                <a class="nav-link" asp-page="/Appointments/Index">Dashboard</a>
+                <a class="nav-link" asp-page="/DoctorLeafs/Index">Register Leave</a>
+                <a class="nav-link" asp-page="/Users/Edit" asp-route-id="@userId">My Profile</a>
             }
             else if (userRole == "Patient")
             {
                 <a class="nav-link" asp-page="/Appointments/Index">My Appointments</a>
                 <a class="nav-link" asp-page="/Patient/Index">List Patients</a>
-                <a class="nav-link" asp-page="/Users/Edit">My Profile</a>
+                <a class="nav-link" asp-page="/Users/Edit" asp-route-id="@userId">My Profile</a>
             }
 
         </nav>
@@ -102,11 +115,29 @@
             @RenderBody()
         </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
+    <script src="~/bs3/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="~/js/jquery.scrollTo.min.js"></script>
+    <script src="~/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
+    <script src="~/js/jquery.nicescroll.js"></script>
+    <script src="~/js/skycons/skycons.js"></script>
+    <script src="~/js/jquery.scrollTo/jquery.scrollTo.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="~/js/calendar/clndr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="~/js/calendar/moment-2.2.1.js"></script>
+    <script src="~/js/evnt.calendar.init.js"></script>
+    <script src="~/js/jvector-map/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/js/jvector-map/jquery-jvectormap-us-lcc-en.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>

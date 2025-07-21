@@ -29,9 +29,9 @@ namespace Repositories
             return await _userDAO.DeleteUserAsync(id);
         }
 
-        public async Task<(List<User> Users, int TotalPages)> GetPagedUsersAsync(string? searchTerm, int pageNumber, int pageSize)
+        public async Task<(List<User> Users, int TotalPages)> GetPagedUsersAsync(string? role, string? searchTerm, int pageNumber, int pageSize)
         {
-            return await _userDAO.GetPagedUsersAsync(searchTerm, pageNumber, pageSize);
+            return await _userDAO.GetPagedUsersAsync(role, searchTerm, pageNumber, pageSize);
         }
 
         public async Task<User?> GetUserByIdAsync(int id)

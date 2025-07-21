@@ -1,0 +1,27 @@
+﻿@page
+@model Web_.Pages.Account.AccessDeniedModel
+
+@{
+    var isAuthenticated = User.Identity != null && User.Identity.IsAuthenticated;
+    Layout = isAuthenticated ? "_LayoutMain" : "_Layout";
+    ViewData["Title"] = "Unauthorized";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="text-center">
+        <h1 class="display-3 text-danger mb-3">
+            <i class="fas fa-ban"></i> 403
+        </h1>
+        <h4 class="text-dark mb-3">Truy cập bị từ chối</h4>
+        <p class="lead text-muted">Bạn không có quyền truy cập vào tài nguyên này.</p>
+
+        @if (!isAuthenticated)
+        {
+            <a asp-page="/Account/Login" class="btn btn-primary mt-4">
+                <i class="fas fa-arrow-left me-1"></i> Quay lại đăng nhập
+            </a>
+        }
+    </div>
+</div>

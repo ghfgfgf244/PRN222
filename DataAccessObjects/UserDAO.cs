@@ -18,17 +18,28 @@ namespace DataAccessObjects
             _context = context;
         }
         // Lấy danh sách người dùng có phân trang và tìm kiếm
-        public async Task<(List<User> Users, int TotalPages)> GetPagedUsersAsync(string? searchTerm, int pageNumber, int pageSize)
+        public async Task<(List<User> Users, int TotalPages)> GetPagedUsersAsync(string? role, string? searchTerm, int pageNumber, int pageSize)
         {
             var query = _context.Users.AsQueryable();
 
-            if (!string.IsNullOrEmpty(searchTerm))
+            // Lọc theo Role nếu có
+            if (!string.IsNullOrEmpty(role))
             {
-                query = query.Where(u => EF.Functions.Like(u.FullName, $"%{searchTerm}%"));
+                query = query.Where(u => u.Role != null && u.Role.ToLower() == role.ToLower());
             }
 
-            int total = await query.CountAsync();
-            int totalPages = (int)Math.Ceiling(total / (double)pageSize);
+            // Tìm kiếm theo FullName, Email hoặc PhoneNumber nếu có searchTerm
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                query = query.Where(u =>
+                    (u.FullName != null && u.FullName.Contains(searchTerm)) ||
+                    (u.Email != null && u.Email.Contains(searchTerm)) ||
+                    (u.PhoneNumber != null && u.PhoneNumber.Contains(searchTerm))
+                );
+            }
+
+            var totalRecords = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
 
             var users = await query
                 .Skip((pageNumber - 1) * pageSize)
@@ -37,6 +48,7 @@ namespace DataAccessObjects
 
             return (users, totalPages);
         }
+
         // Tìm User theo ID
         public async Task<User?> GetUserByIdAsync(int id)
         {
@@ -53,8 +65,23 @@ namespace DataAccessObjects
         {
             try
             {
-                var hasher = new PasswordHasher<User>();
-                user.Password = hasher.HashPassword(user, user.Password);
+                // Lấy dữ liệu hiện tại từ DB
+                var existingUser = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == user.UserId);
+
+                if (existingUser == null)
+                    return false;
+
+                // Nếu password mới null hoặc rỗng, giữ nguyên password cũ
+                if (string.IsNullOrEmpty(user.Password))
+                {
+                    user.Password = existingUser.Password;
+                }
+                else
+                {
+                    // Có nhập password mới → hash lại
+                    var hasher = new PasswordHasher<User>();
+                    user.Password = hasher.HashPassword(user, user.Password);
+                }
 
                 _context.Attach(user).State = EntityState.Modified;
                 await _context.SaveChangesAsync();

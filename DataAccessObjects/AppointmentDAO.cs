@@ -77,7 +77,7 @@ namespace DataAccessObjects
         }
 
         // 6. Lấy danh sách slot đã đặt trong ngày theo chuyên ngành
-        public async Task<List<int>> GetTakenSlotIdsAsync(int specialtyId, DateOnly date)
+        public async Task<List<int?>> GetTakenSlotIdsAsync(int specialtyId, DateOnly date)
         {
             return await _context.Appointments
                 .Where(a => a.SpecialtyId == specialtyId && a.AppointmentDate == date)

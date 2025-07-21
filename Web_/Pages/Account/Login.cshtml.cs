@@ -64,6 +64,7 @@ namespace Web_.Pages.Account
 
             var claimsDb = new List<Claim>
             {
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim(ClaimTypes.Name, user.FullName),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim("Role", user.Role ?? "Patient")
@@ -77,22 +78,22 @@ namespace Web_.Pages.Account
             switch (user.Role)
             {
                 case "Doctor":
-                    return RedirectToPage("/Doctor/Dashboard");
+                    return RedirectToPage("/DoctorLeafs/Index");
                 case "Patient":
                     return RedirectToPage("/Patients/Index");
                 default:
                     return RedirectToPage("/Index");
             }
         }
-        public async Task<IActionResult> OnPostGoogleLoginAsync()
-        {
-            var properties = new AuthenticationProperties
-            {
-                RedirectUri = Url.Page("/Account/ExternalLogin")
-            };
+        //public async Task<IActionResult> OnPostGoogleLoginAsync()
+        //{
+        //    var properties = new AuthenticationProperties
+        //    {
+        //        RedirectUri = Url.Page("/Account/ExternalLogin")
+        //    };
 
-            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
-        }
+        //    return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+        //}
 
     }
 }

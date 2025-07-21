@@ -30,7 +30,7 @@ namespace DataAccessObjects
         }
 
         // 2. Lấy danh sách khung giờ đã bị đặt bởi bác sĩ trong ngày
-        public async Task<List<int>> GetTakenSlotIdsAsync(int doctorId, DateOnly date)
+        public async Task<List<int?>> GetTakenSlotIdsAsync(int doctorId, DateOnly date)
         {
             return await _context.Appointments
                 .Where(a => a.DoctorId == doctorId && a.AppointmentDate == date)
@@ -46,30 +46,21 @@ namespace DataAccessObjects
         }
 
         // 4. Đăng ký nghỉ phép (nếu chưa có ngày đó)
-        public async Task<bool> RegisterDoctorLeaveAsync(int doctorId, DateOnly leaveDate, string? reason)
+        public async Task<bool> RegisterDoctorLeaveAsync(DoctorLeaf doctorLeaf)
         {
-            if (await IsDoctorOnLeaveAsync(doctorId, leaveDate)) return false;
+            var today = DateOnly.FromDateTime(DateTime.Now);
+            var minAllowedDate = today.AddDays(7);
 
-            var leave = new DoctorLeaf
+            if (doctorLeaf.LeaveDate < minAllowedDate)
             {
-                DoctorId = doctorId,
-                LeaveDate = leaveDate,
-                Reason = reason,
-                CreatedAt = DateTime.Now
-            };
+                return false;
+            }
 
-            _context.DoctorLeaves.Add(leave);
+            if (await IsDoctorOnLeaveAsync(doctorLeaf.DoctorId.Value, doctorLeaf.LeaveDate)) return false;
+
+            _context.DoctorLeaves.Add(doctorLeaf);
             await _context.SaveChangesAsync();
             return true;
-        }
-
-        // 5. Lấy danh sách ngày nghỉ của bác sĩ
-        public async Task<List<DoctorLeaf>> GetDoctorLeavesAsync(int doctorId)
-        {
-            return await _context.DoctorLeaves
-                .Where(l => l.DoctorId == doctorId)
-                .OrderByDescending(l => l.LeaveDate)
-                .ToListAsync();
         }
 
         // 6. Lấy danh sách bác sĩ theo chuyên ngành dựa vào bảng Appointment
@@ -88,6 +79,113 @@ namespace DataAccessObjects
                 .Include(u => u.DoctorLeaves)
                 .FirstOrDefaultAsync(u => u.UserId == doctorId && u.Role == "Doctor");
         }
+
+
+        //Doctor Leaf
+        public async Task<List<DoctorLeaf>> GetAllDoctorLeavesAsync()
+        {
+            return await _context.DoctorLeaves
+                .Include(l => l.Doctor) // Lấy thêm thông tin bác sĩ (User)
+                .OrderByDescending(l => l.LeaveDate)
+                .ToListAsync();
+        }
+        public async Task<List<DoctorLeaf>> GetDoctorLeavesByDoctorIdAsync(int doctorId)
+        {
+            return await _context.DoctorLeaves
+                .Include(l => l.Doctor) // Nếu bạn cần thông tin bác sĩ trong kết quả
+                .Where(l => l.DoctorId == doctorId)
+                .OrderByDescending(l => l.LeaveDate)
+                .ToListAsync();
+        }
+        public async Task<bool?> ToggleDoctorLeafStatusAsync(int id)
+        {
+            var leaf = await _context.DoctorLeaves.FindAsync(id);
+            if (leaf == null) return null;
+
+            leaf.IsActive = !leaf.IsActive;
+            await _context.SaveChangesAsync();
+            return leaf.IsActive;
+        }
+        public async Task<bool> DeleteLeafAsync(int id)
+        {
+            var leaf = await _context.DoctorLeaves.FindAsync(id);
+            if (leaf == null) return false;
+
+            _context.DoctorLeaves.Remove(leaf);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        public async Task<DoctorLeaf?> GetDoctorLeafByIdAsync(int id)
+        {
+            return await _context.DoctorLeaves.FirstOrDefaultAsync(u => u.LeaveId == id);
+        }
+
+        //Specialty
+        public async Task<List<DoctorSpecialty>> GetAllSpecialties()
+        {
+            return await _context.DoctorSpecialties.ToListAsync();
+        }
+
+        public async Task<DoctorSpecialty?> GetSpecialtyByIdAsync(int id)
+        {
+            return await _context.DoctorSpecialties.FindAsync(id);
+        }
+
+        public async Task AddSpecialtyToDoctorAsync(int doctorId, int specialtyId)
+        {
+            var doctor = await _context.Users
+                .Include(u => u.Specialties)
+                .FirstOrDefaultAsync(u => u.UserId == doctorId && u.Role == "Doctor");
+
+            if (doctor == null)
+                throw new Exception("Không tìm thấy bác sĩ.");
+
+            var specialty = await _context.DoctorSpecialties.FindAsync(specialtyId);
+            if (specialty == null)
+                throw new Exception("Không tìm thấy chuyên ngành.");
+
+            // Tránh thêm trùng
+            if (!doctor.Specialties.Any(s => s.SpecialtyId == specialtyId))
+            {
+                doctor.Specialties.Add(specialty);
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task UpdateDoctorSpecialtyAsync(int doctorId, int newSpecialtyId)
+        {
+            var doctor = await _context.Users
+                .Include(u => u.Specialties)
+                .FirstOrDefaultAsync(u => u.UserId == doctorId && u.Role == "Doctor");
+
+            if (doctor == null)
+                throw new Exception("Không tìm thấy bác sĩ.");
+
+            // Kiểm tra xem chuyên ngành mới có tồn tại không
+            var newSpecialty = await _context.DoctorSpecialties.FindAsync(newSpecialtyId);
+            if (newSpecialty == null)
+                throw new Exception("Không tìm thấy chuyên ngành mới.");
+
+            // Xóa hết chuyên ngành cũ (nếu có)
+            doctor.Specialties.Clear();
+
+            // Thêm chuyên ngành mới
+            doctor.Specialties.Add(newSpecialty);
+
+            await _context.SaveChangesAsync();
+        }
+        public async Task<int?> GetSpecialtyIdByDoctorId(int doctorId)
+        {
+            var doctor = await _context.Users
+                .Include(u => u.Specialties)
+                .FirstOrDefaultAsync(u => u.UserId == doctorId && u.Role == "Doctor");
+
+            if (doctor == null)
+                return null;
+
+            // Giả sử mỗi bác sĩ chỉ có 1 chuyên ngành
+            return doctor.Specialties.FirstOrDefault()?.SpecialtyId;
+        }
+
 
     }
 }

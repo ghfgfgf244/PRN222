@@ -7,7 +7,7 @@ public partial class Patient
 {
     public int PatientId { get; set; }
 
-    public int RegisteredBy { get; set; }
+    public int? RegisteredBy { get; set; }
 
     public string FullName { get; set; } = null!;
 
@@ -19,5 +19,5 @@ public partial class Patient
 
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
-    public virtual User RegisteredByNavigation { get; set; } = null!;
+    public virtual User? RegisteredByNavigation { get; set; }
 }

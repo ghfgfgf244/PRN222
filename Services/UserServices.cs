@@ -27,9 +27,9 @@ namespace Services
             return await iUserRepositories.DeleteUserAsync(id);
         }
 
-        public async Task<(List<User> Users, int TotalPages)> GetPagedUsersAsync(string? searchTerm, int pageNumber, int pageSize)
+        public async Task<(List<User> Users, int TotalPages)> GetPagedUsersAsync(string? role, string? searchTerm, int pageNumber, int pageSize)
         {
-            return await iUserRepositories.GetPagedUsersAsync(searchTerm, pageNumber, pageSize);
+            return await iUserRepositories.GetPagedUsersAsync(role, searchTerm, pageNumber, pageSize);
         }
 
         public async Task<User?> GetUserByIdAsync(int id)

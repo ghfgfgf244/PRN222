@@ -12,64 +12,116 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post" class="form-horizontal" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-            <div class="form-group">
-                <label asp-for="User.Avatar" class="control-label"></label>
-                <div class="col-lg-6">
-                    <input id="ImageFile" type="file" accept="image/*" />
-
-                    <!-- Hiển thị ảnh xem trước -->
-                    <img id="preview"
-                         src="@Url.Content(ViewBag.Anh == null ? "~/images/avatar1.jpg" : ViewBag.Anh)"
-                         class="rounded-circle" height="40" />
-
-                    <!-- Input ẩn để lưu đường dẫn ảnh sau khi upload -->
+            <div class="mb-3 row">
+                <label asp-for="User.Avatar" class="col-sm-3 col-form-label text-end"></label>
+                <div class="col-sm-9">
+                    <input id="ImageFile" type="file" accept="image/*" class="form-control" />
+                    <img id="preview" src="@Url.Content(ViewBag.Anh == null ? "~/images/avatar1.jpg" : ViewBag.Anh)" class="rounded-circle mt-2" height="40" />
                     <input type="hidden" id="AvatarPath" asp-for="User.Avatar" />
-
                     <span asp-validation-for="User.Avatar" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
-                <label asp-for="User.FullName" class="control-label"></label>
-                <input asp-for="User.FullName" class="form-control" />
-                <span asp-validation-for="User.FullName" class="text-danger"></span>
+
+            <div class="mb-3 row">
+                <label asp-for="User.FullName" class="col-sm-3 col-form-label text-end"></label>
+                <div class="col-sm-9">
+                    <input asp-for="User.FullName" class="form-control" />
+                    <span asp-validation-for="User.FullName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="User.PhoneNumber" class="control-label"></label>
-                <input asp-for="User.PhoneNumber" class="form-control" />
-                <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+
+            <div class="mb-3 row">
+                <label asp-for="User.PhoneNumber" class="col-sm-3 col-form-label text-end"></label>
+                <div class="col-sm-9">
+                    <input asp-for="User.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="User.Email" class="control-label"></label>
-                <input asp-for="User.Email" class="form-control" />
-                <span asp-validation-for="User.Email" class="text-danger"></span>
+
+            <div class="mb-3 row">
+                <label asp-for="User.Email" class="col-sm-3 col-form-label text-end"></label>
+                <div class="col-sm-9">
+                    <input asp-for="User.Email" class="form-control" />
+                    <span asp-validation-for="User.Email" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="User.Password" class="control-label"></label>
-                <input asp-for="User.Password" class="form-control" />
-                <span asp-validation-for="User.Password" class="text-danger"></span>
+
+            <div class="mb-3 row">
+                <label asp-for="User.Password" class="col-sm-3 col-form-label text-end"></label>
+                <div class="col-sm-9">
+                    <input asp-for="User.Password" class="form-control" />
+                    <span asp-validation-for="User.Password" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="User.Gender" /> @Html.DisplayNameFor(model => model)
-                </label>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label text-end">Giới tính</label>
+                <div class="col-sm-9">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="User.Gender" value="true" id="genderNam" />
+                        <label class="form-check-label" for="genderNam">Nam</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="User.Gender" value="false" id="genderNu" />
+                        <label class="form-check-label" for="genderNu">Nữ</label>
+                    </div>
+                    <span asp-validation-for="User.Gender" class="text-danger d-block"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="User.Birthday" class="control-label"></label>
-                <input asp-for="User.Birthday" class="form-control" />
-                <span asp-validation-for="User.Birthday" class="text-danger"></span>
+
+            <div class="mb-3 row">
+                <label asp-for="User.Birthday" class="col-sm-3 col-form-label text-end"></label>
+                <div class="col-sm-9">
+                    <input asp-for="User.Birthday" class="form-control" />
+                    <span asp-validation-for="User.Birthday" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="User.Role" class="control-label"></label>
-                <input asp-for="User.Role" class="form-control" />
-                <span asp-validation-for="User.Role" class="text-danger"></span>
+
+            <div class="mb-3 row">
+                <label asp-for="User.Role" class="col-sm-3 col-form-label text-end"></label>
+                <div class="col-sm-9">
+                    <select asp-for="User.Role" class="form-control">
+                        <option value="Patient">Patient</option>
+                        <option value="Doctor">Doctor</option>
+                    </select>
+                    <span asp-validation-for="User.Role" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div class="mb-3 row" id="specialtyDiv" style="display: none;">
+                <label class="col-sm-3 col-form-label text-end">Chuyên ngành</label>
+                <div class="col-sm-9">
+                    <select asp-for="SelectedSpecialtyId" class="form-control">
+                        <option value="">-- Chọn chuyên ngành --</option>
+                        @foreach (var item in Model.SpecialtyOptions)
+                        {
+                            <option value="@item.Value" selected="@(item.Value == Model.SelectedSpecialtyId?.ToString() ? "selected" : null)">
+                                @item.Text
+                            </option>
+                        }
+                    </select>
+                    <span asp-validation-for="SelectedSpecialtyId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label asp-for="User.IsActive" class="col-sm-3 col-form-label text-end"></label>
+                <div class="col-sm-9 d-flex align-items-center">
+                    <input class="form-check-input me-2" asp-for="User.IsActive" />
+                    <span asp-validation-for="User.IsActive" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="offset-sm-3 col-sm-9">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
             </div>
         </form>
+
     </div>
 </div>
 
@@ -84,5 +136,18 @@
     <script src="~/js/crud.js" asp-append-version="true"></script>
     <script src="~/js/loading.js" asp-append-version="true"></script>
     <script src="~/js/ckeditorBlog.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const roleSelect = document.querySelector('[name="User.Role"]');
+            const specialtyDiv = document.getElementById('specialtyDiv');
+
+            function toggleSpecialty() {
+                specialtyDiv.style.display = roleSelect.value === 'Doctor' ? 'block' : 'none';
+            }
+
+            toggleSpecialty();
+            roleSelect.addEventListener('change', toggleSpecialty);
+        });
+    </script>
 
 }

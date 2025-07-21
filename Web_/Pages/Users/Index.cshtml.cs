@@ -20,6 +20,8 @@ namespace Web_.Pages.Users
         }
 
         public IList<User> User { get; set; } = default!;
+        [BindProperty(SupportsGet = true)]
+        public string? Role { get; set; }
 
         public int TotalPages { get; set; }
         [BindProperty(SupportsGet = true)]
@@ -28,7 +30,7 @@ namespace Web_.Pages.Users
         public string? SearchTerm { get; set; }
         public async Task OnGetAsync(int pageNumber = 1, int pageSize = 10)
         {
-            var (users, totalPages) = await _context.GetPagedUsersAsync(SearchTerm, pageNumber, pageSize);
+            var (users, totalPages) = await _context.GetPagedUsersAsync(Role, SearchTerm, pageNumber, pageSize);
             User = users;
             TotalPages = totalPages;
             CurrentPage = pageNumber;

@@ -3,7 +3,7 @@
     $(".delete-btn").on("click", function (event) {
         event.preventDefault();
 
-        var categoryId = $(this).data("id");
+        var id = $(this).data("id");
 
         Swal.fire({
             title: "Bạn có chắc chắn?",
@@ -16,7 +16,7 @@
             cancelButtonText: "Hủy"
         }).then((result) => {
             if (result.isConfirmed) {
-                $.post(`?handler=Delete&id=${categoryId}`)
+                $.post(`?handler=Delete&id=${id}`)
                     .done(function () {
                         Swal.fire("Đã xóa!", "Dữ liệu đã được xóa.", "success")
                             .then(() => location.reload());
@@ -33,7 +33,6 @@
         event.preventDefault();
 
         var categoryId = $(this).data("id");
-        var field = $(this).data("field");
         var icon = $(this).find("i");
 
         // Lưu class icon cũ để khôi phục nếu có lỗi
@@ -45,7 +44,7 @@
         // Vô hiệu hóa click khi đang loading
         $(this).css("pointer-events", "none");
 
-        $.post(`?handler=ToggleStatus&id=${categoryId}&field=${field}`)
+        $.post(`?handler=ToggleStatus&id=${categoryId}`)
             .done(function (data) {
                 if (data.success) {
                     // Cập nhật icon dựa vào dữ liệu mới từ server

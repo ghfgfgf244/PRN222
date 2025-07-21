@@ -7,7 +7,7 @@ public partial class DoctorLeaf
 {
     public int LeaveId { get; set; }
 
-    public int DoctorId { get; set; }
+    public int? DoctorId { get; set; }
 
     public DateOnly LeaveDate { get; set; }
 
@@ -15,5 +15,7 @@ public partial class DoctorLeaf
 
     public DateTime? CreatedAt { get; set; }
 
-    public virtual User Doctor { get; set; } = null!;
+    public bool IsActive { get; set; }
+
+    public virtual User? Doctor { get; set; }
 }

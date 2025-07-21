@@ -7,34 +7,72 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
+using Services;
+using Microsoft.Extensions.Hosting;
+using System.Configuration;
+using System.Security.Claims;
 
 namespace Web_.Pages.Users
 {
     public class EditModel : PageModel
     {
-        private readonly BusinessObjects.AppointmentsDbContext _context;
+        private readonly IUserServices _context;
+        private readonly IExternalIntegrationService _exContext;
+        private readonly IWebHostEnvironment _environment;
+        private readonly IConfiguration _configuration;
+        private readonly IDoctorServices _doctorContext;
 
-        public EditModel(BusinessObjects.AppointmentsDbContext context)
+        public EditModel(BusinessObjects.AppointmentsDbContext context, IConfiguration configuration, IWebHostEnvironment environment)
         {
-            _context = context;
+            _context = new UserServices(context);
+            _exContext = new ExternalIntegrationService(configuration);
+            this._environment = environment;
+            _configuration = configuration;
+            _doctorContext = new DoctorServices(context);
         }
 
         [BindProperty]
-        public User User { get; set; } = default!;
+        public User UserEdit { get; set; } = default!;
+        public IFormFile? Upload { get; set; }
+        public bool IsAdmin { get; set; }
+        [BindProperty]
+        public int? SelectedSpecialtyId { get; set; }
+        public List<SelectListItem> SpecialtyOptions { get; set; } = new();
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var adminEmail = _configuration["DefaultAdmin:Username"];
+            IsAdmin = userEmail == adminEmail;
             if (id == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.Users.FirstOrDefaultAsync(m => m.UserId == id);
+            var user = await _context.GetUserByIdAsync(id.Value);
             if (user == null)
             {
                 return NotFound();
             }
-            User = user;
+            if (!IsAdmin && user.UserId.ToString() != userIdClaim)
+                return RedirectToPage("/Account/AccessDenied");
+            UserEdit = user;
+
+            SpecialtyOptions = (await _doctorContext.GetAllSpecialties())
+                .Select(s => new SelectListItem
+                {
+                    Value = s.SpecialtyId.ToString(),
+                    Text = s.Name
+                })
+                .ToList();
+
+            // Lấy SpecialtyId nếu là Doctor
+            if (user.Role == "Doctor")
+            {
+                var specialtyId = await _doctorContext.GetSpecialtyIdByDoctorId(user.UserId);
+                SelectedSpecialtyId = specialtyId;
+            }
             return Page();
         }
 
@@ -42,35 +80,56 @@ namespace Web_.Pages.Users
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var adminEmail = _configuration["DefaultAdmin:Username"];
+            IsAdmin = userEmail == adminEmail;
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-
-            _context.Attach(User).State = EntityState.Modified;
-
-            try
+            if (!IsAdmin && UserEdit.UserId.ToString() != userIdClaim)
+                return RedirectToPage("/Account/AccessDenied");
+            if (!string.IsNullOrEmpty(Request.Form["AvatarPath"]))
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(User.UserId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                UserEdit.Avatar = Request.Form["AvatarPath"];
             }
 
+            await _context.UpdateUserAsync(UserEdit);
+
+            if (UserEdit.Role == "Doctor" && SelectedSpecialtyId.HasValue)
+            {
+                await _doctorContext.UpdateDoctorSpecialtyAsync(UserEdit.UserId, SelectedSpecialtyId.Value);
+            }
+
+            if (!IsAdmin)
+            {
+                TempData["SuccessMessage"] = "Thông tin đã được cập nhật.";
+
+                // Có thể thêm TempData thông báo nếu muốn
+                return Page(); // Ở lại trang Edit
+            }
             return RedirectToPage("./Index");
         }
-
-        private bool UserExists(int id)
+        public async Task<IActionResult> OnPostUploadAvatarAsync()
         {
-            return _context.Users.Any(e => e.UserId == id);
+            if (Upload == null || Upload.Length == 0)
+                return BadRequest(new { success = false, error = "No file uploaded" });
+
+            // Tạo tên file duy nhất
+            string uniqueFileName = $"{Guid.NewGuid()}_{Upload.FileName}";
+            string keyNameInBucket = $"avatars/{uniqueFileName}";
+
+            // Đọc file từ Upload vào MemoryStream
+            using var memoryStream = new MemoryStream();
+            await Upload.CopyToAsync(memoryStream);
+            memoryStream.Position = 0; // Reset stream về đầu
+
+            // Gọi SupaBase upload
+            var publicUrl = await _exContext.UploadImageStreamAsync(memoryStream, keyNameInBucket, Upload.ContentType);
+
+            return new JsonResult(new { success = true, filePath = publicUrl });
         }
     }
 }

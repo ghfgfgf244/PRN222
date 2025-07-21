@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\docNet - Csharp\Prn222-Website\Web_
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Account/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/docNet - Csharp/Prn222-Website/Web_/Pages/Account/ExternalLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxFeHRlcm5hbExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -66,10 +70,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yTGVhZnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/DoctorLeafs/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yTGVhZnNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/docNet - Csharp/Prn222-Website/Web_/Pages/DoctorLeafs/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yTGVhZnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -80,18 +80,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/docNet - Csharp/Prn222-Website/Web_/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Patients/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0aWVudHNcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Patients/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0aWVudHNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Patients/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0aWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/docNet - Csharp/Prn222-Website/Web_/Pages/Privacy.cshtml]

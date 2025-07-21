@@ -36,7 +36,8 @@
 <hr />
 
 <!-- Form đăng nhập bằng Google (tách riêng) -->
-<form method="post" asp-page-handler="GoogleLogin">
+<form method="get" asp-page="/Account/ExternalLogin">
+    <input type="hidden" name="provider" value="Google" />
     <button type="submit" class="btn btn-danger">
         <i class="fab fa-google"></i> Đăng nhập bằng Google
     </button>

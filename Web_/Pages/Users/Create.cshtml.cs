@@ -17,28 +17,49 @@ namespace Web_.Pages.Users
         private readonly IUserServices _context;
         private readonly IExternalIntegrationService _exContext;
         private readonly IWebHostEnvironment _environment;
-
+        private readonly IDoctorServices _doctorContext;
 
         public CreateModel(BusinessObjects.AppointmentsDbContext context, IConfiguration configuration, IWebHostEnvironment environment)
         {
             _context = new UserServices(context);
             _exContext = new ExternalIntegrationService(configuration);
             this._environment = environment;
+            _doctorContext = new DoctorServices(context);
         }
 
         [BindProperty]
         public User User { get; set; } = default!;
+        [BindProperty]
+        public int? SelectedSpecialtyId { get; set; }
+        public List<SelectListItem> SpecialtyOptions { get; set; } = new();
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
+            SpecialtyOptions = (await _doctorContext.GetAllSpecialties())
+                .Select(s => new SelectListItem
+                {
+                    Value = s.SpecialtyId.ToString(),
+                    Text = s.Name
+                })
+                .ToList();
+
             return Page();
         }
+
         [BindProperty]
         public IFormFile? Upload { get; set; }
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                SpecialtyOptions = (await _doctorContext.GetAllSpecialties())
+                   .Select(s => new SelectListItem
+                   {
+                       Value = s.SpecialtyId.ToString(),
+                       Text = s.Name
+                   })
+                   .ToList();
+
                 return Page();
             }
 
@@ -47,8 +68,13 @@ namespace Web_.Pages.Users
             {
                 User.Avatar = Request.Form["AvatarPath"];
             }
-
+            User.CreatedAt = DateTime.Now;
             await _context.CreateUserAsync(User);
+
+            if (User.Role == "Doctor" && SelectedSpecialtyId.HasValue)
+            {
+                await _doctorContext.AddSpecialtyToDoctorAsync(User.UserId, SelectedSpecialtyId.Value);
+            }
             return RedirectToPage("./Index");
         }
 

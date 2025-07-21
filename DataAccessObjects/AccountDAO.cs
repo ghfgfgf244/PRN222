@@ -23,6 +23,8 @@ namespace DataAccessObjects
 
         public async Task<User?> GetUserByEmailAsync(string email)
         {
+            Console.WriteLine($"🔎 Tìm kiếm user với email: {email}");
+
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 

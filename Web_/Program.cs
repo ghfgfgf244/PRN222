@@ -23,7 +23,7 @@ namespace Web_
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IAppointmentServices, AppointmentServices>();
-            builder.Services.AddScoped<IDoctorLeafServices, DoctorLeafServices>();
+            builder.Services.AddScoped<IDoctorServices, DoctorServices>();
             builder.Services.AddScoped<IPatientServices, PatientServices>();
             builder.Services.AddScoped<IUserServices, UserServices>();
             builder.Services.AddScoped<IExternalIntegrationService, ExternalIntegrationService>();

@@ -49,7 +49,7 @@ public partial class AppointmentsDbContext : DbContext
     {
         modelBuilder.Entity<Appointment>(entity =>
         {
-            entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__8ECDFCA28955504F");
+            entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__8ECDFCA2E07F883D");
 
             entity.Property(e => e.AppointmentId).HasColumnName("AppointmentID");
             entity.Property(e => e.CreatedAt)
@@ -66,33 +66,28 @@ public partial class AppointmentsDbContext : DbContext
 
             entity.HasOne(d => d.Doctor).WithMany(p => p.Appointments)
                 .HasForeignKey(d => d.DoctorId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Appointme__Docto__4E88ABD4");
 
             entity.HasOne(d => d.Method).WithMany(p => p.Appointments)
                 .HasForeignKey(d => d.MethodId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Appointme__Metho__5070F446");
 
             entity.HasOne(d => d.Patient).WithMany(p => p.Appointments)
                 .HasForeignKey(d => d.PatientId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Appointme__Patie__4D94879B");
 
             entity.HasOne(d => d.Slot).WithMany(p => p.Appointments)
                 .HasForeignKey(d => d.SlotId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Appointme__SlotI__5165187F");
 
             entity.HasOne(d => d.Specialty).WithMany(p => p.Appointments)
                 .HasForeignKey(d => d.SpecialtyId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Appointme__Speci__4F7CD00D");
         });
 
         modelBuilder.Entity<DoctorLeaf>(entity =>
         {
-            entity.HasKey(e => e.LeaveId).HasName("PK__DoctorLe__796DB9798360539C");
+            entity.HasKey(e => e.LeaveId).HasName("PK__DoctorLe__796DB979712B3AD3");
 
             entity.HasIndex(e => new { e.DoctorId, e.LeaveDate }, "UQ_Doctor_Leave").IsUnique();
 
@@ -101,17 +96,17 @@ public partial class AppointmentsDbContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.DoctorId).HasColumnName("DoctorID");
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.Reason).HasMaxLength(255);
 
             entity.HasOne(d => d.Doctor).WithMany(p => p.DoctorLeaves)
                 .HasForeignKey(d => d.DoctorId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__DoctorLea__Docto__5629CD9C");
+                .HasConstraintName("FK__DoctorLea__Docto__571DF1D5");
         });
 
         modelBuilder.Entity<DoctorSpecialty>(entity =>
         {
-            entity.HasKey(e => e.SpecialtyId).HasName("PK__DoctorSp__D768F6482073A651");
+            entity.HasKey(e => e.SpecialtyId).HasName("PK__DoctorSp__D768F6482CCCD3B9");
 
             entity.Property(e => e.SpecialtyId).HasColumnName("SpecialtyID");
             entity.Property(e => e.Name).HasMaxLength(100);
@@ -119,7 +114,7 @@ public partial class AppointmentsDbContext : DbContext
 
         modelBuilder.Entity<ExamMethod>(entity =>
         {
-            entity.HasKey(e => e.MethodId).HasName("PK__ExamMeth__FC681FB1F4C56782");
+            entity.HasKey(e => e.MethodId).HasName("PK__ExamMeth__FC681FB18A3590FE");
 
             entity.Property(e => e.MethodId).HasColumnName("MethodID");
             entity.Property(e => e.Name).HasMaxLength(100);
@@ -127,13 +122,12 @@ public partial class AppointmentsDbContext : DbContext
 
             entity.HasOne(d => d.Specialty).WithMany(p => p.ExamMethods)
                 .HasForeignKey(d => d.SpecialtyId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__ExamMetho__Speci__48CFD27E");
         });
 
         modelBuilder.Entity<Patient>(entity =>
         {
-            entity.HasKey(e => e.PatientId).HasName("PK__Patients__970EC346F4C293AD");
+            entity.HasKey(e => e.PatientId).HasName("PK__Patients__970EC346BF6FEA81");
 
             entity.Property(e => e.PatientId).HasColumnName("PatientID");
             entity.Property(e => e.FullName).HasMaxLength(100);
@@ -141,24 +135,23 @@ public partial class AppointmentsDbContext : DbContext
 
             entity.HasOne(d => d.RegisteredByNavigation).WithMany(p => p.Patients)
                 .HasForeignKey(d => d.RegisteredBy)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Patients__Regist__440B1D61");
         });
 
         modelBuilder.Entity<TimeSlot>(entity =>
         {
-            entity.HasKey(e => e.SlotId).HasName("PK__TimeSlot__0A124A4FFF91620A");
+            entity.HasKey(e => e.SlotId).HasName("PK__TimeSlot__0A124A4F8E103351");
 
             entity.Property(e => e.SlotId).HasColumnName("SlotID");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC6790DC89");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC50E98361");
 
-            entity.HasIndex(e => e.PhoneNumber, "UQ__Users__85FB4E3874F971E4").IsUnique();
+            entity.HasIndex(e => e.PhoneNumber, "UQ__Users__85FB4E38F918E8D5").IsUnique();
 
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534888E87E0").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D1053421CE6EFD").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.Avatar).IsUnicode(false);
@@ -192,7 +185,7 @@ public partial class AppointmentsDbContext : DbContext
                         .HasConstraintName("FK__DoctorDet__UserI__403A8C7D"),
                     j =>
                     {
-                        j.HasKey("UserId", "SpecialtyId").HasName("PK__DoctorDe__8AFE43C8748A1413");
+                        j.HasKey("UserId", "SpecialtyId").HasName("PK__DoctorDe__8AFE43C84B69DB38");
                         j.ToTable("DoctorDetails");
                         j.IndexerProperty<int>("UserId").HasColumnName("UserID");
                         j.IndexerProperty<int>("SpecialtyId").HasColumnName("SpecialtyID");

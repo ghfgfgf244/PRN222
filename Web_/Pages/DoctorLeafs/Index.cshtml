@@ -1,54 +1,86 @@
 ﻿@page
 @model Web_.Pages.DoctorLeafs.IndexModel
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách đơn nghỉ";
+    Layout = "_LayoutMain";
 }
 
-<h1>Index</h1>
+<h2>Danh sách đơn bác sĩ xin nghỉ</h2>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DoctorLeaf[0].LeaveDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DoctorLeaf[0].Reason)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DoctorLeaf[0].CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DoctorLeaf[0].Doctor)
-            </th>
-            <th></th>
+            <th>Bác sĩ</th>
+            <th>Ngày nghỉ</th>
+            <th>Lý do</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.DoctorLeaf) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LeaveDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reason)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Doctor.FullName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.LeaveId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.LeaveId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.LeaveId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.DoctorLeafList)
+        {
+            <tr>
+                <td>@item.Doctor?.FullName</td>
+                <td>@item.LeaveDate.ToString("dd/MM/yyyy")</td>
+                <td>@item.Reason</td>
+                <td>
+                    @if (Model.IsAdmin)
+                    {
+                        <span class="badge badge-toggle @(item.IsActive ? "bg-success" : "bg-danger")"
+                              data-id="@item.LeaveId" style="cursor:pointer;" title="Nhấn để đổi trạng thái">
+                            @(item.IsActive ? "Approved" : "Rejected")
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge @(item.IsActive ? "bg-success" : "bg-danger")">
+                            @(item.IsActive ? "Approved" : "Rejected")
+                        </span>
+                    }
+                </td>
+                <td>
+                    <a href="#" class="btn btn-danger delete-btn" data-id="@item.LeaveId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $(".badge-toggle").on("click", function () {
+                var $badge = $(this);
+                var id = $badge.data("id");
+                var originalHtml = $badge.html();
+                $badge.html('<i class="fa fa-spinner fa-spin"></i>');
+
+                $.post("?handler=ToggleStatus", { id: id })
+                    .done(function (data) {
+                        if (data.success) {
+                            $badge
+                                .removeClass("bg-success bg-danger")
+                                .addClass(data.newValue ? "bg-success" : "bg-danger")
+                                .text(data.newValue ? "Approved" : "Rejected");
+                        } else {
+                            alert(data.message);
+                            $badge.html(originalHtml);
+                        }
+                    })
+                    .fail(function () {
+                        alert("Đã xảy ra lỗi khi cập nhật.");
+                        $badge.html(originalHtml);
+                    });
+            });
+        });
+    </script>
+    <script src="~/js/crud.js"></script>
+    <script src="~/js/loading.js"></script>
+}
