@@ -1,67 +1,58 @@
 ﻿@page
 @model Web_.Pages.Appointments.DetailsModel
-
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết lịch khám";
+    Layout = "_LayoutMain";
 }
+<div class="container" style="max-width: 960px;">
+    <h1 class="text-center mb-4">Chi tiết lịch khám</h1>
 
-<h1>Details</h1>
+    <div class="row">
+        <!-- Patient Info -->
+        <div class="col-md-6 border-end pe-4">
+            <h4 class="text-center">Thông tin bệnh nhân</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-4">Họ tên</dt>
+                <dd class="col-sm-8">@Model.Appointment.Patient.FullName</dd>
 
-<div>
-    <h4>Appointment</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Appointment.AppointmentDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Appointment.AppointmentDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Appointment.Status)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Appointment.Status)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Appointment.CreatedAt)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Appointment.CreatedAt)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Appointment.Doctor)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Appointment.Doctor.FullName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Appointment.Method)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Appointment.Method.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Appointment.Patient)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Appointment.Patient.FullName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Appointment.Slot)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Appointment.Slot.SlotId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Appointment.Specialty)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Appointment.Specialty.Name)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Appointment.AppointmentId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+                <dt class="col-sm-4">Tuổi</dt>
+                <dd class="col-sm-8">@Model.Appointment.Patient.Age</dd>
+
+                <dt class="col-sm-4">Giới tính</dt>
+                <dd class="col-sm-8">@(Model.Appointment.Patient.Gender == true ? "Nam" : "Nữ")</dd>
+
+                <dt class="col-sm-4">Ghi chú</dt>
+                <dd class="col-sm-8">@Model.Appointment.Patient.Note</dd>
+            </dl>
+        </div>
+
+        <!-- Appointment Info -->
+        <div class="col-md-6 ps-4">
+            <h4 class="text-center">Thông tin lịch khám</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-4">Ngày khám</dt>
+                <dd class="col-sm-8">@Model.Appointment.AppointmentDate.ToShortDateString()</dd>
+
+                <dt class="col-sm-4">Khung giờ</dt>
+                <dd class="col-sm-8">@Model.Appointment.Slot.StartTime.ToString("hh:mm") - @Model.Appointment.Slot.EndTime.ToString("hh:mm")</dd>
+
+                <dt class="col-sm-4">Chuyên khoa</dt>
+                <dd class="col-sm-8">@Model.Appointment.Specialty.Name</dd>
+
+                <dt class="col-sm-4">Hình thức khám</dt>
+                <dd class="col-sm-8">@Model.Appointment.Method.Name</dd>
+
+                <dt class="col-sm-4">Bác sĩ</dt>
+                <dd class="col-sm-8">@Model.Appointment.Doctor.FullName</dd>
+
+            </dl>
+        </div>
+    </div>
+
+    <div class="form-group mt-4 text-center">
+        <a class="btn btn-outline-primary" asp-page="./Edit" asp-route-id="@Model.Appointment.AppointmentId">Chỉnh sửa</a>
+        <a class="btn btn-outline-secondary ms-2" asp-page="./Index">← Quay lại danh sách</a>
+    </div>
 </div>

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,18 +18,21 @@ namespace DataAccessObjects
             _context = context;
         }
         // 8. Lấy danh sách phương pháp khám theo chuyên ngành
-        public async Task<List<ExamMethod>> GetExamMethodsBySpecialtyAsync(int specialtyId)
+        public async Task<List<ExamMethod>> GetMethodsBySpecialtyId(int specialtyId)
         {
             return await _context.ExamMethods
                 .Where(m => m.SpecialtyId == specialtyId)
                 .ToListAsync();
         }
+
         // 1. Tạo lịch hẹn mới
-        public async Task<Appointment> CreateAppointmentAsync(Appointment appointment)
+        public async Task<bool> CreateAppointmentAsync(Appointment appointment)
         {
+            if (appointment == null) return false;
+
             _context.Appointments.Add(appointment);
             await _context.SaveChangesAsync();
-            return appointment;
+            return true;
         }
 
         // 2. Kiểm tra slot có bị trùng không
@@ -40,20 +44,36 @@ namespace DataAccessObjects
                 a.SlotId == slotId);
         }
 
-        // 3. Lấy danh sách lịch của 1 user (bệnh nhân)
-        public async Task<List<Appointment>> GetAppointmentsByUserAsync(int userId)
+        //  Lấy danh sách lịch của 1 user (bệnh nhân)
+        public async Task<List<Appointment>> GetAppointmentsByRegisteredByAsync(int userId)
         {
+            Console.WriteLine("patient");
             return await _context.Appointments
+                .Include(a => a.Patient)
                 .Include(a => a.Doctor)
                 .Include(a => a.Slot)
                 .Include(a => a.Specialty)
                 .Include(a => a.Method)
-                .Where(a => a.Patient.RegisteredBy == userId)
+                .Where(a => a.Patient.RegisteredBy == userId && a.Status != "Cancelled")
+                .OrderByDescending(a => a.AppointmentDate)
+                .ToListAsync();
+        }
+        //  Lấy danh sách lịch của 1 user (bác sĩ)
+        public async Task<List<Appointment>> GetAppointmentsByDoctorIdAsync(int doctorId)
+        {
+            return await _context.Appointments
+                .Include(a => a.Patient)
+                .Include(a => a.Doctor)
+                .Include(a => a.Slot)
+                .Include(a => a.Specialty)
+                .Include(a => a.Method)
+                .Where(a => a.DoctorId == doctorId)
                 .OrderByDescending(a => a.AppointmentDate)
                 .ToListAsync();
         }
 
-        // 4. Hủy lịch hẹn (chỉ khi còn Pending)
+
+        //  Hủy lịch hẹn (chỉ khi còn Pending)
         public async Task<bool> CancelAppointmentAsync(int appointmentId)
         {
             var appt = await _context.Appointments.FindAsync(appointmentId);
@@ -64,7 +84,23 @@ namespace DataAccessObjects
             return true;
         }
 
-        // 5. Xem chi tiết 1 lịch hẹn
+        //  update lịch hẹn (chỉ khi còn Pending)
+        public async Task<bool> UpdateAppointmentAsync(Appointment updatedAppointment)
+        {
+            var appointment = await _context.Appointments.FindAsync(updatedAppointment.AppointmentId);
+            if (appointment == null) return false;
+
+            if (!string.Equals(appointment.Status, "Pending", StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            _context.Attach(updatedAppointment).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+
+        //  Xem chi tiết 1 lịch hẹn
         public async Task<Appointment?> GetAppointmentByIdAsync(int appointmentId)
         {
             return await _context.Appointments
@@ -76,13 +112,58 @@ namespace DataAccessObjects
                 .FirstOrDefaultAsync(a => a.AppointmentId == appointmentId);
         }
 
-        // 6. Lấy danh sách slot đã đặt trong ngày theo chuyên ngành
-        public async Task<List<int?>> GetTakenSlotIdsAsync(int specialtyId, DateOnly date)
+        //  Lấy danh sách bác sĩ có sẵn
+        public async Task<List<User>> GetAvailableDoctors(int specialtyId, int slotId, DateOnly date)
         {
-            return await _context.Appointments
-                .Where(a => a.SpecialtyId == specialtyId && a.AppointmentDate == date)
-                .Select(a => a.SlotId)
+            var doctorsInSpecialty = await _context.Users
+                .Include(u => u.Specialties)
+                .Where(u => u.Role == "Doctor" && u.Specialties.Any(s => s.SpecialtyId == specialtyId))
                 .ToListAsync();
+
+            var bookedDoctorIds = await _context.Appointments
+                .Where(a => a.AppointmentDate == date && a.SlotId == slotId)
+                .Select(a => a.DoctorId)
+                .ToListAsync();
+
+            var availableDoctors = doctorsInSpecialty
+                .Where(d => !bookedDoctorIds.Contains(d.UserId))
+                .ToList();
+
+            return availableDoctors;
         }
+
+        // Lấy danh sách slot
+        public async Task<List<TimeSlot>> GetAllSlots()
+        {
+            return await _context.TimeSlots.ToListAsync();
+        }
+
+
+        public async Task<List<Appointment>> GetAllAppointmentsAsync()
+        {
+            var appointments = await _context.Appointments
+                .Include(a => a.Patient)
+                .Include(a => a.Doctor)
+                .Include(a => a.Method)
+                .Include(a => a.Slot)
+                .Include(a => a.Specialty)
+                .OrderByDescending(a => a.AppointmentDate)
+                .ToListAsync();
+            return appointments;
+        }
+
+        public async Task<bool> UpdateAppointmentStatusAsync(int appointmentId, string newStatus)
+        {
+            var appointment = await _context.Appointments.FindAsync(appointmentId);
+            if (appointment == null)
+                return false;
+
+            appointment.Status = newStatus;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+
+
     }
 }

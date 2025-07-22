@@ -37,6 +37,11 @@ namespace Repositories
             return await _doctorDAO.GetAllSpecialties();
         }
 
+        public async Task<User?> GetDoctorByIdAsync(int id)
+        {
+            return await _doctorDAO.GetDoctorByIdAsync(id);
+        }
+
         public async Task<DoctorLeaf?> GetDoctorLeafByIdAsync(int id)
         {
             return await _doctorDAO.GetDoctorLeafByIdAsync(id);

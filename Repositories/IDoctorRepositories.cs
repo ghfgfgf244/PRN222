@@ -24,6 +24,7 @@ namespace Repositories
 
         Task UpdateDoctorSpecialtyAsync(int doctorId, int specialtyId);
         Task<int?> GetSpecialtyIdByDoctorId(int doctorId);
+        Task<User?> GetDoctorByIdAsync(int id);
 
     }
 }

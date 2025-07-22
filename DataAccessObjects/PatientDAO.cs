@@ -26,24 +26,22 @@ namespace DataAccessObjects
         }
 
         // 2. Thêm bệnh nhân mới (người thân)
-        public async Task<Patient> AddPatientAsync(Patient patient)
+        public async Task<bool> AddPatientAsync(Patient patient)
         {
+            if (patient == null) return false;
+
             _context.Patients.Add(patient);
             await _context.SaveChangesAsync();
-            return patient;
+            return true;
         }
 
         // 3. Cập nhật thông tin bệnh nhân
-        public async Task<bool> UpdatePatientAsync(Patient updatedPatient)
+        public async Task<bool> UpdatePatientAsync(Patient patient)
         {
-            var patient = await _context.Patients.FindAsync(updatedPatient.PatientId);
-            if (patient == null || patient.RegisteredBy != updatedPatient.RegisteredBy) return false;
+            var existingPatient = await _context.Patients.FindAsync(patient.PatientId);
+            if (existingPatient == null) return false;
 
-            patient.FullName = updatedPatient.FullName;
-            patient.Age = updatedPatient.Age;
-            patient.Gender = updatedPatient.Gender;
-            patient.Note = updatedPatient.Note;
-
+            _context.Attach(patient).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return true;
         }
@@ -65,9 +63,8 @@ namespace DataAccessObjects
         // 5. Lấy thông tin 1 bệnh nhân cụ thể
         public async Task<Patient?> GetPatientByIdAsync(int patientId)
         {
-            return await _context.Patients
-                .Include(p => p.RegisteredByNavigation)
-                .FirstOrDefaultAsync(p => p.PatientId == patientId);
+            return await _context.Patients.FirstOrDefaultAsync(p => p.PatientId == patientId);
         }
+
     }
 }

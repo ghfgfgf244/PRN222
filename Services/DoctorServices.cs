@@ -38,6 +38,11 @@ namespace Services
             return await _iDoctorRepositories.GetAllSpecialties();
         }
 
+        public async Task<User?> GetDoctorByIdAsync(int id)
+        {
+            return await _iDoctorRepositories.GetDoctorByIdAsync(id);
+        }
+
         public async Task<DoctorLeaf?> GetDoctorLeafByIdAsync(int id)
         {
             return await _iDoctorRepositories.GetDoctorLeafByIdAsync(id);

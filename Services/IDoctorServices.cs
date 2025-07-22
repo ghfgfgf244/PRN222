@@ -22,5 +22,6 @@ namespace Services
         Task AddSpecialtyToDoctorAsync(int doctorId, int specialtyId);
         Task UpdateDoctorSpecialtyAsync(int doctorId, int specialtyId);
         Task<int?> GetSpecialtyIdByDoctorId(int doctorId);
+        Task<User?> GetDoctorByIdAsync(int id);
     }
 }

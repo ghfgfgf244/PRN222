@@ -107,8 +107,7 @@ namespace Web_.Pages.Users
             {
                 TempData["SuccessMessage"] = "Thông tin đã được cập nhật.";
 
-                // Có thể thêm TempData thông báo nếu muốn
-                return Page(); // Ở lại trang Edit
+                return Page(); 
             }
             return RedirectToPage("./Index");
         }

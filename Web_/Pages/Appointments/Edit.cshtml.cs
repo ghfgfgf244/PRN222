@@ -7,21 +7,48 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
+using Services;
+using System.Security.Claims;
 
 namespace Web_.Pages.Appointments
 {
     public class EditModel : PageModel
     {
-        private readonly BusinessObjects.AppointmentsDbContext _context;
+        private readonly IExternalIntegrationService _exContext;
+        private readonly IWebHostEnvironment _environment;
+        private readonly IDoctorServices _doctorContext;
+        private readonly IAppointmentServices _appointmentContext;
+        private readonly IPatientServices _patientContext;
 
-        public EditModel(BusinessObjects.AppointmentsDbContext context)
+        public EditModel(BusinessObjects.AppointmentsDbContext context, IConfiguration configuration, IWebHostEnvironment environment)
         {
-            _context = context;
+            _exContext = new ExternalIntegrationService(configuration);
+            this._environment = environment;
+            _doctorContext = new DoctorServices(context);
+            _appointmentContext = new AppointmentServices(context);
+            _patientContext = new PatientServices(context);
         }
 
         [BindProperty]
         public Appointment Appointment { get; set; } = default!;
-
+        [BindProperty]
+        public Patient Patient { get; set; } = default!;
+        [BindProperty]
+        public int? UserId { get; set; }
+        [BindProperty]
+        public int? PatientId { get; set; }
+        [BindProperty]
+        public int? SelectedSpecialtyId { get; set; }
+        [BindProperty]
+        public int? SelectedSlotId { get; set; }
+        [BindProperty]
+        public int? SelectedMethodId { get; set; }
+        [BindProperty]
+        public int? SelectedDoctorId { get; set; }
+        public List<SelectListItem> SlotOptions { get; set; } = new();
+        public List<SelectListItem> SpecialtyOptions { get; set; } = new();
+        public List<SelectListItem> MethodOptions { get; set; } = new();
+        public List<SelectListItem> DoctorOptions { get; set; } = new();
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -29,53 +56,175 @@ namespace Web_.Pages.Appointments
                 return NotFound();
             }
 
-            var appointment =  await _context.Appointments.FirstOrDefaultAsync(m => m.AppointmentId == id);
+            var appointment =  await _appointmentContext.GetAppointmentByIdAsync(id.Value);
             if (appointment == null)
             {
                 return NotFound();
             }
             Appointment = appointment;
-           ViewData["DoctorId"] = new SelectList(_context.Users, "UserId", "FullName");
-           ViewData["MethodId"] = new SelectList(_context.ExamMethods, "MethodId", "Name");
-           ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "FullName");
-           ViewData["SlotId"] = new SelectList(_context.TimeSlots, "SlotId", "SlotId");
-           ViewData["SpecialtyId"] = new SelectList(_context.DoctorSpecialties, "SpecialtyId", "Name");
+
+            var patient = await _patientContext.GetPatientByIdAsync(appointment.PatientId.Value);
+            if (patient == null)
+            {
+                return NotFound();
+            }
+            Patient = patient;
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out var userId))
+            {
+                return RedirectToPage("/Account/AccessDenied");
+            }
+            UserId = userId;
+
+            await LoadInitialDropdowns();
+
+            SelectedSpecialtyId = Appointment.SpecialtyId;
+            SelectedSlotId = Appointment.SlotId;
+            SelectedMethodId = Appointment.MethodId;
+            SelectedDoctorId = Appointment.DoctorId;
+
+            if (Appointment.SpecialtyId != null)
+            {
+                var methods = await _appointmentContext.GetMethodsBySpecialtyId(Appointment.SpecialtyId.Value);
+                MethodOptions = methods.Select(m => new SelectListItem
+                {
+                    Value = m.MethodId.ToString(),
+                    Text = m.Name
+                }).ToList();
+            }
+
+            if (Appointment.SpecialtyId != null && Appointment.SlotId != null && Appointment.AppointmentDate != null)
+            {
+                var doctors = await _appointmentContext.GetAvailableDoctors(
+                    Appointment.SpecialtyId.Value,
+                    Appointment.SlotId.Value,
+                    Appointment.AppointmentDate
+                );
+                DoctorOptions = doctors.Select(d => new SelectListItem
+                {
+                    Value = d.UserId.ToString(),
+                    Text = d.FullName
+                }).ToList();
+            }
+
+            if (!DoctorOptions.Any(d => d.Value == Appointment.DoctorId.ToString()))
+            {
+                var doctor = await _doctorContext.GetDoctorByIdAsync(Appointment.DoctorId ?? 0);
+                if (doctor != null)
+                {
+                    DoctorOptions.Add(new SelectListItem
+                    {
+                        Value = doctor.UserId.ToString(),
+                        Text = doctor.FullName + " (hiện tại)"
+                    });
+                }
+            }
+
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                await LoadInitialDropdowns();
+
+                if (Appointment.SpecialtyId != null)
+                {
+                    var methods = await _appointmentContext.GetMethodsBySpecialtyId(Appointment.SpecialtyId.Value);
+                    MethodOptions = methods.Select(m => new SelectListItem
+                    {
+                        Value = m.MethodId.ToString(),
+                        Text = m.Name
+                    }).ToList();
+                }
+
+                if (Appointment.SpecialtyId != null && Appointment.SlotId != null && Appointment.AppointmentDate != null)
+                {
+                    var doctors = await _appointmentContext.GetAvailableDoctors(
+                        Appointment.SpecialtyId.Value,
+                        Appointment.SlotId.Value,
+                        Appointment.AppointmentDate
+                    );
+                    DoctorOptions = doctors.Select(d => new SelectListItem
+                    {
+                        Value = d.UserId.ToString(),
+                        Text = d.FullName
+                    }).ToList();
+                }
                 return Page();
             }
 
-            _context.Attach(Appointment).State = EntityState.Modified;
+            await _patientContext.UpdatePatientAsync(Patient);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AppointmentExists(Appointment.AppointmentId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _appointmentContext.UpdateAppointmentAsync(Appointment);
 
             return RedirectToPage("./Index");
         }
 
-        private bool AppointmentExists(int id)
+        private async Task LoadInitialDropdowns()
         {
-            return _context.Appointments.Any(e => e.AppointmentId == id);
+            SpecialtyOptions = (await _doctorContext.GetAllSpecialties())
+                .Select(s => new SelectListItem
+                {
+                    Value = s.SpecialtyId.ToString(),
+                    Text = s.Name
+                }).ToList();
+
+            SlotOptions = (await _appointmentContext.GetAllSlots())
+                .Select(s => new SelectListItem
+                {
+                    Value = s.SlotId.ToString(),
+                    Text = $"{s.StartTime:hh\\:mm} - {s.EndTime:hh\\:mm}"
+                }).ToList();
+        }
+        public async Task<JsonResult> OnGetMethodsBySpecialty(int specialtyId)
+        {
+            var methods = await _appointmentContext.GetMethodsBySpecialtyId(specialtyId);
+            var result = methods.Select(m => new SelectListItem
+            {
+                Value = m.MethodId.ToString(),
+                Text = m.Name
+            }).ToList();
+
+            return new JsonResult(result);
+        }
+        public async Task<JsonResult> OnGetDoctorsByFilters(int specialtyId, int slotId, string date)
+        {
+            Console.WriteLine("voooo");
+            if (!DateOnly.TryParse(date, out var parsedDate))
+            {
+                return new JsonResult(new List<SelectListItem>
+        {
+            new SelectListItem
+            {
+                Value = "",
+                Text = "Ngày không hợp lệ"
+            }
+        });
+            }
+
+            var doctors = await _appointmentContext.GetAvailableDoctors(specialtyId, slotId, parsedDate);
+
+            if (doctors == null || !doctors.Any())
+            {
+                return new JsonResult(new List<SelectListItem>
+        {
+            new SelectListItem
+            {
+                Value = "",
+                Text = "Không có bác sĩ phù hợp trong slot này"
+            }
+        });
+            }
+
+            var result = doctors.Select(d => new SelectListItem
+            {
+                Value = d.UserId.ToString(),
+                Text = d.FullName
+            }).ToList();
+
+            return new JsonResult(result);
         }
     }
 }

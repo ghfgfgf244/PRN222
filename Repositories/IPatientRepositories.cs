@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,8 @@ namespace Repositories
 {
     public interface IPatientRepositories
     {
+        Task<bool> AddPatientAsync(Patient patient);
+        Task<bool> UpdatePatientAsync(Patient patient);
+        Task<Patient?> GetPatientByIdAsync(int patientId);
     }
 }

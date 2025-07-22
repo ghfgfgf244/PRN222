@@ -120,6 +120,12 @@ namespace DataAccessObjects
             return await _context.DoctorLeaves.FirstOrDefaultAsync(u => u.LeaveId == id);
         }
 
+        public async Task<User?> GetDoctorByIdAsync(int id)
+        {
+            return await _context.Users
+                .FirstOrDefaultAsync(u => u.UserId == id && u.Role == "Doctor");
+        }
+
         //Specialty
         public async Task<List<DoctorSpecialty>> GetAllSpecialties()
         {

@@ -1,54 +1,231 @@
 ﻿@page
 @model Web_.Pages.Appointments.CreateModel
-
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Tạo lịch khám";
+    Layout = "_LayoutMain";
 }
+<div class="container" style="max-width: 960px;">
+    <h1 class="text-center mb-4">Tạo lịch khám mới</h1>
 
-<h1>Create</h1>
+    <form method="post">
+        <div class="row">
+            <!-- Patient Info -->
+            <div class="col-md-6 border-end pe-4">
+                <h4 class="text-center">Thông tin bệnh nhân</h4>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<h4>Appointment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Appointment.PatientId" class="control-label"></label>
-                <select asp-for="Appointment.PatientId" class ="form-control" asp-items="ViewBag.PatientId"></select>
+                <input type="hidden" asp-for="Patient.RegisteredBy" value="@Model.UserId" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="Patient.FullName" class="form-label">Họ tên</label>
+                    <input asp-for="Patient.FullName" class="form-control" />
+                    <span asp-validation-for="Patient.FullName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Patient.Age" class="form-label">Tuổi</label>
+                    <input asp-for="Patient.Age" class="form-control" />
+                    <span asp-validation-for="Patient.Age" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label d-block">Giới tính</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Patient.Gender" value="true" id="genderNam" />
+                        <label class="form-check-label" for="genderNam">Nam</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Patient.Gender" value="false" id="genderNu" />
+                        <label class="form-check-label" for="genderNu">Nữ</label>
+                    </div>
+                    <span asp-validation-for="Patient.Gender" class="text-danger d-block mt-1"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Patient.Note" class="form-label">Ghi chú</label>
+                    <textarea asp-for="Patient.Note" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Patient.Note" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Appointment.DoctorId" class="control-label"></label>
-                <select asp-for="Appointment.DoctorId" class ="form-control" asp-items="ViewBag.DoctorId"></select>
+
+            <!-- Appointment Info -->
+            <div class="col-md-6 ps-4">
+                <h4 class="text-center">Thông tin lịch khám</h4>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="Appointment.PatientId" value="@Model.PatientId" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="Appointment.AppointmentDate" class="form-label">Ngày khám</label>
+                    <input asp-for="Appointment.AppointmentDate" type="date" class="form-control" id="appointmentDate" />
+                    <span asp-validation-for="Appointment.AppointmentDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Appointment.SlotId" class="form-label">Khung giờ</label>
+                    <select asp-for="SelectedSlotId" class="form-control" id="slotSelect">
+                        <option value="">-- Chọn khung giờ --</option>
+                        @foreach (var item in Model.SlotOptions)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="SelectedSlotId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Appointment.SpecialtyId" class="form-label">Chuyên khoa</label>
+                    <select asp-for="SelectedSpecialtyId" class="form-control" id="specialtySelect">
+                        <option value="">-- Chọn chuyên khoa --</option>
+                        @foreach (var item in Model.SpecialtyOptions)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="SelectedSpecialtyId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Appointment.MethodId" class="form-label">Hình thức khám</label>
+                    <select asp-for="SelectedMethodId" class="form-control" id="methodSelect">
+                        <option value="">-- Chọn hình thức --</option>
+                    </select>
+                    <span asp-validation-for="SelectedMethodId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Appointment.DoctorId" class="form-label">Bác sĩ</label>
+                    <select asp-for="SelectedDoctorId" class="form-control" id="doctorSelect">
+                        <option value="">-- Chọn bác sĩ --</option>
+                    </select>
+                    <span asp-validation-for="SelectedDoctorId" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Appointment.SpecialtyId" class="control-label"></label>
-                <select asp-for="Appointment.SpecialtyId" class ="form-control" asp-items="ViewBag.SpecialtyId"></select>
+
+            <div class="form-group mt-4 text-center">
+                <input type="submit" value="Tạo lịch khám" class="btn btn-primary px-4" />
             </div>
-            <div class="form-group">
-                <label asp-for="Appointment.MethodId" class="control-label"></label>
-                <select asp-for="Appointment.MethodId" class ="form-control" asp-items="ViewBag.MethodId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Appointment.AppointmentDate" class="control-label"></label>
-                <input asp-for="Appointment.AppointmentDate" class="form-control" />
-                <span asp-validation-for="Appointment.AppointmentDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Appointment.SlotId" class="control-label"></label>
-                <select asp-for="Appointment.SlotId" class ="form-control" asp-items="ViewBag.SlotId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+    </form>
+
+    <div class="mt-4 text-center">
+        <a asp-page="Index">← Quay lại danh sách</a>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            function loadDoctors() {
+                const specialtyId = $('#specialtySelect').val();
+                const slotId = $('#slotSelect').val();
+                const date = $('#appointmentDate').val();
+                const methodId = $('#methodSelect').val();
+                const selectedDoctorId = '@Model.SelectedDoctorId'; 
+
+                const $doctorSelect = $('#doctorSelect');
+
+                if (!(specialtyId && slotId && date && methodId)) {
+                    $doctorSelect.prop('disabled', true);
+                    $doctorSelect.empty().append($('<option>', {
+                        value: '',
+                        text: '-- Chọn doctor --'
+                    }));
+                    return;
+                }
+
+                $.ajax({
+                    url: `/Appointments/Create?handler=DoctorsByFilters`,
+                    type: 'GET',
+                    data: {
+                        specialtyId: specialtyId,
+                        slotId: slotId,
+                        date: date
+                    },
+                    success: function (data) {
+                        $doctorSelect.empty();
+
+                        if (data.length === 0 || (data.length === 1 && data[0].value === '')) {
+                            $doctorSelect.append($('<option>', {
+                                value: '',
+                                text: 'Không có bác sĩ phù hợp trong slot này, vui lòng chọn lại slot khác'
+                            }));
+                            $doctorSelect.prop('disabled', true);
+                            return;
+                        }
+
+                        $doctorSelect.append($('<option>', {
+                            value: '',
+                            text: '-- Chọn doctor --'
+                        }));
+
+                        $.each(data, function (i, item) {
+                            const option = $('<option>', {
+                                value: item.value,
+                                text: item.text
+                            });
+
+                            if (item.value == selectedDoctorId) {
+                                option.attr('selected', 'selected');
+                            }
+
+                            $doctorSelect.append(option);
+                        });
+
+                        $doctorSelect.prop('disabled', false);
+                    },
+                    error: function () {
+                        $doctorSelect.prop('disabled', true);
+                    }
+                });
+            }
+
+            $('#specialtySelect').on('change', function () {
+                const specialtyId = $(this).val();
+
+                $('#methodSelect').empty().append($('<option>', {
+                    value: '',
+                    text: '-- Chọn method --'
+                }));
+                $('#doctorSelect').empty().append($('<option>', {
+                    value: '',
+                    text: '-- Chọn doctor --'
+                })).prop('disabled', true);
+
+                if (specialtyId) {
+                    $.ajax({
+                        url: `/Appointments/Create?handler=MethodsBySpecialty`,
+                        type: 'GET',
+                        data: { specialtyId: specialtyId },
+                        success: function (data) {
+                            $.each(data, function (i, item) {
+                                $('#methodSelect').append($('<option>', {
+                                    value: item.value,
+                                    text: item.text
+                                }));
+                            });
+
+                            const slotVal = $('#slotSelect').val();
+                            const dateVal = $('#appointmentDate').val();
+                            if (slotVal && dateVal) {
+                                loadDoctors();
+                            }
+                        }
+                    });
+                }
+            });
+
+            $('#slotSelect, #appointmentDate, #methodSelect').on('change', loadDoctors);
+
+            $('#doctorSelect').prop('disabled', true);
+        });
+    </script>
+
 }
