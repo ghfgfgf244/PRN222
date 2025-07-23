@@ -34,6 +34,11 @@ namespace Repositories
             return await _userDAO.EmailExistsAsync(email);
         }
 
+        public async Task<List<User>> GetAllUsersAsync()
+        {
+            return await _userDAO.GetAllUsersAsync();
+        }
+
         public async Task<(List<User> Users, int TotalPages)> GetPagedUsersAsync(string? role, string? searchTerm, int pageNumber, int pageSize)
         {
             return await _userDAO.GetPagedUsersAsync(role, searchTerm, pageNumber, pageSize);

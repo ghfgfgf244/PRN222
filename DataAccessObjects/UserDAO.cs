@@ -25,7 +25,7 @@ namespace DataAccessObjects
             // Lọc theo Role nếu có
             if (!string.IsNullOrEmpty(role))
             {
-                query = query.Where(u => u.Role != null && u.Role.ToLower() == role.ToLower());
+                query = query.Where(u => u.Role != null && u.Role.Trim().ToLower() == role.Trim().ToLower());
             }
 
             // Tìm kiếm theo FullName, Email hoặc PhoneNumber nếu có searchTerm
@@ -162,6 +162,11 @@ namespace DataAccessObjects
             return await _context.Users
                 .FirstOrDefaultAsync(u => u.Email == email && u.IsActive);
         }
-
+        public async Task<List<User>> GetAllUsersAsync()
+        {
+            return await _context.Users
+           .Where(u => u.Role == "Patient")
+           .ToListAsync();
+        }
     }
 }

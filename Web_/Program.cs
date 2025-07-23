@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Services;
+using Web_.Hubs;
 
 namespace Web_
 {
@@ -82,6 +83,7 @@ namespace Web_
                 options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
                     _ => "Trường này không được để trống.");
             });
+            builder.Services.AddSignalR();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -107,8 +109,8 @@ namespace Web_
 
             app.UseRouting();
             app.UseSession();
-
-            app.UseAuthentication(); // <--- QUAN TRỌNG
+            app.MapHub<AppHub>("/appHub");
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapRazorPages();

@@ -27,6 +27,11 @@ namespace Services
             return await _context.CreateAppointmentAsync(appointment);
         }
 
+        public async Task<List<Appointment>> GetAllAppointmentsAsync()
+        {
+            return await _context.GetAllAppointmentsAsync();
+        }
+
         public async Task<List<TimeSlot>> GetAllSlots()
         {
             return await _context.GetAllSlots();
@@ -42,6 +47,16 @@ namespace Services
             return await _context.GetAppointmentsByDoctorIdAsync((int)doctorId);
         }
 
+        public IQueryable<Appointment> GetAppointmentsByDoctorQuery(int doctorId)
+        {
+            return _context.GetAppointmentsByDoctorQuery((int)doctorId);
+        }
+
+        public IQueryable<Appointment> GetAppointmentsByPatientQuery(int registeredById)
+        {
+            return _context.GetAppointmentsByPatientQuery((int)registeredById);
+        }
+
         public async Task<List<Appointment>> GetAppointmentsByRegisteredByAsync(int userId)
         {
             return await _context.GetAppointmentsByRegisteredByAsync((int)userId);
@@ -55,6 +70,11 @@ namespace Services
         public async Task<List<ExamMethod>> GetMethodsBySpecialtyId(int specialtyId)
         {
             return await _context.GetMethodsBySpecialtyId((int)specialtyId);
+        }
+
+        public async Task<(List<Appointment> Appointments, int TotalPages)> GetPagedAppointmentsAsync(IQueryable<Appointment> query, string? searchTerm, int pageNumber, int pageSize)
+        {
+            return await _context.GetPagedAppointmentsAsync(query, searchTerm, pageNumber, pageSize);
         }
 
         public async Task<bool> UpdateAppointmentAsync(Appointment updatedAppointment)

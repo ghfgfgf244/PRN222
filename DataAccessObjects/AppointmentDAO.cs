@@ -48,7 +48,6 @@ namespace DataAccessObjects
         //  Lấy danh sách lịch của 1 user (bệnh nhân)
         public async Task<List<Appointment>> GetAppointmentsByRegisteredByAsync(int userId)
         {
-            Console.WriteLine("patient");
             return await _context.Appointments
                 .Include(a => a.Patient)
                 .Include(a => a.Doctor)
@@ -146,7 +145,6 @@ namespace DataAccessObjects
             return await _context.TimeSlots.ToListAsync();
         }
 
-
         public async Task<List<Appointment>> GetAllAppointmentsAsync()
         {
             var appointments = await _context.Appointments
@@ -171,7 +169,50 @@ namespace DataAccessObjects
             return true;
         }
 
+        public async Task<(List<Appointment> Appointments, int TotalPages)> GetPagedAppointmentsAsync(IQueryable<Appointment> query, string? searchTerm,int pageNumber,int pageSize)
+        {
+            // Tìm kiếm theo searchTerm nếu có
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                query = query.Where(a =>
+                    (a.Patient != null && a.Patient.FullName.Contains(searchTerm)) ||
+                    (a.Specialty != null && a.Specialty.Name.Contains(searchTerm)) ||
+                    (a.Method != null && a.Method.Name.Contains(searchTerm))
+                );
+            }
 
+            var totalRecords = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
+
+            var appointments = await query
+                .OrderByDescending(a => a.AppointmentDate)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (appointments, totalPages);
+        }
+        public IQueryable<Appointment> GetAppointmentsByDoctorQuery(int doctorId)
+        {
+            return _context.Appointments
+                .Include(a => a.Patient)
+                .Include(a => a.Doctor)
+                .Include(a => a.Slot)
+                .Include(a => a.Specialty)
+                .Include(a => a.Method)
+                .Where(a => a.DoctorId == doctorId);
+        }
+
+        public IQueryable<Appointment> GetAppointmentsByPatientQuery(int registeredById)
+        {
+            return _context.Appointments
+                .Include(a => a.Patient)
+                .Include(a => a.Doctor)
+                .Include(a => a.Slot)
+                .Include(a => a.Specialty)
+                .Include(a => a.Method)
+                .Where(a => a.Patient.RegisteredBy == registeredById && a.Status != "Cancelled");
+        }
 
     }
 }

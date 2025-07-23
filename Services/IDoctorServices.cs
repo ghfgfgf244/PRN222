@@ -18,7 +18,7 @@ namespace Services
         Task<List<DoctorSpecialty>> GetAllSpecialties();
 
         Task<DoctorSpecialty?> GetSpecialtyByIdAsync(int id);
-
+        Task<List<User>> GetAllDoctorsAsync();
         Task AddSpecialtyToDoctorAsync(int doctorId, int specialtyId);
         Task UpdateDoctorSpecialtyAsync(int doctorId, int specialtyId);
         Task<int?> GetSpecialtyIdByDoctorId(int doctorId);

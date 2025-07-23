@@ -33,6 +33,11 @@ namespace Services
             return await _iDoctorRepositories.GetAllDoctorLeavesAsync();
         }
 
+        public async Task<List<User>> GetAllDoctorsAsync()
+        {
+            return await _iDoctorRepositories.GetAllDoctorsAsync();
+        }
+
         public async Task<List<DoctorSpecialty>> GetAllSpecialties()
         {
             return await _iDoctorRepositories.GetAllSpecialties();

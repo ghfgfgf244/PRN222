@@ -11,6 +11,8 @@ using Services;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
 using System.Security.Claims;
+using Microsoft.AspNetCore.SignalR;
+using Web_.Hubs;
 
 namespace Web_.Pages.Users
 {
@@ -21,14 +23,17 @@ namespace Web_.Pages.Users
         private readonly IWebHostEnvironment _environment;
         private readonly IConfiguration _configuration;
         private readonly IDoctorServices _doctorContext;
+        private readonly IHubContext<AppHub> _hubContext;
 
-        public EditModel(BusinessObjects.AppointmentsDbContext context, IConfiguration configuration, IWebHostEnvironment environment)
+        public EditModel(BusinessObjects.AppointmentsDbContext context, IConfiguration configuration, IWebHostEnvironment environment, IHubContext<AppHub> hubContext)
         {
             _context = new UserServices(context);
             _exContext = new ExternalIntegrationService(configuration);
             this._environment = environment;
             _configuration = configuration;
             _doctorContext = new DoctorServices(context);
+            _hubContext = hubContext;
+
         }
 
         [BindProperty]
@@ -106,10 +111,15 @@ namespace Web_.Pages.Users
             if (!IsAdmin)
             {
                 TempData["SuccessMessage"] = "Thông tin đã được cập nhật.";
-
                 return Page(); 
             }
-            return RedirectToPage("./Index");
+            await _hubContext.Clients.All.SendAsync("UserUpdated", new
+            {
+                fullName = UserEdit.FullName,
+                email = UserEdit.Email
+            });
+
+            return RedirectToPage("./Index", new { role = UserEdit.Role });
         }
         public async Task<IActionResult> OnPostUploadAvatarAsync()
         {

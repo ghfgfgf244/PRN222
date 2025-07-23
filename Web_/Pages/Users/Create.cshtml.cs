@@ -9,6 +9,8 @@ using BusinessObjects;
 using DataAccessObjects;
 using Services;
 using System.Reflection.Metadata;
+using Microsoft.AspNetCore.SignalR;
+using Web_.Hubs;
 
 namespace Web_.Pages.Users
 {
@@ -18,13 +20,15 @@ namespace Web_.Pages.Users
         private readonly IExternalIntegrationService _exContext;
         private readonly IWebHostEnvironment _environment;
         private readonly IDoctorServices _doctorContext;
+        private readonly IHubContext<AppHub> _hubContext;
 
-        public CreateModel(BusinessObjects.AppointmentsDbContext context, IConfiguration configuration, IWebHostEnvironment environment)
+        public CreateModel(BusinessObjects.AppointmentsDbContext context, IConfiguration configuration, IWebHostEnvironment environment, IHubContext<AppHub> hubContext)
         {
             _context = new UserServices(context);
             _exContext = new ExternalIntegrationService(configuration);
             this._environment = environment;
             _doctorContext = new DoctorServices(context);
+            _hubContext = hubContext;
         }
 
         [BindProperty]
@@ -75,6 +79,12 @@ namespace Web_.Pages.Users
             {
                 await _doctorContext.AddSpecialtyToDoctorAsync(User.UserId, SelectedSpecialtyId.Value);
             }
+            await _hubContext.Clients.All.SendAsync("UserCreated", new
+            {
+                fullName = User.FullName,
+                email = User.Email
+            });
+
             return RedirectToPage("./Index");
         }
 

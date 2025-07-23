@@ -7,22 +7,27 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
+using Microsoft.AspNetCore.SignalR;
+using Web_.Hubs;
 
 namespace Web_.Pages.Users
 {
     public class IndexModel : PageModel
     {
         private readonly IUserServices _context;
+        private readonly IHubContext<AppHub> _hubContext;
 
-        public IndexModel(BusinessObjects.AppointmentsDbContext context)
+        public IndexModel(BusinessObjects.AppointmentsDbContext context, IHubContext<AppHub> hubContext)
         {
             _context = new UserServices(context);
+            _hubContext = hubContext;
+
         }
 
         public IList<User> User { get; set; } = default!;
         [BindProperty(SupportsGet = true)]
         public string? Role { get; set; }
-
+        [BindProperty(SupportsGet = true)]
         public int TotalPages { get; set; }
         [BindProperty(SupportsGet = true)]
         public int CurrentPage { get; set; }
@@ -46,6 +51,8 @@ namespace Web_.Pages.Users
             {
                 TempData["SuccessMessage"] = "User đã được xóa!";
             }
+            await _hubContext.Clients.All.SendAsync("UserDeleted", id);
+
             return RedirectToPage("./Index");
         }
 

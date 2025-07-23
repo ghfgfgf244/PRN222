@@ -19,5 +19,9 @@ namespace Repositories
         Task<bool> UpdateAppointmentAsync(Appointment updatedAppointment);
         Task<Appointment?> GetAppointmentByIdAsync(int appointmentId);
         Task<bool> UpdateAppointmentStatusAsync(int appointmentId, string newStatus);
+        Task<(List<Appointment> Appointments, int TotalPages)> GetPagedAppointmentsAsync(IQueryable<Appointment> query, string? searchTerm, int pageNumber, int pageSize);
+        IQueryable<Appointment> GetAppointmentsByDoctorQuery(int doctorId);
+        IQueryable<Appointment> GetAppointmentsByPatientQuery(int registeredById);
+        Task<List<Appointment>> GetAllAppointmentsAsync();
     }
 }
