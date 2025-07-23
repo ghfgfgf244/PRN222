@@ -88,8 +88,9 @@
                         <td>
                             @if (Model.IsDoctor)
                             {
-                                <select class="form-select status-select"
+                                <select class="form-select status-select mt-1"
                                         data-id="@item.AppointmentId"
+                                        data-badge="#status-badge-@item.AppointmentId"
                                         style="width: auto; display: inline-block;">
                                     <option value="Confirmed" selected="@(item.Status == "Confirmed")">Confirmed</option>
                                     <option value="InProgress" selected="@(item.Status == "InProgress")">In Progress</option>
@@ -99,19 +100,27 @@
                             }
                             else
                             {
-                                <span class="badge @GetBadgeClass(@item.Status)">@item.Status</span>
+                                <span class="badge @GetBadgeClass(item.Status)"
+                                      id="status-badge-@item.AppointmentId">
+                                    @item.Status
+                                </span>
                             }
                         </td>
 
+                        @{
+                            var appointmentUrl = $"{Model.CurrentDomain}/Appointments/Details?id={item.AppointmentId}";
+                            var qrUrl = $"https://quickchart.io/qr?text={Uri.EscapeDataString(appointmentUrl)}";
+                        }
+
                         <td>
-                            <!-- Thumbnail QR code -->
-                            <img src="https://quickchart.io/qr?text=@($"{Model.CurrentDomain}/Appointments/Edit?handler=UpdateStatus&id={item.AppointmentId}&status=InProgress")"
+                            <img src="@qrUrl"
                                  alt="QR Code"
                                  width="40"
                                  height="40"
                                  class="qr-thumbnail"
-                                 data-full="@($"{Model.CurrentDomain}/Appointments/Edit?handler=UpdateStatus&id={item.AppointmentId}&status=InProgress")" />
+                                 data-full="@appointmentUrl" />
                         </td>
+
                         <td>
                             <a asp-page="./Edit" asp-route-id="@item.AppointmentId" class="btn btn-sm btn-warning">Sửa</a>
                             <a asp-page="./Details" asp-route-id="@item.AppointmentId" class="btn btn-sm btn-info text-white">Chi tiết</a>
@@ -163,10 +172,8 @@
     </script>
     <script>
         $(document).ready(function () {
-            // Xử lý XÓA danh mục
             $(".cancelled-btn").on("click", function (event) {
                 event.preventDefault();
-
                 var id = $(this).data("id");
 
                 Swal.fire({
@@ -191,13 +198,24 @@
                     }
                 });
             });
-        }
+        });
     </script>
     <script>
-                    $(document).ready(function () {
+        $(document).ready(function () {
+            const getBadgeClass = (status) => {
+                switch (status) {
+                    case "Confirmed": return "bg-primary";
+                    case "InProgress": return "bg-warning text-dark";
+                    case "Completed": return "bg-success";
+                    case "NoShow": return "bg-danger";
+                    default: return "bg-secondary";
+                }
+            };
+
             $(".status-select").on("change", function () {
                 const newStatus = $(this).val();
                 const id = $(this).data("id");
+                const badgeSelector = $(this).data("badge");
 
                 Swal.fire({
                     title: "Xác nhận cập nhật?",
@@ -211,8 +229,13 @@
                         $.post("?handler=UpdateStatus", { id: id, status: newStatus })
                             .done(function (res) {
                                 if (res.success) {
-                                    Swal.fire("Thành công!", res.message, "success")
-                                        .then(() => location.reload());
+                                    Swal.fire("Thành công!", res.message, "success");
+
+                                    // ✅ Cập nhật badge
+                                    const $badge = $(badgeSelector);
+                                    $badge
+                                        .text(newStatus)
+                                        .attr("class", "badge " + getBadgeClass(newStatus));
                                 } else {
                                     Swal.fire("Lỗi!", res.message, "error");
                                 }
@@ -220,13 +243,12 @@
                             .fail(function () {
                                 Swal.fire("Lỗi!", "Không thể cập nhật trạng thái.", "error");
                             });
-                    } else {
-                        location.reload();
                     }
                 });
             });
         });
     </script>
+
 
 
 }

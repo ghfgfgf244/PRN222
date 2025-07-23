@@ -6,6 +6,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DataAccessObjects
 {
@@ -80,6 +81,7 @@ namespace DataAccessObjects
             if (appt == null || appt.Status != "Pending") return false;
 
             appt.Status = "Cancelled";
+            Console.WriteLine(appt.Status);
             await _context.SaveChangesAsync();
             return true;
         }
@@ -93,9 +95,15 @@ namespace DataAccessObjects
             if (!string.Equals(appointment.Status, "Pending", StringComparison.OrdinalIgnoreCase))
                 return false;
 
-            _context.Attach(updatedAppointment).State = EntityState.Modified;
+            appointment.AppointmentDate = updatedAppointment.AppointmentDate;
+            appointment.SlotId = updatedAppointment.SlotId;
+            appointment.SpecialtyId = updatedAppointment.SpecialtyId;
+            appointment.MethodId = updatedAppointment.MethodId;
+            appointment.DoctorId = updatedAppointment.DoctorId;
 
             await _context.SaveChangesAsync();
+            Console.WriteLine("appointment");
+
             return true;
         }
 

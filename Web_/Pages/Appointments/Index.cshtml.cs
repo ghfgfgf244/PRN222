@@ -63,8 +63,10 @@ namespace Web_.Pages.Appointments
 
         public async Task<IActionResult> OnPostCancelledAsync(int id)
         {
+            Console.WriteLine(">>> Gọi OnPostCancelledAsync với id = " + id);
+
             var result = await _context.CancelAppointmentAsync(id);
-            if (!result)
+            Console.WriteLine(">>> Kết quả cancel: " + result); if (!result)
             {
                 TempData["ErrorMessage"] = "Lịch khám không tồn tại!";
             }

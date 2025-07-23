@@ -3,40 +3,39 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Mail;
 using System.Net;
+using Services;
 
 namespace Web_.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private readonly IExternalIntegrationService _externalIntegrationService;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _externalIntegrationService = new ExternalIntegrationService(configuration);
         }
 
-		[BindProperty]
-		public ContactInputModel ContactInfo { get; set; }
-		public string? ResultMessage { get; set; }
-		public void OnGet()
-		{
-		}
-		public async Task<IActionResult> OnPostAsync()
-		{
-			if (!ModelState.IsValid)
-			{
-				ResultMessage = "Vui lòng điền đầy đủ thông tin.";
-				return Page();
-			}
+        [BindProperty]
+        public ContactInputModel ContactInfo { get; set; }
+        public string? ResultMessage { get; set; }
+        public void OnGet()
+        {
+        }
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                ResultMessage = "Vui lòng điền đầy đủ thông tin.";
+                return Page();
+            }
 
-			try
-			{
-				var fromAddress = new MailAddress("hungghfgfgf244@gmail.com", ContactInfo.Name);
-				var toAddress = new MailAddress("hungghfgfgf244@gmail.com", "Webmaster");
-				const string fromPassword = "rljzghrfbhmtoast"; // app password chứ không phải mật khẩu Gmail
-
-				string subject = $"{ContactInfo.Subject}";
-				string body = $@"
+            try
+            {
+                string subject = $"{ContactInfo.Subject}";
+                string body = $@"
 <table style='width:100%;max-width:600px;margin:auto;border:1px solid #eee;border-radius:10px;font-family:sans-serif;'>
     <tr>
         <td style='background:#4CAF50;color:white;padding:20px;border-top-left-radius:10px;border-top-right-radius:10px;'>
@@ -62,48 +61,33 @@ namespace Web_.Pages
     </tr>
 </table>";
 
-				var smtp = new SmtpClient
-				{
-					Host = "smtp.gmail.com",
-					Port = 587,
-					EnableSsl = true,
-					Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-				};
+                _externalIntegrationService.SendEmailAsync("hungghfgfgf244@gmail.com", subject, body, ContactInfo.Name, ContactInfo.Email);
 
-				var message = new MailMessage(fromAddress, toAddress)
-				{
-					Subject = subject,
-					Body = body,
-					IsBodyHtml = true
-				};
+                // ✅ Sau khi gửi thành công → reset form:
+                ModelState.Clear(); // xoá trạng thái validation
+                ContactInfo = new ContactInputModel(); // reset dữ liệu
 
-				await smtp.SendMailAsync(message);
+                ResultMessage = "Gửi liên hệ thành công! Chúng tôi sẽ liên hệ bạn sớm nhất có thể. Xin cảm ơn!";
+            }
+            catch (Exception ex)
+            {
+                ResultMessage = $"Gửi thất bại: {ex.Message}";
+            }
 
-				// ✅ Sau khi gửi thành công → reset form:
-				ModelState.Clear(); // xoá trạng thái validation
-				ContactInfo = new ContactInputModel(); // reset dữ liệu
+            return Page();
+        }
+        public class ContactInputModel()
+        {
+            [Required(ErrorMessage = "Họ và tên là bắt buộc")]
+            public string Name { get; set; }
+            [Required(ErrorMessage = "Email là bắt buộc")]
+            [EmailAddress(ErrorMessage = "Email không hợp lệ")]
+            public string Email { get; set; }
+            [Required(ErrorMessage = "Subject là bắt buộc")]
+            public string Subject { get; set; }
+            [Required(ErrorMessage = "Message là bắt buộc")]
+            public string Message { get; set; }
 
-				ResultMessage = "Gửi liên hệ thành công! Chúng tôi sẽ liên hệ bạn sớm nhất có thể. Xin cảm ơn!";
-			}
-			catch (Exception ex)
-			{
-				ResultMessage = $"Gửi thất bại: {ex.Message}";
-			}
-
-			return Page();
-		}
-		public class ContactInputModel()
-		{
-			[Required(ErrorMessage = "Họ và tên là bắt buộc")]
-			public string Name { get; set; }
-			[Required(ErrorMessage = "Email là bắt buộc")]
-			[EmailAddress(ErrorMessage = "Email không hợp lệ")]
-			public string Email { get; set; }
-			[Required(ErrorMessage = "Subject là bắt buộc")]
-			public string Subject { get; set; }
-			[Required(ErrorMessage = "Message là bắt buộc")]
-			public string Message { get; set; }
-
-		}
-	}
+        }
+    }
 }

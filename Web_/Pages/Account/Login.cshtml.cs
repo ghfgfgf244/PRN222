@@ -24,6 +24,11 @@ namespace Web_.Pages.Account
             _accountServices = new AccountServices(context);
             _configuration = configuration;
         }
+        public bool EmailVerified { get; set; }
+        public void OnGet(bool? verified)
+        {
+            EmailVerified = verified == true;
+        }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -62,6 +67,12 @@ namespace Web_.Pages.Account
                 return Page();
             }
 
+            if (!user.IsActive)
+            {
+                TempData["ErrorMessage"] = "Tài khoản chưa được xác thực qua email. Vui lòng kiểm tra hộp thư của bạn.";
+                return Page();
+            }
+
             var claimsDb = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
@@ -80,7 +91,7 @@ namespace Web_.Pages.Account
                 case "Doctor":
                     return RedirectToPage("/DoctorLeafs/Index");
                 case "Patient":
-                    return RedirectToPage("/Patients/Index");
+                    return RedirectToPage("/Appointments/Index");
                 default:
                     return RedirectToPage("/Index");
             }
