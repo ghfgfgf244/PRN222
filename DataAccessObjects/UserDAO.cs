@@ -114,6 +114,14 @@ namespace DataAccessObjects
             await _context.SaveChangesAsync();
             return user.IsActive;
         }
+        public async Task VerifyEmailAsync(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null) throw new Exception("User not found");
+
+            user.IsActive = true;
+            await _context.SaveChangesAsync();
+        }
 
         // Kiểm tra tồn tại User
         public async Task<bool> UserExistsAsync(int id)
@@ -129,6 +137,14 @@ namespace DataAccessObjects
                 .ToListAsync();
         }
 
+        public async Task<bool> EmailExistsAsync(string email)
+        {
+            return await _context.Users.AnyAsync(u => u.Email == email);
+        }
+        public async Task<bool> PhoneExistsAsync(string phone)
+        {
+            return await _context.Users.AnyAsync(u => u.PhoneNumber == phone);
+        }
 
     }
 }

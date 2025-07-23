@@ -127,6 +127,14 @@ namespace Web_.Pages.Appointments
         {
             if (!ModelState.IsValid)
             {
+                foreach (var modelState in ModelState)
+                {
+                    foreach (var error in modelState.Value.Errors)
+                    {
+                        Console.WriteLine($"Model error in {modelState.Key}: {error.ErrorMessage}");
+                    }
+                }
+
                 await LoadInitialDropdowns();
 
                 if (Appointment.SpecialtyId != null)
@@ -154,10 +162,18 @@ namespace Web_.Pages.Appointments
                 }
                 return Page();
             }
+            Appointment.AppointmentDate = Appointment.AppointmentDate;
+            Appointment.SpecialtyId = SelectedSpecialtyId;
+            Appointment.SlotId = SelectedSlotId;
+            Appointment.MethodId = SelectedMethodId;
+            Appointment.DoctorId = SelectedDoctorId;
+
 
             await _patientContext.UpdatePatientAsync(Patient);
+            Console.WriteLine($"FullName: {Patient.FullName}");
 
             await _appointmentContext.UpdateAppointmentAsync(Appointment);
+            Console.WriteLine($"SlotId: {Appointment.SlotId}, SpecialtyId: {Appointment.SpecialtyId}, MethodId: {Appointment.MethodId}, DoctorId: {Appointment.DoctorId}");
 
             return RedirectToPage("./Index");
         }

@@ -67,6 +67,7 @@ namespace Web_
                 option.Cookie.IsEssential = true;
             });
 
+            builder.Services.AddControllers();
 
             builder.Services.Configure<FormOptions>(options =>
             {
@@ -111,6 +112,7 @@ namespace Web_
             app.UseAuthorization();
 
             app.MapRazorPages();
+            app.MapControllers();
 
             app.Run();
         }

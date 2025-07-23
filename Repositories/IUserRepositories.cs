@@ -16,5 +16,8 @@ namespace Repositories
         Task<bool> DeleteUserAsync(int id);
         Task<bool?> ToggleUserStatusAsync(int id);
         Task<bool> UserExistsAsync(int id);
+        Task<bool> EmailExistsAsync(string email);
+        Task<bool> PhoneExistsAsync(string phone);
+        Task VerifyEmailAsync(int id);
     }
 }

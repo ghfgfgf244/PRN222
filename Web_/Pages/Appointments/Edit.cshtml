@@ -19,23 +19,34 @@
                 <input type="hidden" asp-for="Appointment.AppointmentId" />
 
                 <div class="form-group mb-3">
-                    <label asp-for="Appointment.Patient.FullName" class="form-label">Họ tên</label>
-                    <input asp-for="Appointment.Patient.FullName" class="form-control" disabled />
+                    <label asp-for="Patient.FullName" class="form-label">Họ tên</label>
+                    <input asp-for="Patient.FullName" class="form-control"  />
+                    <span asp-validation-for="Patient.FullName" class="text-danger"></span>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label asp-for="Appointment.Patient.Age" class="form-label">Tuổi</label>
-                    <input asp-for="Appointment.Patient.Age" class="form-control" disabled />
+                    <label asp-for="Patient.Age" class="form-label">Tuổi</label>
+                    <input asp-for="Patient.Age" class="form-control"  />
+                    <span asp-validation-for="Patient.Age" class="text-danger"></span>
                 </div>
 
                 <div class="form-group mb-3">
                     <label class="form-label d-block">Giới tính</label>
-                    <input class="form-control" value="@(Model.Appointment.Patient.Gender ? "Nam" : "Nữ")" disabled />
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Patient.Gender" value="true" id="genderNam" />
+                        <label class="form-check-label" for="genderNam">Nam</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Patient.Gender" value="false" id="genderNu" />
+                        <label class="form-check-label" for="genderNu">Nữ</label>
+                    </div>
+                    <span asp-validation-for="Patient.Gender" class="text-danger d-block mt-1"></span>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label asp-for="Appointment.Patient.Note" class="form-label">Ghi chú</label>
-                    <textarea asp-for="Appointment.Patient.Note" class="form-control" rows="4" disabled></textarea>
+                    <label asp-for="Patient.Note" class="form-label">Ghi chú</label>
+                    <textarea asp-for="Patient.Note" class="form-control" rows="4" ></textarea>
+                    <span asp-validation-for="Patient.Note" class="text-danger"></span>
                 </div>
             </div>
 

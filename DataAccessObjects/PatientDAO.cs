@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DataAccessObjects
 {
@@ -41,8 +42,14 @@ namespace DataAccessObjects
             var existingPatient = await _context.Patients.FindAsync(patient.PatientId);
             if (existingPatient == null) return false;
 
-            _context.Attach(patient).State = EntityState.Modified;
+            existingPatient.FullName = patient.FullName;
+            existingPatient.Age = patient.Age;
+            existingPatient.Gender = patient.Gender;
+            existingPatient.Note = patient.Note;
+            
             await _context.SaveChangesAsync();
+            Console.WriteLine("patient");
+
             return true;
         }
 

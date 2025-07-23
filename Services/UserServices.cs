@@ -27,6 +27,11 @@ namespace Services
             return await iUserRepositories.DeleteUserAsync(id);
         }
 
+        public async Task<bool> EmailExistsAsync(string email)
+        {
+            return await iUserRepositories.EmailExistsAsync(email);
+        }
+
         public async Task<(List<User> Users, int TotalPages)> GetPagedUsersAsync(string? role, string? searchTerm, int pageNumber, int pageSize)
         {
             return await iUserRepositories.GetPagedUsersAsync(role, searchTerm, pageNumber, pageSize);
@@ -35,6 +40,11 @@ namespace Services
         public async Task<User?> GetUserByIdAsync(int id)
         {
             return await iUserRepositories.GetUserByIdAsync(id);
+        }
+
+        public async Task<bool> PhoneExistsAsync(string phone)
+        {
+            return await iUserRepositories.PhoneExistsAsync(phone);
         }
 
         public async Task<bool?> ToggleUserStatusAsync(int id)
@@ -50,6 +60,11 @@ namespace Services
         public async Task<bool> UserExistsAsync(int id)
         {
             return await iUserRepositories.UserExistsAsync(id);
+        }
+
+        public async Task VerifyEmailAsync(int id)
+        {
+            await iUserRepositories.VerifyEmailAsync(id);
         }
     }
 }

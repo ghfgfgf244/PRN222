@@ -1,0 +1,67 @@
+﻿@page
+@model Web_.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<h2>Đăng ký tài khoản</h2>
+
+<form method="post" id="registerForm">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <input asp-for="Input.FullName" class="form-control" placeholder="Họ và tên" />
+
+    <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Số điện thoại" id="phoneInput" />
+    <span id="phoneError" class="text-danger"></span>
+
+    <input asp-for="Input.Email" class="form-control" placeholder="Email" id="emailInput" />
+    <span id="emailError" class="text-danger"></span>
+
+    <input asp-for="Input.Password" class="form-control" placeholder="Mật khẩu" />
+    <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Xác nhận mật khẩu" />
+
+    <select asp-for="Input.Gender" class="form-select">
+        <option value="false">Nữ</option>
+        <option value="true">Nam</option>
+    </select>
+
+    <input asp-for="Input.Birthday" type="date" class="form-control" />
+
+    <button type="submit" class="btn btn-primary">Đăng ký</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="text-danger">@Model.ErrorMessage</div>
+}
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $("#emailInput").on("blur", function () {
+                const email = $(this).val();
+                $.get("/api/check/check-email", { email: email }, function (res) {
+                    if (res.exists) {
+                        $("#emailError").text("Email đã tồn tại!");
+                    } else {
+                        $("#emailError").text("");
+                    }
+                });
+            });
+
+            $("#phoneInput").on("blur", function () {
+                const phone = $(this).val();
+                $.get("/api/check/check-phone", { phone: phone }, function (res) {
+                    if (res.exists) {
+                        $("#phoneError").text("Số điện thoại đã tồn tại!");
+                    } else {
+                        $("#phoneError").text("");
+                    }
+                });
+            });
+        });
+    </script>
+
+}

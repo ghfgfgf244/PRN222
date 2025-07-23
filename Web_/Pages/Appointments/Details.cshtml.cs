@@ -18,50 +18,40 @@ namespace Web_.Pages.Appointments
 
         public DetailsModel(BusinessObjects.AppointmentsDbContext context)
         {
-            _context =  new AppointmentServices(context);
+            _context = new AppointmentServices(context);
         }
 
         public Appointment Appointment { get; set; } = default!;
-
+        public bool IsDoctor { get; set; }
+        public bool IsPatient { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
+            var role = User.FindFirst("Role")?.Value;
+            IsDoctor = role == "Doctor";
+            IsPatient = role == "Patient";
 
             var appointment = await _context.GetAppointmentByIdAsync(id.Value);
             if (appointment == null)
             {
                 return NotFound();
             }
-            else
+
+            Appointment = appointment;
+
+            if (IsDoctor)
             {
-                Appointment = appointment;
+                if (appointment.Status != "Confirmed")
+                {
+                    await _context.UpdateAppointmentStatusAsync(id.Value, "Confirmed");
+
+                    Appointment = await _context.GetAppointmentByIdAsync(id.Value);
+                }
             }
             return Page();
-        }
-
-        [Authorize(Policy = "DoctorOnly")]
-        public async Task<IActionResult> OnGetUpdateStatus(int id, string status)
-        {
-            var appointment = await _context.GetAppointmentByIdAsync(id);
-            if (appointment == null || appointment.Status != "Confirmed")
-                return NotFound();
-
-            var doctorIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (!int.TryParse(doctorIdClaim, out var doctorId))
-                return RedirectToPage("/Account/AccessDenied");
-
-            if (appointment.DoctorId != doctorId)
-                return RedirectToPage("/Account/AccessDenied");
-
-            if (appointment.Status != "Confirmed")
-                return BadRequest("Không thể cập nhật trạng thái.");
-
-            await _context.UpdateAppointmentStatusAsync(doctorId, status);
-
-            return RedirectToPage("Details", new { id });
         }
     }
 }
