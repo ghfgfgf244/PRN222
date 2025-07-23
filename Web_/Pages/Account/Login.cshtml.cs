@@ -56,7 +56,7 @@ namespace Web_.Pages.Account
                 var principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-                return RedirectToPage("/Users/Index");
+                return RedirectToPage("/Admin/Dashboard");
             }
 
             // Kiểm tra tài khoản trong DB
@@ -89,7 +89,7 @@ namespace Web_.Pages.Account
             switch (user.Role)
             {
                 case "Doctor":
-                    return RedirectToPage("/DoctorLeafs/Index");
+                    return RedirectToPage("/Appointments/Index");
                 case "Patient":
                     return RedirectToPage("/Appointments/Index");
                 default:

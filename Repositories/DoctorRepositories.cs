@@ -32,6 +32,11 @@ namespace Repositories
             return await _doctorDAO.GetAllDoctorLeavesAsync();
         }
 
+        public async Task<List<User>> GetAllDoctorsAsync()
+        {
+            return await _doctorDAO.GetAllDoctorsAsync();
+        }
+
         public async Task<List<DoctorSpecialty>> GetAllSpecialties()
         {
             return await _doctorDAO.GetAllSpecialties();

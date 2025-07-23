@@ -1,10 +1,4 @@
 ﻿using BusinessObjects;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repositories
 {
@@ -25,6 +19,6 @@ namespace Repositories
         Task UpdateDoctorSpecialtyAsync(int doctorId, int specialtyId);
         Task<int?> GetSpecialtyIdByDoctorId(int doctorId);
         Task<User?> GetDoctorByIdAsync(int id);
-
+        Task<List<User>> GetAllDoctorsAsync();
     }
 }

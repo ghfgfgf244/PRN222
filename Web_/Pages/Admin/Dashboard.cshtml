@@ -1,0 +1,143 @@
+﻿@page
+@model Web_.Pages.Admin.DashboardModel
+@using System.Text.Json
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "_LayoutMain";
+}
+
+<h2 class="mb-4">Admin Dashboard</h2>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card shadow-sm border-start border-primary border-4">
+            <div class="card-body d-flex align-items-center gap-3">
+                <i class="bi bi-person text-primary fs-1"></i>
+                <div>
+                    <h6 class="card-title mb-0">Total Patients</h6>
+                    <p class="fs-4 fw-bold text-primary mb-0">@Model.PatientCount</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm border-start border-success border-4">
+            <div class="card-body d-flex align-items-center gap-3">
+                <i class="bi bi-person-badge text-success fs-1"></i>
+                <div>
+                    <h6 class="card-title mb-0">Total Doctors</h6>
+                    <p class="fs-4 fw-bold text-success mb-0">@Model.DoctorCount</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm border-start border-warning border-4">
+            <div class="card-body d-flex align-items-center gap-3">
+                <i class="bi bi-calendar-check text-warning fs-1"></i>
+                <div>
+                    <h6 class="card-title mb-0">Appointments</h6>
+                    <p class="fs-4 fw-bold text-warning mb-0">@Model.AppointmentCount</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm border-start border-danger border-4">
+            <div class="card-body d-flex align-items-center gap-3">
+                <i class="bi bi-person-plus text-danger fs-1"></i>
+                <div>
+                    <h6 class="card-title mb-0">New Users This Week</h6>
+                    <p class="fs-4 fw-bold text-danger mb-0">@Model.UsersThisWeek</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Chart -->
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white fw-semibold">
+                Appointments by Specialty
+            </div>
+            <div class="card-body" style="position: relative; height: 350px;">
+                <canvas id="appointmentChart" class="w-100 h-100"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Doctors -->
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-secondary text-white fw-semibold">
+                Top Doctors with Most Appointments
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-sm table-bordered mb-0">
+                        <thead class="table-light">
+                            <tr class="text-center">
+                                <th>Doctor Name</th>
+                                <th>Specialties</th>
+                                <th>Appointments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var doc in Model.TopDoctors)
+                            {
+                                <tr>
+                                    <td>@doc.FullName</td>
+                                    <td>@doc.Specialties</td>
+                                    <td class="text-center">@doc.AppointmentCount</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const methodLabels = @Html.Raw(JsonSerializer.Serialize(Model.MethodLabels));
+        const methodData = @Html.Raw(JsonSerializer.Serialize(Model.MethodData));
+        const backgroundColors = [
+            '#3b82f6', '#10b981', '#f59e0b', '#ef4444',
+            '#8b5cf6', '#ec4899', '#14b8a6', '#6366f1'
+        ];
+
+        const ctx = document.getElementById('appointmentChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: methodLabels,
+                datasets: [{
+                    label: 'Appointments by Specialty',
+                    data: methodData,
+                    backgroundColor: backgroundColors.slice(0, methodLabels.length),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}

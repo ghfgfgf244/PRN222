@@ -27,6 +27,11 @@ namespace Repositories
             return await _appointmentDAO.CreateAppointmentAsync(appointment);
         }
 
+        public async Task<List<Appointment>> GetAllAppointmentsAsync()
+        {
+            return await _appointmentDAO.GetAllAppointmentsAsync();
+        }
+
         public async Task<List<TimeSlot>> GetAllSlots()
         {
             return await _appointmentDAO.GetAllSlots();
@@ -42,6 +47,16 @@ namespace Repositories
             return await _appointmentDAO.GetAppointmentsByDoctorIdAsync((int)doctorId);
         }
 
+        public IQueryable<Appointment> GetAppointmentsByDoctorQuery(int doctorId)
+        {
+            return _appointmentDAO.GetAppointmentsByDoctorQuery((int)doctorId);
+        }
+
+        public IQueryable<Appointment> GetAppointmentsByPatientQuery(int registeredById)
+        {
+            return _appointmentDAO.GetAppointmentsByPatientQuery((int)registeredById);
+        }
+
         public async Task<List<Appointment>> GetAppointmentsByRegisteredByAsync(int userId)
         {
             return await _appointmentDAO.GetAppointmentsByRegisteredByAsync((int)userId);
@@ -55,6 +70,11 @@ namespace Repositories
         public async Task<List<ExamMethod>> GetMethodsBySpecialtyId(int specialtyId)
         {
             return await _appointmentDAO.GetMethodsBySpecialtyId((int)specialtyId);
+        }
+
+        public async Task<(List<Appointment> Appointments, int TotalPages)> GetPagedAppointmentsAsync(IQueryable<Appointment> query, string? searchTerm, int pageNumber, int pageSize)
+        {
+            return await _appointmentDAO.GetPagedAppointmentsAsync(query,searchTerm, pageNumber, pageSize);   
         }
 
         public async Task<bool> UpdateAppointmentAsync(Appointment updatedAppointment)

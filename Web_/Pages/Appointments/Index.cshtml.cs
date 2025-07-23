@@ -26,8 +26,15 @@ namespace Web_.Pages.Appointments
         public IList<Appointment> Appointment { get; set; } = default!;
         public bool IsDoctor { get; set; }
         public bool IsPatient { get; set; }
-        public async Task<IActionResult> OnGetAsync()
+        [BindProperty(SupportsGet = true)]
+        public int TotalPages { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string? SearchTerm { get; set; }
+        public async Task<IActionResult> OnGetAsync(string? searchTerm, int pageNumber = 1, int pageSize = 10)
         {
+            SearchTerm = searchTerm;
             CurrentDomain = $"{Request.Scheme}://{Request.Host}";
 
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -40,26 +47,32 @@ namespace Web_.Pages.Appointments
                 return RedirectToPage("/Account/AccessDenied");
             }
 
-            if (role == "Patient")
+            IQueryable<Appointment> query;
+
+            if (IsPatient)
             {
-                Appointment = await _context.GetAppointmentsByRegisteredByAsync(userId);
-                Console.WriteLine(userId);
+                query = _context.GetAppointmentsByPatientQuery(userId);
             }
             else if (IsDoctor)
             {
-                Appointment = await _context.GetAppointmentsByDoctorIdAsync(userId);
-                Console.WriteLine("doctor");
-
+                query = _context.GetAppointmentsByDoctorQuery(userId);
             }
             else
             {
                 Appointment = new List<Appointment>();
-                Console.WriteLine("null");
-
+                TotalPages = 0;
+                CurrentPage = pageNumber;
+                return Page(); 
             }
+
+            var (appointments, totalPages) = await _context.GetPagedAppointmentsAsync(query, searchTerm, pageNumber, pageSize);
+            Appointment = appointments;
+            TotalPages = totalPages;
+            CurrentPage = pageNumber;
 
             return Page();
         }
+
 
         public async Task<IActionResult> OnPostCancelledAsync(int id)
         {

@@ -21,5 +21,6 @@ namespace Repositories
         Task VerifyEmailAsync(int id);
         Task<bool> UpdateUserPasswordAsync(int userId, string newPassword);
         Task<User?> GetUserByEmailAsync(string email);
+        Task<List<User>> GetAllUsersAsync();
     }
 }

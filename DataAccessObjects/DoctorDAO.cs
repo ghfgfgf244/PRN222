@@ -191,7 +191,12 @@ namespace DataAccessObjects
             // Giả sử mỗi bác sĩ chỉ có 1 chuyên ngành
             return doctor.Specialties.FirstOrDefault()?.SpecialtyId;
         }
-
-
+        public async Task<List<User>> GetAllDoctorsAsync()
+        {
+            return await _context.Users
+                .Where(u => u.Role == "Doctor")
+                .Include(d => d.Specialties)
+                .ToListAsync();
+        }
     }
 }

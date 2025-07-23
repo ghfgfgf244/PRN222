@@ -32,6 +32,11 @@ namespace Services
             return await iUserRepositories.EmailExistsAsync(email);
         }
 
+        public async Task<List<User>> GetAllUsersAsync()
+        {
+            return await iUserRepositories.GetAllUsersAsync();
+        }
+
         public async Task<(List<User> Users, int TotalPages)> GetPagedUsersAsync(string? role, string? searchTerm, int pageNumber, int pageSize)
         {
             return await iUserRepositories.GetPagedUsersAsync(role, searchTerm, pageNumber, pageSize);
