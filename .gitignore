@@ -1,3 +1,6 @@
 **/bin/
 **/.vs/
 **/appsettings*.json
+# Ignore build output
+[Bb]in/
+[Oo]bj/
