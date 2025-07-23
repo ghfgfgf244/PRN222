@@ -146,5 +146,22 @@ namespace DataAccessObjects
             return await _context.Users.AnyAsync(u => u.PhoneNumber == phone);
         }
 
+        public async Task<bool> UpdateUserPasswordAsync(int userId, string newPassword)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+            if (user == null) return false;
+
+            var hasher = new PasswordHasher<User>();
+            user.Password = hasher.HashPassword(user, newPassword);
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            return await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == email && u.IsActive);
+        }
+
     }
 }

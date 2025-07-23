@@ -85,8 +85,9 @@ namespace Web_.Pages.Account
             await _userServices.CreateUserAsync(user);
 
             var currentDomain = $"{Request.Scheme}://{Request.Host}";
+            var token = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{user.UserId}:{Guid.NewGuid()}"));
 
-            var verifyLink = $"{currentDomain}/Account/VerifyEmail?id={user.UserId}";
+            var verifyLink = $"{currentDomain}/Account/VerifyEmail?token={token}";
             var subject = "Xác thực tài khoản";
             var body = $"<p>Nhấn vào liên kết sau để kích hoạt tài khoản:</p><a href='{verifyLink}'>Xác thực Email</a>";
 

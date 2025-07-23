@@ -64,8 +64,8 @@ namespace Web_.Pages.Account
                     Avatar = avatarUrl,
                     IsActive = true,
                     Password = "GoogleUser",
-                    Birthday = new DateTime(2000, 1, 1), // ✅ giá trị hợp lệ
-                    Gender = true, // hoặc false nếu Gender là bool
+                    Birthday = new DateTime(2000, 1, 1),
+                    Gender = true, 
                     PhoneNumber = "0000000000",
                     CreatedAt = DateTime.Now
                 };

@@ -39,6 +39,11 @@ namespace Repositories
             return await _userDAO.GetPagedUsersAsync(role, searchTerm, pageNumber, pageSize);
         }
 
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            return await _userDAO.GetUserByEmailAsync(email);
+        }
+
         public async Task<User?> GetUserByIdAsync(int id)
         {
             return await _userDAO.GetUserByIdAsync(id);
@@ -57,6 +62,11 @@ namespace Repositories
         public async Task<bool> UpdateUserAsync(User user)
         {
             return await _userDAO.UpdateUserAsync(user);
+        }
+
+        public async Task<bool> UpdateUserPasswordAsync(int userId, string newPassword)
+        {
+            return await _userDAO.UpdateUserPasswordAsync(userId, newPassword);
         }
 
         public async Task<bool> UserExistsAsync(int id)

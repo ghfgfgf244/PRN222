@@ -19,6 +19,8 @@ namespace Services
         Task<bool> EmailExistsAsync(string email);
         Task<bool> PhoneExistsAsync(string phone);
         Task VerifyEmailAsync(int id);
+        Task<bool> UpdateUserPasswordAsync(int userId, string newPassword);
+        Task<User?> GetUserByEmailAsync(string email);
 
     }
 }

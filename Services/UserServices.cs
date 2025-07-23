@@ -37,6 +37,11 @@ namespace Services
             return await iUserRepositories.GetPagedUsersAsync(role, searchTerm, pageNumber, pageSize);
         }
 
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            return await iUserRepositories.GetUserByEmailAsync(email);
+        }
+
         public async Task<User?> GetUserByIdAsync(int id)
         {
             return await iUserRepositories.GetUserByIdAsync(id);
@@ -55,6 +60,11 @@ namespace Services
         public async Task<bool> UpdateUserAsync(User user)
         {
             return await iUserRepositories.UpdateUserAsync(user);
+        }
+
+        public async Task<bool> UpdateUserPasswordAsync(int userId, string newPassword)
+        {
+            return await iUserRepositories.UpdateUserPasswordAsync(userId, newPassword);
         }
 
         public async Task<bool> UserExistsAsync(int id)
