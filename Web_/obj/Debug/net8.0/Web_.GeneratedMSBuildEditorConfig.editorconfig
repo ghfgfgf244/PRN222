@@ -17,103 +17,105 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Web_
 build_property.RootNamespace = Web_
-build_property.ProjectDir = D:\docNet - Csharp\Prn222-Website\Web_\
+build_property.ProjectDir = E:\FPT\S7\Prn222\Health Care\Web_\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\docNet - Csharp\Prn222-Website\Web_
+build_property.MSBuildProjectDirectory = E:\FPT\S7\Prn222\Health Care\Web_
 build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Account/AccessDenied.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Account/ExternalLogin.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Account/ExternalLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxFeHRlcm5hbExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Account/ExternalLoginCallback.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Account/ExternalLoginCallback.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxFeHRlcm5hbExvZ2luQ2FsbGJhY2suY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Account/Login.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Account/Logout.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Appointments/Create.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Appointments/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Appointments/Details.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Appointments/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Appointments/Edit.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Appointments/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Appointments/Index.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Appointments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/DoctorLeafs/Create.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/DoctorLeafs/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yTGVhZnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/DoctorLeafs/Details.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/DoctorLeafs/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yTGVhZnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/DoctorLeafs/Index.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/DoctorLeafs/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yTGVhZnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Error.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Index.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Privacy.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Shared/_LayoutMain.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Shared/_LayoutMain.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRNYWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Users/Create.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Users/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Users/Edit.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Users/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Users/Index.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/_ViewImports.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/_ViewStart.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/docNet - Csharp/Prn222-Website/Web_/Pages/Shared/_Layout.cshtml]
+[E:/FPT/S7/Prn222/Health Care/Web_/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ekr7lnkeam

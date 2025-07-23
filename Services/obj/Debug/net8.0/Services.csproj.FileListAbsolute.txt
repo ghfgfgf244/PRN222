@@ -18,3 +18,23 @@ D:\docNet - Csharp\Prn222-Website\Services\obj\Debug\net8.0\Services.dll
 D:\docNet - Csharp\Prn222-Website\Services\obj\Debug\net8.0\refint\Services.dll
 D:\docNet - Csharp\Prn222-Website\Services\obj\Debug\net8.0\Services.pdb
 D:\docNet - Csharp\Prn222-Website\Services\obj\Debug\net8.0\ref\Services.dll
+E:\FPT\S7\Prn222\Health Care\Services\bin\Debug\net8.0\Services.deps.json
+E:\FPT\S7\Prn222\Health Care\Services\bin\Debug\net8.0\Services.dll
+E:\FPT\S7\Prn222\Health Care\Services\bin\Debug\net8.0\Services.pdb
+E:\FPT\S7\Prn222\Health Care\Services\bin\Debug\net8.0\BusinessObjects.dll
+E:\FPT\S7\Prn222\Health Care\Services\bin\Debug\net8.0\DataAccessObjects.dll
+E:\FPT\S7\Prn222\Health Care\Services\bin\Debug\net8.0\Repositories.dll
+E:\FPT\S7\Prn222\Health Care\Services\bin\Debug\net8.0\BusinessObjects.pdb
+E:\FPT\S7\Prn222\Health Care\Services\bin\Debug\net8.0\Repositories.pdb
+E:\FPT\S7\Prn222\Health Care\Services\bin\Debug\net8.0\DataAccessObjects.pdb
+E:\FPT\S7\Prn222\Health Care\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
+E:\FPT\S7\Prn222\Health Care\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+E:\FPT\S7\Prn222\Health Care\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
+E:\FPT\S7\Prn222\Health Care\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
+E:\FPT\S7\Prn222\Health Care\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
+E:\FPT\S7\Prn222\Health Care\Services\obj\Debug\net8.0\Services.sourcelink.json
+E:\FPT\S7\Prn222\Health Care\Services\obj\Debug\net8.0\Services.csproj.Up2Date
+E:\FPT\S7\Prn222\Health Care\Services\obj\Debug\net8.0\Services.dll
+E:\FPT\S7\Prn222\Health Care\Services\obj\Debug\net8.0\refint\Services.dll
+E:\FPT\S7\Prn222\Health Care\Services\obj\Debug\net8.0\Services.pdb
+E:\FPT\S7\Prn222\Health Care\Services\obj\Debug\net8.0\ref\Services.dll
