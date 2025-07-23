@@ -14,9 +14,18 @@ namespace Web_.Pages.Account
             _context = new UserServices(context);
         }
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(string token)
         {
-            var user = await _context.GetUserByIdAsync(id);
+            if (string.IsNullOrEmpty(token))
+            {
+                return Page();
+            }
+
+            var decoded = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(token));
+            var parts = decoded.Split(':');
+            var userId = int.Parse(parts[0]);
+
+            var user = await _context.GetUserByIdAsync(userId);
             if (user == null)
             {
                 return NotFound();
