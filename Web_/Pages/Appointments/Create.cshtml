@@ -25,7 +25,7 @@
 
                 <div class="form-group mb-3">
                     <label asp-for="Patient.Age" class="form-label">Tuổi</label>
-                    <input asp-for="Patient.Age" class="form-control" />
+                    <input asp-for="Patient.Age" class="form-control" min="1" />
                     <span asp-validation-for="Patient.Age" class="text-danger"></span>
                 </div>
 
@@ -59,9 +59,14 @@
 
                 <div class="form-group mb-3">
                     <label asp-for="Appointment.AppointmentDate" class="form-label">Ngày khám</label>
-                    <input asp-for="Appointment.AppointmentDate" type="date" class="form-control" id="appointmentDate" />
+                    <input asp-for="Appointment.AppointmentDate"
+                           type="date"
+                           class="form-control"
+                           id="appointmentDate"
+                           min="@DateTime.Today.ToString("yyyy-MM-dd")" />
                     <span asp-validation-for="Appointment.AppointmentDate" class="text-danger"></span>
                 </div>
+
 
                 <div class="form-group mb-3">
                     <label asp-for="Appointment.SlotId" class="form-label">Khung giờ</label>

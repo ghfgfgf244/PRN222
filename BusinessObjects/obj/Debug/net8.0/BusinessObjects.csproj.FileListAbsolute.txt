@@ -13,3 +13,18 @@ D:\docNet - Csharp\Prn222-Website\BusinessObjects\obj\Debug\net8.0\refint\Busine
 D:\docNet - Csharp\Prn222-Website\BusinessObjects\obj\Debug\net8.0\BusinessObjects.pdb
 D:\docNet - Csharp\Prn222-Website\BusinessObjects\obj\Debug\net8.0\BusinessObjects.genruntimeconfig.cache
 D:\docNet - Csharp\Prn222-Website\BusinessObjects\obj\Debug\net8.0\ref\BusinessObjects.dll
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\bin\Debug\net8.0\BusinessObjects.deps.json
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\bin\Debug\net8.0\BusinessObjects.runtimeconfig.json
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\bin\Debug\net8.0\BusinessObjects.dll
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\bin\Debug\net8.0\BusinessObjects.pdb
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.AssemblyReference.cache
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\obj\Debug\net8.0\BusinessObjects.GeneratedMSBuildEditorConfig.editorconfig
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfoInputs.cache
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfo.cs
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.CoreCompileInputs.cache
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\obj\Debug\net8.0\BusinessObjects.sourcelink.json
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\obj\Debug\net8.0\BusinessObjects.dll
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\obj\Debug\net8.0\refint\BusinessObjects.dll
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\obj\Debug\net8.0\BusinessObjects.pdb
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\obj\Debug\net8.0\BusinessObjects.genruntimeconfig.cache
+E:\FPT\S7\Prn222\Health Care\BusinessObjects\obj\Debug\net8.0\ref\BusinessObjects.dll

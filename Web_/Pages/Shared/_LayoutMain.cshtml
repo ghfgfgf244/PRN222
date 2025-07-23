@@ -33,81 +33,135 @@
 
 
     <style>
+        /* Toàn bộ body và layout */
         body {
             min-height: 100vh;
             display: flex;
             flex-direction: row;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* Sidebar chính */
         .sidebar {
-            width: 250px;
-            background-color: #f8f9fa;
+            width: 260px;
+            background-color: #f1f5f9; /* Màu nền nhạt */
             border-right: 1px solid #dee2e6;
-            padding: 1rem;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-            .sidebar .nav-link {
-                color: #333;
-                margin-bottom: 10px;
+        /* Tiêu đề sidebar */
+        .sidebar-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #1e3a8a; /* Xanh đậm */
+            margin-bottom: 1rem;
+        }
+
+        /* Danh sách các link trong sidebar */
+        .sidebar-link {
+            display: block;
+            color: #1f2937; /* text-slate-800 */
+            padding: 0.6rem 0.8rem;
+            margin-bottom: 0.4rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 1.07rem;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+            /* Hover hiệu ứng */
+            .sidebar-link:hover {
+                background-color: #e0e7ff;
+                color: #1d4ed8;
             }
 
-                .sidebar .nav-link.active {
-                    font-weight: bold;
-                    color: #0d6efd;
-                }
+            /* Link đang active */
+            .sidebar-link.active {
+                background-color: #c7d2fe;
+                font-weight: 600;
+                color: #1d4ed8;
+            }
 
+        /* Footer của sidebar chứa user info và logout */
+        .sidebar-footer {
+            margin-top: 2rem;
+        }
+
+        /* Phần thông tin user */
+        .user-info {
+            font-size: 0.95rem;
+            color: #4b5563; /* text-gray-600 */
+            margin-bottom: 0.5rem;
+        }
+
+        /* Link logout */
+        .logout-link {
+            font-weight: bold;
+            color: #dc2626; /* đỏ nhạt */
+        }
+
+            /* Hover logout */
+            .logout-link:hover {
+                color: #b91c1c;
+                text-decoration: underline;
+            }
+
+        /* Main content */
         .main-content {
             flex-grow: 1;
             padding: 2rem;
+            background-color: #ffffff;
         }
 
-        .user-info {
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: #555;
-        }
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h5 class="fw-bold">Clinic System</h5>
+    <div class="sidebar d-flex flex-column justify-content-between">
+        <div>
+            <h4 class="sidebar-title">Clinic System</h4>
 
-        <nav class="nav flex-column">
-            @if (isAdmin)
+            <nav class="nav flex-column mt-4">
+                @if (isAdmin)
+                {
+                    <a class="nav-link sidebar-link @(ViewContext.RouteData.Values["page"].ToString() == "/Admin/Dashboard" ? "active" : "")" asp-page="/Admin/Dashboard">Dashboard</a>
+                    <a class="nav-link sidebar-link @(ViewContext.RouteData.Values["page"].ToString() == "/Users/Index" ? "active" : "")" asp-page="/Users/Index">Manage Users</a>
+                    <a class="nav-link sidebar-link @(ViewContext.RouteData.Values["page"].ToString() == "/DoctorLeafs/Index" ? "active" : "")" asp-page="/DoctorLeafs/Index">Manage Doctor Leaf</a>
+                }
+                else if (userRole == "Doctor")
+                {
+                    <a class="nav-link sidebar-link" asp-page="/Appointments/Index">Dashboard</a>
+                    <a class="nav-link sidebar-link" asp-page="/DoctorLeafs/Index">Register Leave</a>
+                    <a class="nav-link sidebar-link" asp-page="/Users/Edit" asp-route-id="@userId">My Profile</a>
+                }
+                else if (userRole == "Patient")
+                {
+                    <a class="nav-link sidebar-link" asp-page="/Appointments/Index">My Appointments</a>
+                    <a class="nav-link sidebar-link" asp-page="/Patient/Index">List Patients</a>
+                    <a class="nav-link sidebar-link" asp-page="/Users/Edit" asp-route-id="@userId">My Profile</a>
+                }
+            </nav>
+        </div>
+
+        <!-- Footer in Sidebar -->
+        <div class="sidebar-footer mt-4">
+            @if (!string.IsNullOrEmpty(userEmail))
             {
-                <a class="nav-link" asp-page="/Admin/Dashboard">Dashboard</a>
-                <a class="nav-link" asp-page="/Users/Index">Manage Users</a>
-                <a class="nav-link" asp-page="/DoctorLeafs/Index">Manage Doctor Leaf</a>
+                <div class="user-info mb-2">
+                    Hello, <strong>@userName</strong>
+                </div>
+                <a class="nav-link sidebar-link text-danger logout-link" asp-page="/Account/Logout">Logout</a>
             }
-            else if (userRole == "Doctor")
+            else
             {
-                <a class="nav-link" asp-page="/Appointments/Index">Dashboard</a>
-                <a class="nav-link" asp-page="/DoctorLeafs/Index">Register Leave</a>
-                <a class="nav-link" asp-page="/Users/Edit" asp-route-id="@userId">My Profile</a>
+                <a class="nav-link sidebar-link text-primary" asp-page="/Account/Login">Login</a>
             }
-            else if (userRole == "Patient")
-            {
-                <a class="nav-link" asp-page="/Appointments/Index">My Appointments</a>
-                <a class="nav-link" asp-page="/Patient/Index">List Patients</a>
-                <a class="nav-link" asp-page="/Users/Edit" asp-route-id="@userId">My Profile</a>
-            }
-
-        </nav>
-
-
-        @if (!string.IsNullOrEmpty(userEmail))
-        {
-            <div class="user-info">
-                Hello, <strong>@userName</strong><br />
-                <a class="text-danger" asp-page="/Account/Logout">Logout</a>
-            </div>
-        }
-        else
-        {
-            <a class="nav-link text-primary" asp-page="/Account/Login">Login</a>
-        }
+        </div>
     </div>
+
 
     <!-- Main Content -->
     <div class="main-content">

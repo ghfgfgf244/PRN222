@@ -49,7 +49,7 @@ public partial class AppointmentsDbContext : DbContext
     {
         modelBuilder.Entity<Appointment>(entity =>
         {
-            entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__8ECDFCA2E07F883D");
+            entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__8ECDFCA2B850B13A");
 
             entity.Property(e => e.AppointmentId).HasColumnName("AppointmentID");
             entity.Property(e => e.CreatedAt)
@@ -87,7 +87,7 @@ public partial class AppointmentsDbContext : DbContext
 
         modelBuilder.Entity<DoctorLeaf>(entity =>
         {
-            entity.HasKey(e => e.LeaveId).HasName("PK__DoctorLe__796DB979712B3AD3");
+            entity.HasKey(e => e.LeaveId).HasName("PK__DoctorLe__796DB979B5FC7E1C");
 
             entity.HasIndex(e => new { e.DoctorId, e.LeaveDate }, "UQ_Doctor_Leave").IsUnique();
 
@@ -106,7 +106,7 @@ public partial class AppointmentsDbContext : DbContext
 
         modelBuilder.Entity<DoctorSpecialty>(entity =>
         {
-            entity.HasKey(e => e.SpecialtyId).HasName("PK__DoctorSp__D768F6482CCCD3B9");
+            entity.HasKey(e => e.SpecialtyId).HasName("PK__DoctorSp__D768F64819A80FDE");
 
             entity.Property(e => e.SpecialtyId).HasColumnName("SpecialtyID");
             entity.Property(e => e.Name).HasMaxLength(100);
@@ -114,7 +114,7 @@ public partial class AppointmentsDbContext : DbContext
 
         modelBuilder.Entity<ExamMethod>(entity =>
         {
-            entity.HasKey(e => e.MethodId).HasName("PK__ExamMeth__FC681FB18A3590FE");
+            entity.HasKey(e => e.MethodId).HasName("PK__ExamMeth__FC681FB1E3713C73");
 
             entity.Property(e => e.MethodId).HasColumnName("MethodID");
             entity.Property(e => e.Name).HasMaxLength(100);
@@ -127,7 +127,7 @@ public partial class AppointmentsDbContext : DbContext
 
         modelBuilder.Entity<Patient>(entity =>
         {
-            entity.HasKey(e => e.PatientId).HasName("PK__Patients__970EC346BF6FEA81");
+            entity.HasKey(e => e.PatientId).HasName("PK__Patients__970EC346A05198D6");
 
             entity.Property(e => e.PatientId).HasColumnName("PatientID");
             entity.Property(e => e.FullName).HasMaxLength(100);
@@ -140,18 +140,18 @@ public partial class AppointmentsDbContext : DbContext
 
         modelBuilder.Entity<TimeSlot>(entity =>
         {
-            entity.HasKey(e => e.SlotId).HasName("PK__TimeSlot__0A124A4F8E103351");
+            entity.HasKey(e => e.SlotId).HasName("PK__TimeSlot__0A124A4F656859BB");
 
             entity.Property(e => e.SlotId).HasColumnName("SlotID");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC50E98361");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCACE78DE7BF");
 
-            entity.HasIndex(e => e.PhoneNumber, "UQ__Users__85FB4E38F918E8D5").IsUnique();
+            entity.HasIndex(e => e.PhoneNumber, "UQ__Users__85FB4E38D2C959BF").IsUnique();
 
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D1053421CE6EFD").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D1053476A00598").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.Avatar).IsUnicode(false);
@@ -185,7 +185,7 @@ public partial class AppointmentsDbContext : DbContext
                         .HasConstraintName("FK__DoctorDet__UserI__403A8C7D"),
                     j =>
                     {
-                        j.HasKey("UserId", "SpecialtyId").HasName("PK__DoctorDe__8AFE43C84B69DB38");
+                        j.HasKey("UserId", "SpecialtyId").HasName("PK__DoctorDe__8AFE43C80AFCF063");
                         j.ToTable("DoctorDetails");
                         j.IndexerProperty<int>("UserId").HasColumnName("UserID");
                         j.IndexerProperty<int>("SpecialtyId").HasColumnName("SpecialtyID");
