@@ -55,9 +55,6 @@ const conversationHistory = [{
     "parts": [{ "text": "Tôi chỉ hỗ trợ tư vấn về sức khỏe và bệnh lý." }]
 }];
 
-// ✅ API key của bạn
-const API_KEY = "AIzaSyCI6Cs7TYaO6P2ityCvJMGCq3J977KmDXs";
-
 chatToggle.addEventListener('click', () => {
     isChatOpen = !isChatOpen;
     chatBox.style.display = isChatOpen ? 'flex' : 'none';
