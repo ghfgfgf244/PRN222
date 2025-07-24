@@ -19,6 +19,7 @@ namespace Web_.Pages.Appointments
         private readonly IDoctorServices _doctorContext;
         private readonly IAppointmentServices _appointmentContext;
         private readonly IPatientServices _patientContext;
+        private readonly IConfiguration _configuration;
 
         public CreateModel(BusinessObjects.AppointmentsDbContext context, IConfiguration configuration, IWebHostEnvironment environment)
         {
@@ -27,6 +28,7 @@ namespace Web_.Pages.Appointments
             _doctorContext = new DoctorServices(context);
             _appointmentContext = new AppointmentServices(context);
             _patientContext = new PatientServices(context);
+            _configuration = configuration;
         }
 
         [BindProperty]
@@ -47,9 +49,12 @@ namespace Web_.Pages.Appointments
         public int? SelectedDoctorId { get; set; }
         public List<SelectListItem> SlotOptions { get; set; } = new();
         public List<SelectListItem> SpecialtyOptions { get; set; } = new();
+        public string GeminiApiKey { get; set; }
 
         public async Task<IActionResult> OnGet()
         {
+            GeminiApiKey = _configuration["Gemini:ApiKey"];
+
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out var userId))
             {
