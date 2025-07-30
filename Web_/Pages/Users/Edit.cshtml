@@ -6,144 +6,153 @@
     Layout = "_LayoutMain";
 }
 
-<h1>Edit</h1>
-
-<h4>User</h4>
-<hr />
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
-}
-
-<div class="row">
-    <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-            <input type="hidden" asp-for="UserEdit.UserId" />
-
-            <div class="mb-3 row">
-                <label asp-for="UserEdit.Avatar" class="col-sm-3 col-form-label text-end">Ảnh đại diện</label>
-                <div class="col-sm-9">
-                    <input id="ImageFile" type="file" accept="image/*" class="form-control" />
-                    <img id="preview" src="@Url.Content(Model.UserEdit.Avatar == null ? "~/images/avatar1.jpg" : Model.UserEdit.Avatar)" class="rounded-circle mt-2" height="40" />
-                    <input type="hidden" id="AvatarPath" asp-for="UserEdit.Avatar" />
-                    <span asp-validation-for="UserEdit.Avatar" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <label asp-for="UserEdit.FullName" class="col-sm-3 col-form-label text-end">Họ và tên</label>
-                <div class="col-sm-9">
-                    <input asp-for="UserEdit.FullName" class="form-control" />
-                    <span asp-validation-for="UserEdit.FullName" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <label asp-for="UserEdit.PhoneNumber" class="col-sm-3 col-form-label text-end">Số điện thoại</label>
-                <div class="col-sm-9">
-                    <input asp-for="UserEdit.PhoneNumber" class="form-control" />
-                    <span asp-validation-for="UserEdit.PhoneNumber" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <label asp-for="UserEdit.Email" class="col-sm-3 col-form-label text-end">Email</label>
-                <div class="col-sm-9">
-                    <input asp-for="UserEdit.Email" class="form-control" />
-                    <span asp-validation-for="UserEdit.Email" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <label asp-for="UserEdit.Password" class="col-sm-3 col-form-label text-end">Mật khẩu</label>
-                <div class="col-sm-9">
-                    <input asp-for="UserEdit.Password" class="form-control" placeholder="Leave blank to keep current password" />
-                    <span asp-validation-for="UserEdit.Password" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label text-end">Giới tính</label>
-                <div class="col-sm-9">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" asp-for="UserEdit.Gender" value="true" id="genderNam" />
-                        <label class="form-check-label" for="genderNam">Nam</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" asp-for="UserEdit.Gender" value="false" id="genderNu" />
-                        <label class="form-check-label" for="genderNu">Nữ</label>
-                    </div>
-                    <span asp-validation-for="UserEdit.Gender" class="text-danger d-block"></span>
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <label asp-for="UserEdit.Birthday" class="col-sm-3 col-form-label text-end">Năm sinh</label>
-                <div class="col-sm-9">
-                    <input asp-for="UserEdit.Birthday" class="form-control" />
-                    <span asp-validation-for="UserEdit.Birthday" class="text-danger"></span>
-                </div>
-            </div>
-            @if (Model.IsAdmin)
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0"><i class="fa-solid fa-user-edit me-2"></i> Edit User</h4>
+        </div>
+        <div class="card-body">
+            @if (TempData["SuccessMessage"] != null)
             {
-                <div class="mb-3 row">
-                    <label asp-for="UserEdit.Role" class="col-sm-3 col-form-label text-end"></label>
-                    <div class="col-sm-9">
-                        <select asp-for="UserEdit.Role" class="form-control">
-                            <option value="Patient">Patient</option>
-                            <option value="Doctor">Doctor</option>
-                        </select>
-                        <span asp-validation-for="UserEdit.Role" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row" id="specialtyDiv" style="display: none;">
-                    <label class="col-sm-3 col-form-label text-end">Chuyên ngành</label>
-                    <div class="col-sm-9">
-                        <select asp-for="SelectedSpecialtyId" class="form-control">
-                            <option value="">-- Chọn chuyên ngành --</option>
-                            @foreach (var item in Model.SpecialtyOptions)
-                            {
-                                <option value="@item.Value" selected="@(item.Value == Model.SelectedSpecialtyId?.ToString() ? "selected" : null)">
-                                    @item.Text
-                                </option>
-                            }
-                        </select>
-                        <span asp-validation-for="SelectedSpecialtyId" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label asp-for="UserEdit.IsActive" class="col-sm-3 col-form-label text-end"></label>
-                    <div class="col-sm-9 d-flex align-items-center">
-                        <input class="form-check-input me-2" asp-for="UserEdit.IsActive" />
-                        <span asp-validation-for="UserEdit.IsActive" class="text-danger"></span>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <!-- Dữ liệu vẫn được post lên qua hidden -->
-                <input type="hidden" asp-for="UserEdit.Role" />
-                <input type="hidden" asp-for="UserEdit.IsActive" />
+                <div class="alert alert-success">@TempData["SuccessMessage"]</div>
             }
 
-            <div class="mb-3 row">
-                <div class="offset-sm-3 col-sm-9">
-                    <input type="submit" value="Save" class="btn btn-primary" />
+            <form method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="UserEdit.UserId" />
+
+                <!-- Avatar upload -->
+                <div class="mb-3 row">
+                    <label asp-for="UserEdit.Avatar" class="col-sm-3 col-form-label text-end"></label>
+                    <div class="col-sm-9">
+                        <input id="ImageFile" type="file" accept="image/*" class="form-control" />
+                        <img id="preview" src="@Url.Content(Model.UserEdit.Avatar == null ? "~/images/avatar1.jpg" : Model.UserEdit.Avatar)" class="rounded-circle mt-2" height="40" />
+                        <input type="hidden" id="AvatarPath" asp-for="UserEdit.Avatar" />
+                        <span asp-validation-for="UserEdit.Avatar" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-        </form>
+
+                <!-- Full name -->
+                <div class="mb-3 row">
+                    <label asp-for="UserEdit.FullName" class="col-sm-3 col-form-label text-end"></label>
+                    <div class="col-sm-9">
+                        <input asp-for="UserEdit.FullName" class="form-control" />
+                        <span asp-validation-for="UserEdit.FullName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="mb-3 row">
+                    <label asp-for="UserEdit.PhoneNumber" class="col-sm-3 col-form-label text-end"></label>
+                    <div class="col-sm-9">
+                        <input asp-for="UserEdit.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="UserEdit.PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3 row">
+                    <label asp-for="UserEdit.Email" class="col-sm-3 col-form-label text-end"></label>
+                    <div class="col-sm-9">
+                        <input asp-for="UserEdit.Email" class="form-control" />
+                        <span asp-validation-for="UserEdit.Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3 row">
+                    <label asp-for="UserEdit.Password" class="col-sm-3 col-form-label text-end"></label>
+                    <div class="col-sm-9">
+                        <input asp-for="UserEdit.Password" class="form-control" placeholder="Leave blank to keep current password" />
+                        <span asp-validation-for="UserEdit.Password" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label text-end">Gender</label>
+                    <div class="col-sm-9">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="UserEdit.Gender" value="true" id="genderMale" />
+                            <label class="form-check-label" for="genderMale">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="UserEdit.Gender" value="false" id="genderFemale" />
+                            <label class="form-check-label" for="genderFemale">Female</label>
+                        </div>
+                        <span asp-validation-for="UserEdit.Gender" class="text-danger d-block"></span>
+                    </div>
+                </div>
+
+                <!-- Birthday -->
+                <div class="mb-3 row">
+                    <label asp-for="UserEdit.Birthday" class="col-sm-3 col-form-label text-end"></label>
+                    <div class="col-sm-9">
+                        <input asp-for="UserEdit.Birthday" class="form-control" />
+                        <span asp-validation-for="UserEdit.Birthday" class="text-danger"></span>
+                    </div>
+                </div>
+
+                @if (Model.IsAdmin)
+                {
+                    <!-- Role -->
+                    <div class="mb-3 row">
+                        <label asp-for="UserEdit.Role" class="col-sm-3 col-form-label text-end"></label>
+                        <div class="col-sm-9">
+                            <select asp-for="UserEdit.Role" class="form-control">
+                                <option value="Patient">Patient</option>
+                                <option value="Doctor">Doctor</option>
+                            </select>
+                            <span asp-validation-for="UserEdit.Role" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Specialty -->
+                    <div class="mb-3 row" id="specialtyDiv" style="display: none;">
+                        <label class="col-sm-3 col-form-label text-end">Specialty</label>
+                        <div class="col-sm-9">
+                            <select asp-for="SelectedSpecialtyId" class="form-control">
+                                <option value="">-- Select specialty --</option>
+                                @foreach (var item in Model.SpecialtyOptions)
+                                {
+                                    <option value="@item.Value" selected="@(item.Value == Model.SelectedSpecialtyId?.ToString() ? "selected" : null)">
+                                        @item.Text
+                                    </option>
+                                }
+                            </select>
+                            <span asp-validation-for="SelectedSpecialtyId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- IsActive -->
+                    <div class="mb-3 row">
+                        <label asp-for="UserEdit.IsActive" class="col-sm-3 col-form-label text-end"></label>
+                        <div class="col-sm-9 d-flex align-items-center">
+                            <input class="form-check-input me-2" asp-for="UserEdit.IsActive" />
+                            <span asp-validation-for="UserEdit.IsActive" class="text-danger"></span>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <input type="hidden" asp-for="UserEdit.Role" />
+                    <input type="hidden" asp-for="UserEdit.IsActive" />
+                }
+
+            <!-- Submit and Back buttons -->
+                <div class="mb-3 row">
+                    <div class="offset-sm-3 col-sm-9 d-flex gap-2">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        @if (Model.IsAdmin)
+                        {
+                            <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+                        }
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-@if (Model.IsAdmin)
-{
-
-    <div>
-        <a asp-page="./Index" asp-route-role="@Model.UserEdit.Role">Back to List</a>
-    </div>
-}
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
