@@ -3,19 +3,63 @@
 
 @{
     var isAuthenticated = User.Identity != null && User.Identity.IsAuthenticated;
-    Layout = isAuthenticated ? "_LayoutMain" : "_Layout";
+    Layout = null;
     ViewData["Title"] = "Unauthorized";
 }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('/images/LandingPage/2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        .access-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
 
-<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
-    <div class="text-center">
-        <h1 class="display-3 text-danger mb-3">
-            <i class="fas fa-ban"></i> 403
-        </h1>
-        <h4 class="text-dark mb-3">Truy cập bị từ chối</h4>
-        <p class="lead text-muted">Bạn không có quyền truy cập vào tài nguyên này.</p>
+        h1 {
+            font-size: 72px;
+            color: #dc3545;
+        }
+
+        .btn-primary {
+            background-color: #2e8b57;
+            border: none;
+        }
+
+            .btn-primary:hover {
+                background-color: #276d49;
+            }
+
+        .lead {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="access-container">
+        <h1><i class="fas fa-ban"></i> 403</h1>
+        <h4 class="mb-3">Truy cập bị từ chối</h4>
+        <p class="lead">Bạn không có quyền truy cập vào tài nguyên này.</p>
 
         @if (!isAuthenticated)
         {
@@ -24,4 +68,7 @@
             </a>
         }
     </div>
-</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

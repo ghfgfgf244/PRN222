@@ -6,17 +6,62 @@
     Layout = "_LayoutMain";
 }
 
-<h1>Edit</h1>
+<style>
+    body {
+        font-size: 18px;
+    }
 
-<h4>User</h4>
-<hr />
+    .edit-page-container {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .edit-form {
+        flex: 1 1 50%;
+        min-width: 300px;
+    }
+
+    .edit-extra {
+        flex: 1 1 40%;
+        min-width: 250px;
+    }
+
+    .form-label,
+    .form-control,
+    .form-check-label {
+        font-size: 18px;
+    }
+
+    .btn-primary {
+        font-size: 18px;
+        padding: 0.5rem 1.25rem;
+    }
+
+    label {
+        font-weight: 600;
+    }
+
+    .rounded-circle {
+        max-width: 60px;
+        height: auto;
+    }
+
+    .alert {
+        font-size: 18px;
+    }
+
+</style>
+
+<h1 class="mb-4">Chỉnh sửa thông tin người dùng</h1>
+
 @if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success">@TempData["SuccessMessage"]</div>
 }
 
-<div class="row">
-    <div class="col-md-4">
+<div class="edit-page-container">
+    <div class="edit-form">
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
             <input type="hidden" asp-for="UserEdit.UserId" />
@@ -25,7 +70,7 @@
                 <label asp-for="UserEdit.Avatar" class="col-sm-3 col-form-label text-end">Ảnh đại diện</label>
                 <div class="col-sm-9">
                     <input id="ImageFile" type="file" accept="image/*" class="form-control" />
-                    <img id="preview" src="@Url.Content(Model.UserEdit.Avatar == null ? "~/images/avatar1.jpg" : Model.UserEdit.Avatar)" class="rounded-circle mt-2" height="40" />
+                    <img id="preview" src="@Url.Content(Model.UserEdit.Avatar == null ? "~/images/avatar1.jpg" : Model.UserEdit.Avatar)" class="rounded-circle mt-2" />
                     <input type="hidden" id="AvatarPath" asp-for="UserEdit.Avatar" />
                     <span asp-validation-for="UserEdit.Avatar" class="text-danger"></span>
                 </div>
@@ -58,7 +103,7 @@
             <div class="mb-3 row">
                 <label asp-for="UserEdit.Password" class="col-sm-3 col-form-label text-end">Mật khẩu</label>
                 <div class="col-sm-9">
-                    <input asp-for="UserEdit.Password" class="form-control" placeholder="Leave blank to keep current password" />
+                    <input asp-for="UserEdit.Password" class="form-control" placeholder="Để trống nếu không đổi" />
                     <span asp-validation-for="UserEdit.Password" class="text-danger"></span>
                 </div>
             </div>
@@ -85,6 +130,7 @@
                     <span asp-validation-for="UserEdit.Birthday" class="text-danger"></span>
                 </div>
             </div>
+
             @if (Model.IsAdmin)
             {
                 <div class="mb-3 row">
@@ -124,26 +170,26 @@
             }
             else
             {
-                <!-- Dữ liệu vẫn được post lên qua hidden -->
                 <input type="hidden" asp-for="UserEdit.Role" />
                 <input type="hidden" asp-for="UserEdit.IsActive" />
             }
 
             <div class="mb-3 row">
                 <div class="offset-sm-3 col-sm-9">
-                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input type="submit" value="Lưu" class="btn btn-primary" />
                 </div>
             </div>
         </form>
     </div>
-</div>
-@if (Model.IsAdmin)
-{
 
-    <div>
-        <a asp-page="./Index" asp-route-role="@Model.UserEdit.Role">Back to List</a>
+    <div class="edit-extra">
+        @if (Model.IsAdmin)
+        {
+            <a asp-page="./Index" asp-route-role="@Model.UserEdit.Role" class="btn btn-secondary">Quay lại danh sách</a>
+        }
     </div>
-}
+</div>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
