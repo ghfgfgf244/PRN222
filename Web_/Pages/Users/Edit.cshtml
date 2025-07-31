@@ -50,6 +50,7 @@
                     </div>
                 </div>
 
+
                 <!-- Email -->
                 <div class="mb-3 row">
                     <label asp-for="UserEdit.Email" class="col-sm-3 col-form-label text-end"></label>
@@ -59,7 +60,6 @@
                     </div>
                 </div>
 
-                <!-- Password -->
                 <div class="mb-3 row">
                     <label asp-for="UserEdit.Password" class="col-sm-3 col-form-label text-end"></label>
                     <div class="col-sm-9">
@@ -92,6 +92,7 @@
                         <span asp-validation-for="UserEdit.Birthday" class="text-danger"></span>
                     </div>
                 </div>
+
 
                 @if (Model.IsAdmin)
                 {
@@ -152,7 +153,16 @@
             </form>
         </div>
     </div>
+
+    <div class="edit-extra">
+        @if (Model.IsAdmin)
+        {
+            <a asp-page="./Index" asp-route-role="@Model.UserEdit.Role" class="btn btn-secondary">Quay lại danh sách</a>
+        }
+    </div>
 </div>
+
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
