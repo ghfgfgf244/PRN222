@@ -204,11 +204,12 @@
                     <textarea asp-for="ContactInfo.Message" rows="5" class="form-control"></textarea>
                     <span asp-validation-for="ContactInfo.Message" class="text-danger"></span>
                 </div>
-
-                <button type="submit" id="btnSend" class="btn btn-primary">
-                    <span id="btnText">Gửi</span>
-                    <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                </button>
+                <div class="text-center">
+                    <button type="submit" id="btnSend" class="btn btn-primary">
+                        <span id="btnText">Gửi</span>
+                        <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    </button>
+                </div>
             </form>
         </section>
 

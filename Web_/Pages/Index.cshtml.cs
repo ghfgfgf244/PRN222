@@ -36,30 +36,25 @@ namespace Web_.Pages
             {
                 string subject = $"{ContactInfo.Subject}";
                 string body = $@"
-<table style='width:100%;max-width:600px;margin:auto;border:1px solid #eee;border-radius:10px;font-family:sans-serif;'>
+<table style='width:100%; max-width:600px; margin:auto; border:1px solid #ddd; border-radius:10px; font-family:Segoe UI, sans-serif; background-color:#ffffff;'>
     <tr>
-        <td style='background:#4CAF50;color:white;padding:20px;border-top-left-radius:10px;border-top-right-radius:10px;'>
-            <h2 style='margin:0;'>📩 Thông tin liên hệ từ website</h2>
+        <td style='background-color:#2c7be5; color:white; padding:20px; border-top-left-radius:10px; border-top-right-radius:10px;'>
+            <h2 style='margin:0; font-size:20px;'>📩 Liên hệ từ website Health Care System</h2>
         </td>
     </tr>
     <tr>
-        <td style='padding:20px;'>
-            <p><strong>👤 Họ tên:</strong> {ContactInfo.Name}</p>
-            <p><strong>📧 Email:</strong> <a href='mailto:{ContactInfo.Email}'>{ContactInfo.Email}</a></p>
-            <p><strong>📝 Tiêu đề:</strong> {ContactInfo.Subject}</p>
-            <p><strong>💬 Nội dung:</strong></p>
-            <div style='padding:10px;border-left:4px solid #4CAF50;background:#f9f9f9;margin-top:5px;white-space:pre-line'>
+        <td style='padding:24px 20px; font-size:15px; color:#333;'>
+            <p style='margin:8px 0;'><strong>👤 Họ tên:</strong> {ContactInfo.Name}</p>
+            <p style='margin:8px 0;'><strong>📧 Email:</strong> <a href='mailto:{ContactInfo.Email}' style='color:#2c7be5; text-decoration:none;'>{ContactInfo.Email}</a></p>
+            <p style='margin:8px 0;'><strong>📝 Tiêu đề:</strong> {ContactInfo.Subject}</p>
+            <p style='margin:16px 0 8px;'><strong>💬 Nội dung:</strong></p>
+            <div style='padding:12px 16px; border-left:4px solid #2c7be5; background:#f4f8ff; border-radius:6px; white-space:pre-line;'>
                 {ContactInfo.Message}
             </div>
         </td>
     </tr>
-   <tr>
-        <td style='padding:20px;font-size:12px;color:#888;text-align:center;border-top:1px solid #eee;'>
-            Bạn nhận được email này vì ai đó đã liên hệ qua biểu mẫu tại website.<br/>
-            Nếu không phải bạn, vui lòng bỏ qua email này.
-        </td>
-    </tr>
 </table>";
+
 
                 _externalIntegrationService.SendEmailAsync("hungghfgfgf244@gmail.com", subject, body, ContactInfo.Name, ContactInfo.Email);
 
