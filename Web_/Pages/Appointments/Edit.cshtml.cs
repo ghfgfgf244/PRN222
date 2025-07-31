@@ -63,7 +63,7 @@ namespace Web_.Pages.Appointments
                 return NotFound();
             }
 
-            var appointment =  await _appointmentContext.GetAppointmentByIdAsync(id.Value);
+            var appointment = await _appointmentContext.GetAppointmentByIdAsync(id.Value);
             if (appointment == null)
             {
                 return NotFound();

@@ -6,109 +6,99 @@
 }
 <link rel="stylesheet" href="~/css/chatbox.css" asp-append-version="true" />
 
-<style>
-    h1, h4, h5 {
-        font-weight: 600;
-    }
+<div class="container" style="max-width: 960px;">
+    <h1 class="text-center mb-4">Chỉnh sửa lịch khám</h1>
 
-    .form-control:disabled,
-    textarea.form-control:disabled {
-        background-color: #f4faff !important;
-        color: #333;
-    }
-
-    .shadow {
-        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
-    }
-
-    .btn-outline-secondary:hover {
-        background-color: #e9ecef;
-    }
-</style>
-
-<div class="container py-4" style="max-width: 960px;">
-    <h1 class="text-center text-primary mb-4">Chỉnh sửa lịch khám</h1>
-
-    <form method="post" class="shadow p-4 bg-white rounded">
+    <form method="post">
         <div class="row">
             <!-- Patient Info -->
-            <div class="col-md-6 border-end pe-md-4 mb-4 mb-md-0">
-                <h5 class="text-center text-secondary mb-3">Thông tin bệnh nhân</h5>
+            <div class="col-md-6 border-end pe-4">
+                <h4 class="text-center">Thông tin bệnh nhân</h4>
                 <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Patient.PatientId" />
 
                 <input type="hidden" asp-for="Appointment.AppointmentId" />
 
-                <div class="mb-3">
-                    <label asp-for="Appointment.Patient.FullName" class="form-label">Họ tên</label>
-                    <input asp-for="Appointment.Patient.FullName" class="form-control" disabled />
+                <div class="form-group mb-3">
+                    <label asp-for="Patient.FullName" class="form-label">Họ tên</label>
+                    <input asp-for="Patient.FullName" class="form-control" />
+                    <span asp-validation-for="Patient.FullName" class="text-danger"></span>
                 </div>
 
-                <div class="mb-3">
-                    <label asp-for="Appointment.Patient.Age" class="form-label">Tuổi</label>
-                    <input asp-for="Appointment.Patient.Age" class="form-control" disabled />
+                <div class="form-group mb-3">
+                    <label asp-for="Patient.Age" class="form-label">Tuổi</label>
+                    <input asp-for="Patient.Age" class="form-control" />
+                    <span asp-validation-for="Patient.Age" class="text-danger"></span>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Giới tính</label>
-                    <input class="form-control" value="@(Model.Appointment.Patient.Gender ? "Nam" : "Nữ")" disabled />
+                <div class="form-group mb-3">
+                    <label class="form-label d-block">Giới tính</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Patient.Gender" value="true" id="genderNam" />
+                        <label class="form-check-label" for="genderNam">Nam</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Patient.Gender" value="false" id="genderNu" />
+                        <label class="form-check-label" for="genderNu">Nữ</label>
+                    </div>
+                    <span asp-validation-for="Patient.Gender" class="text-danger d-block mt-1"></span>
                 </div>
 
-                <div class="mb-3">
-                    <label asp-for="Appointment.Patient.Note" class="form-label">Ghi chú</label>
-                    <textarea asp-for="Appointment.Patient.Note" class="form-control" rows="4" disabled></textarea>
+                <div class="form-group mb-3">
+                    <label asp-for="Patient.Note" class="form-label">Ghi chú</label>
+                    <textarea asp-for="Patient.Note" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Patient.Note" class="text-danger"></span>
                 </div>
             </div>
 
             <!-- Appointment Info -->
-            <div class="col-md-6 ps-md-4">
-                <h5 class="text-center text-secondary mb-3">Thông tin lịch khám</h5>
+            <div class="col-md-6 ps-4">
+                <h4 class="text-center">Thông tin lịch khám</h4>
                 <hr />
 
-                <div class="mb-3">
+                <div class="form-group mb-3">
                     <label asp-for="Appointment.AppointmentDate" class="form-label">Ngày khám</label>
                     <input asp-for="Appointment.AppointmentDate" type="date" class="form-control" id="appointmentDate" />
-                    <span asp-validation-for="Appointment.AppointmentDate" class="text-danger small"></span>
+                    <span asp-validation-for="Appointment.AppointmentDate" class="text-danger"></span>
                 </div>
 
-                <div class="mb-3">
+                <div class="form-group mb-3">
                     <label asp-for="Appointment.SlotId" class="form-label">Khung giờ</label>
-                    <select asp-for="SelectedSlotId" class="form-select" asp-items="Model.SlotOptions" id="slotSelect"></select>
-                    <span asp-validation-for="SelectedSlotId" class="text-danger small"></span>
+                    <select asp-for="SelectedSlotId" class="form-control" asp-items="Model.SlotOptions" id="slotSelect"></select>
+                    <span asp-validation-for="SelectedSlotId" class="text-danger"></span>
                 </div>
 
-                <div class="mb-3">
+                <div class="form-group mb-3">
                     <label asp-for="Appointment.SpecialtyId" class="form-label">Chuyên khoa</label>
-                    <select asp-for="SelectedSpecialtyId" class="form-select" asp-items="Model.SpecialtyOptions" id="specialtySelect"></select>
-                    <span asp-validation-for="SelectedSpecialtyId" class="text-danger small"></span>
+                    <select asp-for="SelectedSpecialtyId" class="form-control" asp-items="Model.SpecialtyOptions" id="specialtySelect"></select>
+                    <span asp-validation-for="SelectedSpecialtyId" class="text-danger"></span>
                 </div>
 
-                <div class="mb-3">
+                <div class="form-group mb-3">
                     <label asp-for="Appointment.MethodId" class="form-label">Hình thức khám</label>
-                    <select asp-for="SelectedMethodId" class="form-select" asp-items="Model.MethodOptions" id="methodSelect"></select>
-                    <span asp-validation-for="SelectedMethodId" class="text-danger small"></span>
+                    <select asp-for="SelectedMethodId" class="form-control" asp-items="Model.MethodOptions" id="methodSelect"></select>
+                    <span asp-validation-for="SelectedMethodId" class="text-danger"></span>
                 </div>
 
-                <div class="mb-3">
+                <div class="form-group mb-3">
                     <label asp-for="Appointment.DoctorId" class="form-label">Bác sĩ</label>
-                    <select asp-for="SelectedDoctorId" class="form-select" asp-items="Model.DoctorOptions" id="doctorSelect"></select>
-                    <span asp-validation-for="SelectedDoctorId" class="text-danger small"></span>
+                    <select asp-for="SelectedDoctorId" class="form-control" asp-items="Model.DoctorOptions" id="doctorSelect"></select>
+                    <span asp-validation-for="SelectedDoctorId" class="text-danger"></span>
                 </div>
-            </div>
-        </div>
 
-        <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary px-4">💾 Lưu thay đổi</button>
+            </div>
+
+            <div class="form-group mt-4 text-center">
+                <input type="submit" value="Lưu thay đổi" class="btn btn-primary px-4" />
+            </div>
         </div>
     </form>
 
     <div class="mt-4 text-center">
-        <a asp-page="Index" class="btn btn-outline-secondary px-4">
-            ← Quay lại danh sách
-        </a>
+        <a asp-page="Index">← Quay lại danh sách</a>
     </div>
 </div>
-
 <div>
     <div id="chat-toggle" title="Chat tư vấn">
         <animated-icons src="https://animatedicons.co/get-icon?name=Support&style=minimalistic&token=d8ea65cf-400c-4dc9-85cb-dd84ac49213c"

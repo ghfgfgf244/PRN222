@@ -4,55 +4,60 @@
     ViewData["Title"] = "Chi tiết lịch khám";
     Layout = "_LayoutMain";
 }
-<div class="container" style="max-width: 960px;">
+<div class="container" style="max-width: 950px;">
     <h1 class="text-center mb-4">Chi tiết lịch khám</h1>
 
-    <div class="row">
-        <!-- Patient Info -->
-        <div class="col-md-6 border-end pe-4">
-            <h4 class="text-center">Thông tin bệnh nhân</h4>
-            <hr />
-            <dl class="row">
-                <dt class="col-sm-4">Họ tên</dt>
-                <dd class="col-sm-8">@Model.Appointment.Patient.FullName</dd>
+    <div class="row d-flex align-items-stretch">
+        <!-- Thông tin bệnh nhân -->
+        <div class="col-md-6 mb-3 d-flex">
+            <div class="border rounded p-3 shadow-sm w-100 h-100" style="font-size: 1.35rem;">
+                <h5 class="text-center">Thông tin bệnh nhân</h5>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-5">Họ tên</dt>
+                    <dd class="col-sm-7">@Model.Appointment.Patient.FullName</dd>
 
-                <dt class="col-sm-4">Tuổi</dt>
-                <dd class="col-sm-8">@Model.Appointment.Patient.Age</dd>
+                    <dt class="col-sm-5">Tuổi</dt>
+                    <dd class="col-sm-7">@Model.Appointment.Patient.Age</dd>
 
-                <dt class="col-sm-4">Giới tính</dt>
-                <dd class="col-sm-8">@(Model.Appointment.Patient.Gender == true ? "Nam" : "Nữ")</dd>
+                    <dt class="col-sm-5">Giới tính</dt>
+                    <dd class="col-sm-7">@(Model.Appointment.Patient.Gender == true ? "Nam" : "Nữ")</dd>
 
-                <dt class="col-sm-4">Ghi chú</dt>
-                <dd class="col-sm-8">@Model.Appointment.Patient.Note</dd>
-            </dl>
+                    <dt class="col-sm-5">Ghi chú</dt>
+                    <dd class="col-sm-7">@Model.Appointment.Patient.Note</dd>
+                </dl>
+            </div>
         </div>
 
-        <!-- Appointment Info -->
-        <div class="col-md-6 ps-4">
-            <h4 class="text-center">Thông tin lịch khám</h4>
-            <hr />
-            <dl class="row">
-                <dt class="col-sm-4">Ngày khám</dt>
-                <dd class="col-sm-8">@Model.Appointment.AppointmentDate.ToShortDateString()</dd>
+        <!-- Thông tin lịch khám -->
+        <div class="col-md-6 mb-3 d-flex">
+            <div class="border rounded p-3 shadow-sm w-100 h-100" style="font-size: 1.35rem;">
+                <h5 class="text-center">Thông tin lịch khám</h5>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-5">Ngày khám</dt>
+                    <dd class="col-sm-7">@Model.Appointment.AppointmentDate.ToShortDateString()</dd>
 
-                <dt class="col-sm-4">Khung giờ</dt>
-                <dd class="col-sm-8">@Model.Appointment.Slot.StartTime.ToString("hh:mm") - @Model.Appointment.Slot.EndTime.ToString("hh:mm")</dd>
+                    <dt class="col-sm-5">Khung giờ</dt>
+                    <dd class="col-sm-7">@Model.Appointment.Slot.StartTime.ToString("hh\\:mm") - @Model.Appointment.Slot.EndTime.ToString("hh\\:mm")</dd>
 
-                <dt class="col-sm-4">Chuyên khoa</dt>
-                <dd class="col-sm-8">@Model.Appointment.Specialty.Name</dd>
+                    <dt class="col-sm-5">Chuyên khoa</dt>
+                    <dd class="col-sm-7">@Model.Appointment.Specialty.Name</dd>
 
-                <dt class="col-sm-4">Hình thức khám</dt>
-                <dd class="col-sm-8">@Model.Appointment.Method.Name</dd>
+                    <dt class="col-sm-5">Hình thức khám</dt>
+                    <dd class="col-sm-7">@Model.Appointment.Method.Name</dd>
 
-                <dt class="col-sm-4">Bác sĩ</dt>
-                <dd class="col-sm-8">@Model.Appointment.Doctor.FullName</dd>
-
-            </dl>
+                    <dt class="col-sm-5">Bác sĩ</dt>
+                    <dd class="col-sm-7">@Model.Appointment.Doctor.FullName</dd>
+                </dl>
+            </div>
         </div>
     </div>
 
-    <div class="form-group mt-4 text-center">
-        <a class="btn btn-outline-primary" asp-page="./Edit" asp-route-id="@Model.Appointment.AppointmentId">Chỉnh sửa</a>
-        <a class="btn btn-outline-secondary ms-2" asp-page="./Index">← Quay lại danh sách</a>
+
+    <!-- Button bên ngoài khung -->
+    <div class="form-group mt-3 text-center">
+        <a class="btn btn-outline-primary me-2" asp-page="./Edit" asp-route-id="@Model.Appointment.AppointmentId">Chỉnh sửa</a>
+        <a class="btn btn-outline-secondary" asp-page="./Index">← Quay lại danh sách</a>
     </div>
 </div>
