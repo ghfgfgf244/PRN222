@@ -7,7 +7,12 @@
 }
 
 <div class="container py-4">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
     <div class="row">
+        <!-- Avatar section -->
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body text-center">
@@ -21,64 +26,68 @@
             </div>
         </div>
 
+        <!-- Form section -->
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header bg-white border-bottom">
-                    <h5 class="mb-0">Edit Profile</h5>
+                <div class="card-header bg-white border-bottom text-center">
+                    <h5 class="mb-0">Chỉnh sửa thông tin</h5>
                 </div>
                 <div class="card-body">
-                    @if (TempData["SuccessMessage"] != null)
-                    {
-                        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
-                    }
-
                     <form method="post" enctype="multipart/form-data">
                         <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
                         <input type="hidden" asp-for="UserEdit.UserId" />
 
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label asp-for="UserEdit.FullName" class="form-label"></label>
+                        <!-- Cột ngang: label ngắn bên trái - input bên phải -->
+                        <div class="mb-3 row align-items-center">
+                            <label asp-for="UserEdit.FullName" class="col-sm-3 col-form-label">Họ và tên</label>
+                            <div class="col-sm-9">
                                 <input asp-for="UserEdit.FullName" class="form-control" />
                                 <span asp-validation-for="UserEdit.FullName" class="text-danger"></span>
                             </div>
-                            <div class="col-md-6">
-                                <label asp-for="UserEdit.PhoneNumber" class="form-label"></label>
+                        </div>
+
+                        <div class="mb-3 row align-items-center">
+                            <label asp-for="UserEdit.PhoneNumber" class="col-sm-3 col-form-label">Số điện thoại</label>
+                            <div class="col-sm-9">
                                 <input asp-for="UserEdit.PhoneNumber" class="form-control" />
                                 <span asp-validation-for="UserEdit.PhoneNumber" class="text-danger"></span>
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label asp-for="UserEdit.Email" class="form-label"></label>
+                        <div class="mb-3 row align-items-center">
+                            <label asp-for="UserEdit.Email" class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
                                 <input asp-for="UserEdit.Email" class="form-control" />
                                 <span asp-validation-for="UserEdit.Email" class="text-danger"></span>
                             </div>
-                            <div class="col-md-6">
-                                <label asp-for="UserEdit.Password" class="form-label"></label>
-                                <input asp-for="UserEdit.Password" class="form-control" placeholder="Leave blank to keep current password" />
+                        </div>
+
+                        <div class="mb-3 row align-items-center">
+                            <label asp-for="UserEdit.Password" class="col-sm-3 col-form-label">Mật khẩu</label>
+                            <div class="col-sm-9">
+                                <input asp-for="UserEdit.Password" class="form-control" placeholder="Để trống nếu không thay đổi" />
                                 <span asp-validation-for="UserEdit.Password" class="text-danger"></span>
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label">Gender</label>
-                                <div class="d-flex gap-3">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" asp-for="UserEdit.Gender" value="true" id="genderMale" />
-                                        <label class="form-check-label" for="genderMale">Male</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" asp-for="UserEdit.Gender" value="false" id="genderFemale" />
-                                        <label class="form-check-label" for="genderFemale">Female</label>
-                                    </div>
+                        <div class="mb-3 row align-items-center">
+                            <label class="col-sm-3 col-form-label">Giới tính</label>
+                            <div class="col-sm-9 d-flex gap-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" asp-for="UserEdit.Gender" value="true" id="genderMale" />
+                                    <label class="form-check-label" for="genderMale">Nam</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" asp-for="UserEdit.Gender" value="false" id="genderFemale" />
+                                    <label class="form-check-label" for="genderFemale">Nữ</label>
                                 </div>
                                 <span asp-validation-for="UserEdit.Gender" class="text-danger"></span>
                             </div>
-                            <div class="col-md-6">
-                                <label asp-for="UserEdit.Birthday" class="form-label"></label>
+                        </div>
+
+                        <div class="mb-3 row align-items-center">
+                            <label asp-for="UserEdit.Birthday" class="col-sm-3 col-form-label">Ngày sinh</label>
+                            <div class="col-sm-9">
                                 <input asp-for="UserEdit.Birthday" class="form-control" />
                                 <span asp-validation-for="UserEdit.Birthday" class="text-danger"></span>
                             </div>
@@ -86,19 +95,22 @@
 
                         @if (Model.IsAdmin)
                         {
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label asp-for="UserEdit.Role" class="form-label"></label>
+                            <div class="mb-3 row align-items-center">
+                                <label asp-for="UserEdit.Role" class="col-sm-3 col-form-label">Vai trò</label>
+                                <div class="col-sm-9">
                                     <select asp-for="UserEdit.Role" class="form-control">
-                                        <option value="Patient">Patient</option>
-                                        <option value="Doctor">Doctor</option>
+                                        <option value="Patient">Bệnh nhân</option>
+                                        <option value="Doctor">Bác sĩ</option>
                                     </select>
                                     <span asp-validation-for="UserEdit.Role" class="text-danger"></span>
                                 </div>
-                                <div class="col-md-6" id="specialtyDiv" style="display: none;">
-                                    <label class="form-label">Specialty</label>
+                            </div>
+
+                            <div class="mb-3 row align-items-center" id="specialtyDiv" style="display: none;">
+                                <label class="col-sm-3 col-form-label">Chuyên khoa</label>
+                                <div class="col-sm-9">
                                     <select asp-for="SelectedSpecialtyId" class="form-control">
-                                        <option value="">-- Select specialty --</option>
+                                        <option value="">-- Chọn chuyên khoa --</option>
                                         @foreach (var item in Model.SpecialtyOptions)
                                         {
                                             <option value="@item.Value" selected="@(item.Value == Model.SelectedSpecialtyId?.ToString() ? "selected" : null)">@item.Text</option>
@@ -108,11 +120,13 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" asp-for="UserEdit.IsActive" />
-                                    <label asp-for="UserEdit.IsActive" class="form-check-label"></label>
-                                    <span asp-validation-for="UserEdit.IsActive" class="text-danger"></span>
+                            <div class="mb-3 row">
+                                <div class="offset-sm-3 col-sm-9">
+                                    <div class="form-check">
+                                        <input class="form-check-input" asp-for="UserEdit.IsActive" />
+                                        <label asp-for="UserEdit.IsActive" class="form-check-label">Hoạt động</label>
+                                        <span asp-validation-for="UserEdit.IsActive" class="text-danger"></span>
+                                    </div>
                                 </div>
                             </div>
                         }
@@ -123,10 +137,10 @@
                         }
 
                         <div class="d-flex justify-content-end gap-2">
-                            <input type="submit" value="Save" class="btn btn-primary" />
+                            <input type="submit" value="Lưu" class="btn btn-primary" />
                             @if (Model.IsAdmin)
                             {
-                                <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+                                <a asp-page="./Index" class="btn btn-secondary">Quay lại</a>
                             }
                         </div>
                     </form>

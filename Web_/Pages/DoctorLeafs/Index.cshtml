@@ -49,16 +49,17 @@
                                 }
                             </td>
                             <td>
-                                <a asp-page="Details" asp-route-id="@item.LeaveId" class="btn btn-info btn-sm me-1">
-                                    <i class="fa-solid fa-eye"></i>
+                                <a asp-page="Details" asp-route-id="@item.LeaveId" class="btn btn-info btn-sm text-white me-1" title="Xem chi tiết">
+                                    <i class="fa-solid fa-circle-info"></i>
                                 </a>
-                                <a asp-page="Edit" asp-route-id="@item.LeaveId" class="btn btn-warning btn-sm me-1">
-                                    <i class="fa-solid fa-pen"></i>
+                                <a asp-page="Edit" asp-route-id="@item.LeaveId" class="btn btn-warning btn-sm me-1" title="Chỉnh sửa">
+                                    <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
-                                <a href="#" class="btn btn-danger btn-sm delete-btn" data-id="@item.LeaveId">
+                                <a href="#" class="btn btn-danger btn-sm delete-btn" data-id="@item.LeaveId" title="Xóa đơn">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
+
                         </tr>
                     }
                 </tbody>
