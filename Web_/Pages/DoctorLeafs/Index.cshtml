@@ -51,23 +51,25 @@
                                 }
                             </td>
                             <td>
+
                                 @if (Model.IsAdmin)
                                 {
-                                    <a asp-page="Details" asp-route-id="@item.LeaveId" class="btn btn-info btn-sm me-1">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </a>
+                                    <a asp-page="Details" asp-route-id="@item.LeaveId" class="btn btn-info btn-sm text-white me-1" title="Xem chi tiết">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </a>
                                 }
                                 else
                                 {
-                                    <a asp-page="Details" asp-route-id="@item.LeaveId" class="btn btn-info btn-sm me-1">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger btn-sm delete-btn" data-id="@item.LeaveId">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                   <a asp-page="Details" asp-route-id="@item.LeaveId" class="btn btn-info btn-sm text-white me-1" title="Xem chi tiết">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </a>
+                                    <a href="#" class="btn btn-danger btn-sm delete-btn" data-id="@item.LeaveId" title="Xóa đơn">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
                                 }
 
                             </td>
+
                         </tr>
                     }
                 </tbody>
