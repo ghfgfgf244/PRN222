@@ -79,11 +79,7 @@ namespace Web_.Pages.Users
             {
                 await _doctorContext.AddSpecialtyToDoctorAsync(User.UserId, SelectedSpecialtyId.Value);
             }
-            await _hubContext.Clients.All.SendAsync("UserCreated", new
-            {
-                fullName = User.FullName,
-                email = User.Email
-            });
+            await _hubContext.Clients.All.SendAsync("LoadUsers");
 
             return RedirectToPage("./Index", new { role = User.Role });
         }

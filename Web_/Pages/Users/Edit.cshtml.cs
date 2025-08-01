@@ -113,11 +113,7 @@ namespace Web_.Pages.Users
                 TempData["SuccessMessage"] = "Thông tin đã được cập nhật.";
                 return Page(); 
             }
-            await _hubContext.Clients.All.SendAsync("UserUpdated", new
-            {
-                fullName = UserEdit.FullName,
-                email = UserEdit.Email
-            });
+            await _hubContext.Clients.All.SendAsync("LoadUsers");
 
             return RedirectToPage("./Index", new { role = UserEdit.Role });
         }

@@ -71,18 +71,18 @@
         <h2>Đăng nhập</h2>
 
 
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["ErrorMessage"]
-    </div>
-}
-@if (Model.EmailVerified)
-{
-    <div class="alert alert-success">
-        Email của bạn đã được xác thực. Bạn có thể đăng nhập ngay bây giờ!
-    </div>
-}
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        @if (Model.EmailVerified)
+        {
+            <div class="alert alert-success">
+                Email của bạn đã được xác thực. Bạn có thể đăng nhập ngay bây giờ!
+            </div>
+        }
 
         <!-- Form đăng nhập thông thường -->
         <form method="post">
