@@ -18,10 +18,10 @@ namespace Web_.Pages.Account
         private readonly IUserServices _userServices;
         private readonly IConfiguration _configuration;
 
-        public ExternalLoginCallbackModel(AppointmentsDbContext context, IConfiguration configuration)
+        public ExternalLoginCallbackModel(IAccountServices context,IUserServices _context, IConfiguration configuration)
         {
-            _accountServices = new AccountServices(context);
-            _userServices = new UserServices(context);
+            _accountServices = context;
+            _userServices = _context;
             _configuration = configuration;
         }
 

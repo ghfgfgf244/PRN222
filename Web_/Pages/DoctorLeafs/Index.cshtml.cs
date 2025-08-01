@@ -16,9 +16,9 @@ namespace Web_.Pages.DoctorLeafs
         private readonly IDoctorServices _doctorServices;
         private readonly IConfiguration _configuration;
 
-        public IndexModel( AppointmentsDbContext context, IConfiguration configuration)
+        public IndexModel( IDoctorServices context, IConfiguration configuration)
         {
-            _doctorServices = new DoctorServices(context);
+            _doctorServices = context;
             _configuration = configuration;
         }
 

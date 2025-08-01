@@ -17,9 +17,9 @@ namespace Web_.Pages.Users
         private readonly IUserServices _context;
         private readonly IHubContext<AppHub> _hubContext;
 
-        public IndexModel(BusinessObjects.AppointmentsDbContext context, IHubContext<AppHub> hubContext)
+        public IndexModel(IUserServices context, IHubContext<AppHub> hubContext)
         {
-            _context = new UserServices(context);
+            _context = context;
             _hubContext = hubContext;
 
         }

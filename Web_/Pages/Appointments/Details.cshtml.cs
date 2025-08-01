@@ -16,9 +16,9 @@ namespace Web_.Pages.Appointments
     {
         private readonly IAppointmentServices _context;
 
-        public DetailsModel(BusinessObjects.AppointmentsDbContext context)
+        public DetailsModel(IAppointmentServices context)
         {
-            _context = new AppointmentServices(context);
+            _context = context;
         }
 
         public Appointment Appointment { get; set; } = default!;

@@ -110,9 +110,10 @@
 
                     <div class="form-group mb-3">
                         <label asp-for="Appointment.AppointmentDate" class="form-label">Ngày khám</label>
-                        <input asp-for="Appointment.AppointmentDate" type="date" class="form-control" id="appointmentDate" />
+                        <input asp-for="Appointment.AppointmentDate" type="date" class="form-control" id="appointmentDate" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
                         <span asp-validation-for="Appointment.AppointmentDate" class="text-danger"></span>
                     </div>
+
 
                     <div class="form-group mb-3">
                         <label asp-for="Appointment.SlotId" class="form-label">Khung giờ</label>

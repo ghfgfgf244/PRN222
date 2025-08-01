@@ -9,9 +9,9 @@ namespace Web_.Pages.Account
     {
         private readonly IUserServices _context;
 
-        public VerifyEmailModel(AppointmentsDbContext context)
+        public VerifyEmailModel(IUserServices context)
         {
-            _context = new UserServices(context);
+            _context = context;
         }
 
         public async Task<IActionResult> OnGetAsync(string token)

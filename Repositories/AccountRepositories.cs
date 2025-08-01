@@ -14,9 +14,9 @@ namespace Repositories
     {
         private readonly AccountDAO _accountDAO;
 
-        public AccountRepositories(AppointmentsDbContext context)
+        public AccountRepositories(AccountDAO context)
         {
-            _accountDAO = new AccountDAO(context);
+            _accountDAO = context;
         }
 
         public async Task<User?> GetUserByEmailAsync(string email)

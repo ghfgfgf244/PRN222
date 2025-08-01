@@ -12,9 +12,9 @@ namespace Repositories
     {
         private readonly AppointmentDAO _appointmentDAO;
 
-        public AppointmentRepositories(AppointmentsDbContext context)
+        public AppointmentRepositories(AppointmentDAO context)
         {
-            _appointmentDAO = new AppointmentDAO(context);
+            _appointmentDAO = context;
         }
 
         public async Task<bool> CancelAppointmentAsync(int appointmentId)

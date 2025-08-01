@@ -13,9 +13,9 @@ namespace Services
     {
         private readonly IPatientRepositories _context;
 
-        public PatientServices(AppointmentsDbContext context)
+        public PatientServices(IPatientRepositories context)
         {
-            _context = new PatientRepositories(context);
+            _context = context;
         }
         public async Task<bool> AddPatientAsync(Patient patient)
         {

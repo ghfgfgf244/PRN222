@@ -59,7 +59,11 @@
 
                 <div class="form-group mb-3">
                     <label asp-for="Appointment.AppointmentDate" class="form-label">Ngày khám</label>
-                    <input asp-for="Appointment.AppointmentDate" type="date" class="form-control" id="appointmentDate" />
+                    <input asp-for="Appointment.AppointmentDate"
+                           type="date"
+                           class="form-control"
+                           id="appointmentDate"
+                           min="@DateTime.Today.ToString("yyyy-MM-dd")" />
                     <span asp-validation-for="Appointment.AppointmentDate" class="text-danger"></span>
                 </div>
 
@@ -128,6 +132,18 @@
     </script>
     <script src="~/js/Chatbox.js"></script>
     <script>
+        const currentDoctorId = '@Model.SelectedDoctorId';
+        const currentDoctorName = "@Model.DoctorOptions.FirstOrDefault(d => d.Value == Model.SelectedDoctorId?.ToString())?.Text";
+
+        let exists = data.some(d => d.value == currentDoctorId);
+        if (!exists && currentDoctorId) {
+            data.push({
+                value: currentDoctorId,
+                text: currentDoctorName + ' (hiện tại)'
+            });
+        }
+
+
         $(document).ready(function () {
             function loadDoctors() {
                 const specialtyId = $('#specialtySelect').val();

@@ -12,9 +12,9 @@ namespace Repositories
     {
         private readonly PatientDAO _context;
 
-        public PatientRepositories(AppointmentsDbContext context)
+        public PatientRepositories(PatientDAO context)
         {
-            _context = new PatientDAO(context);
+            _context = context;
         }
         public async Task<bool> AddPatientAsync(Patient patient)
         {

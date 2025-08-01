@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BusinessObjects;
 
@@ -11,6 +12,7 @@ public partial class DoctorLeaf
 
     public DateOnly LeaveDate { get; set; }
 
+    [Required]
     public string? Reason { get; set; }
 
     public DateTime? CreatedAt { get; set; }

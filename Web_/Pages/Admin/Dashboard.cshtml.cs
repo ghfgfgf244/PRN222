@@ -22,11 +22,11 @@ namespace Web_.Pages.Admin
         public List<string> MethodLabels { get; set; } = new();
         public List<int> MethodData { get; set; } = new();
 
-        public DashboardModel(AppointmentsDbContext context)
+        public DashboardModel(IUserServices userServices, IAppointmentServices appointmentServices, IDoctorServices doctorServices)
         {
-            _userServices = new UserServices(context);
-            _appointmentServices = new AppointmentServices(context);
-            _doctorServices = new DoctorServices(context);
+            _userServices = userServices;
+            _appointmentServices = appointmentServices;
+            _doctorServices = doctorServices;
         }
 
         public async Task OnGetAsync()

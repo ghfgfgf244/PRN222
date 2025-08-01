@@ -13,9 +13,9 @@ namespace Services
     {
         private readonly IAppointmentRepositories _context;
 
-        public AppointmentServices(AppointmentsDbContext context)
+        public AppointmentServices(IAppointmentRepositories context)
         {
-            _context = new AppointmentRepositories(context);
+            _context = context;
         }
         public async Task<bool> CancelAppointmentAsync(int appointmentId)
         {

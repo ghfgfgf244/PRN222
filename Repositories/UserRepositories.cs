@@ -14,9 +14,9 @@ namespace Repositories
     {
         private readonly UserDAO _userDAO;
 
-        public UserRepositories(AppointmentsDbContext context)
+        public UserRepositories(UserDAO context)
         {
-            _userDAO = new UserDAO(context);
+            _userDAO = context;
         }
 
         public async Task CreateUserAsync(User user)

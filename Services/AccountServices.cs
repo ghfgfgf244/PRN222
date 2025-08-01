@@ -15,9 +15,9 @@ namespace Services
     {
         private readonly IAccountRepositories iAccountRepositories;
 
-        public AccountServices(AppointmentsDbContext context)
+        public AccountServices(IAccountRepositories context)
         {
-            iAccountRepositories = new AccountRepositories(context);
+            iAccountRepositories = context;
         }
 
         public async Task<User?> GetUserByEmailAsync(string email)

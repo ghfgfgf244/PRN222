@@ -11,9 +11,9 @@ namespace Web_.Pages.Account
         private readonly IUserServices _userServices;
         private readonly IExternalIntegrationService _externalIntegrationService;
 
-        public RegisterModel(AppointmentsDbContext context, IConfiguration configuration)
+        public RegisterModel(IUserServices context, IConfiguration configuration)
         {
-            _userServices = new UserServices(context);
+            _userServices = context;
             _externalIntegrationService = new ExternalIntegrationService(configuration);
         }
 

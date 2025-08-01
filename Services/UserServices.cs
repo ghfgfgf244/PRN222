@@ -13,9 +13,9 @@ namespace Services
     {
         private readonly IUserRepositories iUserRepositories;
 
-        public UserServices(AppointmentsDbContext context)
+        public UserServices(IUserRepositories context)
         {
-            iUserRepositories = new UserRepositories(context);
+            iUserRepositories = context;
         }
         public async Task CreateUserAsync(User user)
         {
