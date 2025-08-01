@@ -12,9 +12,9 @@ namespace Repositories
     {
         private readonly DoctorDAO _doctorDAO;
 
-        public DoctorRepositories(AppointmentsDbContext context)
+        public DoctorRepositories(DoctorDAO context)
         {
-            _doctorDAO = new DoctorDAO(context);
+            _doctorDAO = context;
         }
 
         public async Task AddSpecialtyToDoctorAsync(int doctorId, int specialtyId)

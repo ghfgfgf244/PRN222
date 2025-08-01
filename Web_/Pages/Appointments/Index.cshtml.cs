@@ -17,9 +17,9 @@ namespace Web_.Pages.Appointments
     {
         private readonly IAppointmentServices _context;
 
-        public IndexModel(BusinessObjects.AppointmentsDbContext context)
+        public IndexModel(IAppointmentServices context)
         {
-            _context = new AppointmentServices(context);
+            _context = context;
         }
         public string CurrentDomain { get; set; }
 

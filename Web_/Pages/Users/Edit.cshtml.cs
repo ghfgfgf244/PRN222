@@ -25,13 +25,13 @@ namespace Web_.Pages.Users
         private readonly IDoctorServices _doctorContext;
         private readonly IHubContext<AppHub> _hubContext;
 
-        public EditModel(BusinessObjects.AppointmentsDbContext context, IConfiguration configuration, IWebHostEnvironment environment, IHubContext<AppHub> hubContext)
+        public EditModel(IUserServices context, IDoctorServices _contextDoctor, IConfiguration configuration, IWebHostEnvironment environment, IHubContext<AppHub> hubContext)
         {
-            _context = new UserServices(context);
+            _context = context;
             _exContext = new ExternalIntegrationService(configuration);
             this._environment = environment;
             _configuration = configuration;
-            _doctorContext = new DoctorServices(context);
+            _doctorContext = _contextDoctor;
             _hubContext = hubContext;
 
         }

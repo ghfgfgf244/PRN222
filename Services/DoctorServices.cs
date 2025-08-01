@@ -13,9 +13,9 @@ namespace Services
     {
         private readonly IDoctorRepositories _iDoctorRepositories;
 
-        public DoctorServices(AppointmentsDbContext context)
+        public DoctorServices(IDoctorRepositories context)
         {
-            _iDoctorRepositories = new DoctorRepositories(context);
+            _iDoctorRepositories = context;
         }
 
         public async Task AddSpecialtyToDoctorAsync(int doctorId, int specialtyId)

@@ -1,10 +1,12 @@
 ﻿using BusinessObjects;
+using DataAccessObjects;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Repositories;
 using Services;
 using Web_.Hubs;
 
@@ -23,6 +25,20 @@ namespace Web_
                 options.UseSqlServer(builder.Configuration.GetConnectionString("MyStockDB")));
 
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<AppointmentDAO>();
+            builder.Services.AddScoped<AccountDAO>();
+            builder.Services.AddScoped<PatientDAO>();
+            builder.Services.AddScoped<DoctorDAO>();
+            builder.Services.AddScoped<UserDAO>();
+
+            builder.Services.AddScoped<IAppointmentRepositories, AppointmentRepositories>();
+            builder.Services.AddScoped<IDoctorRepositories, DoctorRepositories>();
+            builder.Services.AddScoped<IPatientRepositories, PatientRepositories>();
+            builder.Services.AddScoped<IUserRepositories, UserRepositories>();
+            builder.Services.AddScoped<IExternalIntegrationService, ExternalIntegrationService>();
+            builder.Services.AddScoped<IAccountRepositories, AccountRepositories>();
+
             builder.Services.AddScoped<IAppointmentServices, AppointmentServices>();
             builder.Services.AddScoped<IDoctorServices, DoctorServices>();
             builder.Services.AddScoped<IPatientServices, PatientServices>();

@@ -21,13 +21,13 @@ namespace Web_.Pages.Appointments
         private readonly IPatientServices _patientContext;
         private readonly IConfiguration _configuration;
 
-        public CreateModel(BusinessObjects.AppointmentsDbContext context, IConfiguration configuration, IWebHostEnvironment environment)
+        public CreateModel(IPatientServices patientServices, IAppointmentServices appointmentServices, IDoctorServices doctorServices, IConfiguration configuration, IWebHostEnvironment environment)
         {
             _exContext = new ExternalIntegrationService(configuration);
             this._environment = environment;
-            _doctorContext = new DoctorServices(context);
-            _appointmentContext = new AppointmentServices(context);
-            _patientContext = new PatientServices(context);
+            _doctorContext = doctorServices;
+            _appointmentContext = appointmentServices;
+            _patientContext = patientServices;
             _configuration = configuration;
         }
 

@@ -22,12 +22,12 @@ namespace Web_.Pages.Users
         private readonly IDoctorServices _doctorContext;
         private readonly IHubContext<AppHub> _hubContext;
 
-        public CreateModel(BusinessObjects.AppointmentsDbContext context, IConfiguration configuration, IWebHostEnvironment environment, IHubContext<AppHub> hubContext)
+        public CreateModel(IUserServices context,IDoctorServices _contextDoctor, IConfiguration configuration, IWebHostEnvironment environment, IHubContext<AppHub> hubContext)
         {
-            _context = new UserServices(context);
+            _context = context;
             _exContext = new ExternalIntegrationService(configuration);
             this._environment = environment;
-            _doctorContext = new DoctorServices(context);
+            _doctorContext = _contextDoctor;
             _hubContext = hubContext;
         }
 
@@ -85,7 +85,7 @@ namespace Web_.Pages.Users
                 email = User.Email
             });
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new { role = User.Role });
         }
 
         public async Task<IActionResult> OnPostUploadAvatarAsync()

@@ -10,9 +10,9 @@ namespace Web_.Pages.DoctorLeafs
     {
         private readonly IDoctorServices _doctorService;
 
-        public CreateModel(AppointmentsDbContext context)
+        public CreateModel(IDoctorServices context)
         {
-            _doctorService = new DoctorServices(context);
+            _doctorService = context;
         }
 
         [BindProperty]

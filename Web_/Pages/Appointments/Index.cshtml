@@ -130,9 +130,12 @@
 						</td>
 
 						<td>
-							<a asp-page="./Edit" asp-route-id="@item.AppointmentId" class="btn btn-warning btn-sm me-1" title="Sửa">
-								<i class="fa-solid fa-pen-to-square"></i>
-							</a>
+							@if (item.Status == "Pending" && Model.IsPatient)
+							{
+								<a asp-page="./Edit" asp-route-id="@item.AppointmentId" class="btn btn-warning btn-sm me-1" title="Sửa">
+									<i class="fa-solid fa-pen-to-square"></i>
+								</a>
+							}
 							<a asp-page="./Details" asp-route-id="@item.AppointmentId" class="btn btn-info btn-sm text-white me-1" title="Chi tiết">
 								<i class="fa-solid fa-circle-info"></i>
 							</a>

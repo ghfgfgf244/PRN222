@@ -21,13 +21,13 @@ namespace Web_.Pages.Appointments
         private readonly IPatientServices _patientContext;
         private readonly IConfiguration _configuration;
 
-        public EditModel(BusinessObjects.AppointmentsDbContext context, IConfiguration configuration, IWebHostEnvironment environment)
+        public EditModel(IPatientServices patientServices, IAppointmentServices appointmentServices, IDoctorServices doctorServices, IConfiguration configuration, IWebHostEnvironment environment)
         {
             _exContext = new ExternalIntegrationService(configuration);
             this._environment = environment;
-            _doctorContext = new DoctorServices(context);
-            _appointmentContext = new AppointmentServices(context);
-            _patientContext = new PatientServices(context);
+            _doctorContext = doctorServices;
+            _appointmentContext = appointmentServices;
+            _patientContext = patientServices;
             _configuration = configuration;
 
         }
@@ -63,7 +63,7 @@ namespace Web_.Pages.Appointments
                 return NotFound();
             }
 
-            var appointment =  await _appointmentContext.GetAppointmentByIdAsync(id.Value);
+            var appointment = await _appointmentContext.GetAppointmentByIdAsync(id.Value);
             if (appointment == null)
             {
                 return NotFound();
@@ -82,6 +82,11 @@ namespace Web_.Pages.Appointments
                 return RedirectToPage("/Account/AccessDenied");
             }
             UserId = userId;
+
+            if (Patient.RegisteredBy != UserId)
+            {
+                return RedirectToPage("/Account/AccessDenied");
+            }
 
             await LoadInitialDropdowns();
 
@@ -161,12 +166,28 @@ namespace Web_.Pages.Appointments
                         Appointment.SlotId.Value,
                         Appointment.AppointmentDate
                     );
+
                     DoctorOptions = doctors.Select(d => new SelectListItem
                     {
                         Value = d.UserId.ToString(),
                         Text = d.FullName
                     }).ToList();
+
+                    // ✅ Nếu doctor hiện tại không có trong danh sách, thêm vào
+                    if (!DoctorOptions.Any(d => d.Value == SelectedDoctorId.ToString()))
+                    {
+                        var doctor = await _doctorContext.GetDoctorByIdAsync(SelectedDoctorId ?? 0);
+                        if (doctor != null)
+                        {
+                            DoctorOptions.Add(new SelectListItem
+                            {
+                                Value = doctor.UserId.ToString(),
+                                Text = doctor.FullName + " (hiện tại)"
+                            });
+                        }
+                    }
                 }
+
                 return Page();
             }
             Appointment.AppointmentDate = Appointment.AppointmentDate;
@@ -174,7 +195,7 @@ namespace Web_.Pages.Appointments
             Appointment.SlotId = SelectedSlotId;
             Appointment.MethodId = SelectedMethodId;
             Appointment.DoctorId = SelectedDoctorId;
-
+            Appointment.PatientId = Patient.PatientId;
 
             await _patientContext.UpdatePatientAsync(Patient);
             Console.WriteLine($"FullName: {Patient.FullName}");

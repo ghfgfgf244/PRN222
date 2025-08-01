@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BusinessObjects;
 
@@ -11,6 +12,7 @@ public partial class Patient
 
     public string FullName { get; set; } = null!;
 
+    [Range(1, 150, ErrorMessage = "Tuổi không được bé hơn 1")]
     public int Age { get; set; }
 
     public bool Gender { get; set; }

@@ -19,9 +19,9 @@ namespace Web_.Pages.Account
         [BindProperty]
         public string Password { get; set; }
 
-        public LoginModel(AppointmentsDbContext context, IConfiguration configuration)
+        public LoginModel(IAccountServices context, IConfiguration configuration)
         {
-            _accountServices = new AccountServices(context);
+            _accountServices = context;
             _configuration = configuration;
         }
         public bool EmailVerified { get; set; }
